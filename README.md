@@ -51,6 +51,8 @@ See [TRANSLATING.md](TRANSLATING.md) for instructions on adding or improving tra
 
 Bug reports and pull requests are welcome. I especially welcome PRs for bug fixes that you may find. Please open an issue before starting large changes so we can discuss the approach. I appreciate any and all suggestions for improving this app so more people can enjoy it to the fullest extent.
 
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for a list of contributors.
+
 ## License
 
 GPL-3.0. See [LICENSE](LICENSE) for details.

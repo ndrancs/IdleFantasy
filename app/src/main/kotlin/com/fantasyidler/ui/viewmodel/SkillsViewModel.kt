@@ -63,6 +63,7 @@ data class SkillsUiState(
     val miningEfficiency: Float = 1.0f,
     val woodcuttingEfficiency: Float = 1.0f,
     val fishingEfficiency: Float = 1.0f,
+    val farmingEfficiency: Float = 1.0f,
     val sessionDurationMs: Long = 0L,
 )
 
@@ -127,6 +128,7 @@ class SkillsViewModel @Inject constructor(
                 miningEfficiency      = toolEfficiency(equipped[EquipSlot.PICKAXE],     EquipSlot.PICKAXE,     0),
                 woodcuttingEfficiency = toolEfficiency(equipped[EquipSlot.AXE],         EquipSlot.AXE,         0),
                 fishingEfficiency     = toolEfficiency(equipped[EquipSlot.FISHING_ROD], EquipSlot.FISHING_ROD, 0),
+                farmingEfficiency     = toolEfficiency(equipped[EquipSlot.HOE],         EquipSlot.HOE,         0),
                 sessionDurationMs     = SkillSimulator.sessionDurationMs(levels[Skills.AGILITY] ?: 1),
             )
         }
@@ -649,6 +651,7 @@ class SkillsViewModel @Inject constructor(
             EquipSlot.PICKAXE     -> eq.miningEfficiency      ?: 1.0f
             EquipSlot.AXE         -> eq.woodcuttingEfficiency ?: 1.0f
             EquipSlot.FISHING_ROD -> eq.fishingEfficiency     ?: 1.0f
+            EquipSlot.HOE         -> eq.farmingEfficiency     ?: 1.0f
             else                  -> 1.0f
         }
         if (resourceLevelRequired <= 0) return base
@@ -692,3 +695,9 @@ fun xpProgressFraction(xp: Long): Float = XpTable.progressFraction(xp)
 
 /** Formatted level string for display. */
 fun levelDisplay(xp: Long): Int = XpTable.levelForXp(xp)
+
+/** XP needed to reach the next level, or 0 if already at max level. */
+fun xpToNextLevel(xp: Long): Long = XpTable.xpToNextLevel(xp)
+
+/** Total XP required for the next level (absolute threshold). */
+fun nextLevelThreshold(xp: Long): Long = XpTable.nextLevelThreshold(xp)

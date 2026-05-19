@@ -85,6 +85,8 @@ import com.fantasyidler.ui.viewmodel.levelDisplay
 import com.fantasyidler.ui.viewmodel.SkillsUiState
 import com.fantasyidler.ui.viewmodel.SkillsViewModel
 import com.fantasyidler.ui.viewmodel.xpProgressFraction
+import com.fantasyidler.ui.viewmodel.nextLevelThreshold
+import com.fantasyidler.ui.viewmodel.xpToNextLevel
 import com.fantasyidler.util.GameStrings
 import com.fantasyidler.util.formatDurationMs
 import com.fantasyidler.util.formatXp
@@ -156,6 +158,7 @@ fun SkillsScreen(
                     Skills.MINING      -> state.miningEfficiency
                     Skills.WOODCUTTING -> state.woodcuttingEfficiency
                     Skills.FISHING     -> state.fishingEfficiency
+                    Skills.FARMING     -> state.farmingEfficiency
                     else               -> 1.0f
                 }
                 SkillRow(
@@ -458,8 +461,12 @@ private fun SkillRow(
                         color = GoldPrimary,
                     )
                 } else {
+                    val xpText = if (xpToNextLevel(xp) > 0L)
+                        "${xp.formatXp()} / ${nextLevelThreshold(xp).formatXp()} XP"
+                    else
+                        "${xp.formatXp()} XP"
                     Text(
-                        text  = "${xp.formatXp()} XP",
+                        text  = xpText,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

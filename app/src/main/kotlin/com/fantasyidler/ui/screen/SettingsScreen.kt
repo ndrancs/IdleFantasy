@@ -328,6 +328,8 @@ private fun LanguageSection() {
     val options = listOf(
         "en"     to stringResource(R.string.settings_lang_english),
         "de"     to stringResource(R.string.settings_lang_deutsch),
+        "fr"     to stringResource(R.string.settings_lang_français),
+        "es"     to stringResource(R.string.settings_lang_español),
         "system" to stringResource(R.string.settings_lang_system),
     )
     val selectedLabel = options.find { it.first == currentTag }?.second ?: options.last().second

@@ -62,7 +62,9 @@ import com.fantasyidler.ui.theme.GoldPrimary
 import com.fantasyidler.ui.viewmodel.ShopEntry
 import com.fantasyidler.ui.viewmodel.ShopTransaction
 import com.fantasyidler.ui.viewmodel.ShopViewModel
+import com.fantasyidler.ui.theme.GoldPrimary
 import com.fantasyidler.util.GameStrings
+import com.fantasyidler.util.formatCoins
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -111,6 +113,27 @@ fun ShopScreen(
                     selected = subTab == 1,
                     onClick  = { subTab = 1 },
                     text     = { Text(stringResource(R.string.btn_sell)) },
+                )
+            }
+
+            Row(
+                modifier              = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 6.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment     = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text  = stringResource(R.string.label_coins),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(Modifier.width(6.dp))
+                Text(
+                    text  = state.coins.formatCoins(),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = GoldPrimary,
+                    fontWeight = FontWeight.Bold,
                 )
             }
 
