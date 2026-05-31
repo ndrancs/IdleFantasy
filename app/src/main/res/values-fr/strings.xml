@@ -787,7 +787,7 @@
     <string name="skill_slayer_desc">Recevez des missions du Maître Tueur en Ville.</string>
     <string name="slayer_title">Maître Tueur</string>
     <string name="slayer_card_desc">Missions et récompenses pour les tueurs</string>
-    <string name="slayer_desc">Complétez des missions pour gagner de l'XP et des points de Tueur. Dépensez vos points dans la boutique pour du matériel exclusif.</string>
+    <string name="slayer_desc">Complétez des missions pour gagner de l\'XP et des points de Tueur. Dépensez vos points dans la boutique pour du matériel exclusif.</string>
     <string name="slayer_level_label">Niveau %1$d</string>
     <string name="slayer_xp_label">%1$s XP</string>
     <string name="slayer_points">%1$d pts</string>
@@ -804,20 +804,20 @@
     <string name="slayer_shop_cost">%1$d pts</string>
     <string name="slayer_not_enough_points">Pas assez de points de Tueur.</string>
     <string name="slayer_already_owned">Déjà possédé.</string>
-    <string name="slayer_purchased">Ajouté à l'inventaire.</string>
+    <string name="slayer_purchased">Ajouté à l\'inventaire.</string>
     <string name="slayer_owned">Possédé</string>
     <string name="slayer_lamp_purchased">XP ajouté à %1$s !</string>
     <string name="slayer_lamp_pick_skill">Choisissez une compétence</string>
     <string name="slayer_lamp_small">Lampe XP (Petite)</string>
     <string name="slayer_lamp_large">Lampe XP (Grande)</string>
-    <string name="slayer_lamp_small_desc">+10 000 XP à n'importe quelle compétence</string>
-    <string name="slayer_lamp_large_desc">+50 000 XP à n'importe quelle compétence</string>
+    <string name="slayer_lamp_small_desc">+10 000 XP à n\'importe quelle compétence</string>
+    <string name="slayer_lamp_large_desc">+50 000 XP à n\'importe quelle compétence</string>
     <string name="slayer_found_in">Trouvé dans : %1$s</string>
     <string name="slayer_requires">Nécessite : %1$s</string>
     <string name="item_slayer_helm_name">Casque Tueur</string>
     <string name="item_slayer_helm_desc">Un casque robuste porté par les tueurs expérimentés.</string>
     <string name="item_abyssal_whip_name">Fouet Abyssal</string>
-    <string name="item_abyssal_whip_desc">Un fouet forgé à partir d'énergie abyssale. Excellent pour l'entraînement à la force.</string>
+    <string name="item_abyssal_whip_desc">Un fouet forgé à partir d\'énergie abyssale. Excellent pour l\'entraînement à la force.</string>
     <string name="item_slayer_platebody_name">Corps de plaque Tueur</string>
     <string name="item_slayer_platebody_desc">Armure lourde gravée de runes de tueur.</string>
     <string name="item_slayer_platelegs_name">Jambières Tueur</string>
@@ -825,7 +825,7 @@
     <string name="settings_changelog_title">Les nouveautés</string>
     <string name="settings_changelog_desc">Voir les dernières mises à jour</string>
     <string name="settings_changelog_btn">Voir</string>
-    <string name="profile_view_combat_gear">Voir l'équipement de combat</string>
+    <string name="profile_view_combat_gear">Voir l\'équipement de combat</string>
     <string name="inn_slot1_header">Long Travailleur</string>
     <string name="inn_slot2_header">Ouvrier Qualifié</string>
 </resources>
