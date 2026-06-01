@@ -303,11 +303,16 @@ fun CombatScreen(
                 equippedWeapons      = state.equippedWeapons,
                 selectedWeaponSlot   = state.selectedWeaponSlot,
                 inventory            = state.inventory,
+                availableSpells      = viewModel.availableSpells(state.skillLevels),
+                selectedSpell        = state.selectedSpell,
                 availablePotions     = state.availablePotions,
                 potionEffects        = viewModel.potionEffects,
                 selectedPotionKey    = state.selectedPotionKey,
+                selectedArrowKey     = state.selectedArrowKey,
                 isStarting           = state.startingSession,
                 onWeaponSlotSelected = viewModel::selectWeaponSlot,
+                onSpellSelected      = viewModel::selectSpell,
+                onArrowSelected      = viewModel::selectArrow,
                 onPotionSelected     = viewModel::selectPotion,
                 onStart              = { viewModel.startBossSession(boss.id) },
                 onDismiss            = { viewModel.selectBoss(null) },
@@ -335,10 +340,12 @@ fun CombatScreen(
                 availablePotions     = state.availablePotions,
                 potionEffects        = viewModel.potionEffects,
                 selectedPotionKey    = state.selectedPotionKey,
+                selectedArrowKey     = state.selectedArrowKey,
                 isStarting           = state.startingSession,
                 onWeaponSlotSelected = viewModel::selectWeaponSlot,
                 onSpellSelected      = viewModel::selectSpell,
                 onPotionSelected     = viewModel::selectPotion,
+                onArrowSelected      = viewModel::selectArrow,
                 onStart              = { viewModel.startDungeonSession(dungeon.name) },
                 onDismiss            = { viewModel.selectDungeon(null) },
             )
@@ -1300,10 +1307,12 @@ private fun DungeonInfoSheet(
     availablePotions: Map<String, Int>,
     potionEffects: Map<String, Map<String, Int>>,
     selectedPotionKey: String?,
+    selectedArrowKey: String?,
     isStarting: Boolean,
     onWeaponSlotSelected: (String) -> Unit,
     onSpellSelected: (SpellData) -> Unit,
     onPotionSelected: (String?) -> Unit,
+    onArrowSelected: (String?) -> Unit,
     onStart: () -> Unit,
     onDismiss: () -> Unit,
 ) {
@@ -1319,9 +1328,6 @@ private fun DungeonInfoSheet(
     val styleLabel = combatStyle.replaceFirstChar { it.titlecase() }
     val canStart   = canEnter && !isStarting &&
         (combatStyle != "magic" || selectedSpell != null)
-
-    // Best arrow for ranged
-    val bestArrow = ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
 
     Column(
         modifier = Modifier
@@ -1351,12 +1357,49 @@ private fun DungeonInfoSheet(
         StatRow(label = stringResource(R.string.combat_your_level), value = combatLvl.toString())
         StatRow(label = stringResource(R.string.label_combat_style), value = styleLabel, valueColor = GoldPrimary)
 
-        // Ranged: arrow info
+        // Ranged: arrow picker
         if (combatStyle == "ranged") {
-            val arrowText = if (bestArrow != null)
-                "${GameStrings.itemName(context, bestArrow)} \u00d7${inventory[bestArrow]}"
-            else stringResource(R.string.combat_no_strength_bonus)
-            StatRow(label = stringResource(R.string.combat_best_arrow), value = arrowText)
+            val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }
+            Text(
+                text  = stringResource(R.string.combat_label_arrow),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Spacer(Modifier.height(4.dp))
+            val arrowOptions = listOf(null) + availableArrows
+            arrowOptions.forEach { key ->
+                val isSelected = selectedArrowKey == key
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onArrowSelected(key) }
+                        .padding(vertical = 5.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text       = if (key == null) stringResource(R.string.combat_arrow_auto)
+                                         else GameStrings.itemName(context, key),
+                            style      = MaterialTheme.typography.bodyMedium,
+                            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                            color      = if (isSelected) GoldPrimary else MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
+                    if (key != null) {
+                        Text(
+                            text  = "\u00d7${inventory[key]}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    if (isSelected) {
+                        Text("\u2713", style = MaterialTheme.typography.bodyMedium,
+                            color = GoldPrimary, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+            Spacer(Modifier.height(8.dp))
         }
 
         Spacer(Modifier.height(12.dp))
@@ -1586,11 +1629,16 @@ private fun BossInfoSheet(
     equippedWeapons: Map<String, EquipmentData>,
     selectedWeaponSlot: String?,
     inventory: Map<String, Int>,
+    availableSpells: List<SpellData>,
+    selectedSpell: SpellData?,
     availablePotions: Map<String, Int>,
     potionEffects: Map<String, Map<String, Int>>,
     selectedPotionKey: String?,
+    selectedArrowKey: String?,
     isStarting: Boolean,
     onWeaponSlotSelected: (String) -> Unit,
+    onSpellSelected: (SpellData) -> Unit,
+    onArrowSelected: (String?) -> Unit,
     onPotionSelected: (String?) -> Unit,
     onStart: () -> Unit,
     onDismiss: () -> Unit,
@@ -1605,7 +1653,8 @@ private fun BossInfoSheet(
         else       -> "attack"
     }
     val styleLabel = combatStyle.replaceFirstChar { it.titlecase() }
-    val bestArrow = ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
+    val canStart = canFight && !isStarting &&
+        (combatStyle != "magic" || selectedSpell != null)
 
     Column(
         modifier = Modifier
@@ -1657,12 +1706,6 @@ private fun BossInfoSheet(
                 fontWeight = FontWeight.SemiBold)
         }
         StatRow(label = stringResource(R.string.label_combat_style), value = styleLabel, valueColor = GoldPrimary)
-        if (combatStyle == "ranged") {
-            val arrowText = if (bestArrow != null)
-                "${GameStrings.itemName(context, bestArrow)} ×${inventory[bestArrow]}"
-            else stringResource(R.string.combat_no_strength_bonus)
-            StatRow(label = stringResource(R.string.combat_best_arrow), value = arrowText)
-        }
 
         // Weapon picker
         if (equippedWeapons.isNotEmpty()) {
@@ -1696,6 +1739,113 @@ private fun BossInfoSheet(
                             }
                         },
                     )
+                }
+            }
+        }
+
+        // Ranged: arrow picker
+        if (combatStyle == "ranged") {
+            val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }
+            Spacer(Modifier.height(12.dp))
+            Text(
+                text  = stringResource(R.string.combat_label_arrow),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Spacer(Modifier.height(4.dp))
+            val arrowOptions = listOf(null) + availableArrows
+            arrowOptions.forEach { key ->
+                val isSelected = selectedArrowKey == key
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onArrowSelected(key) }
+                        .padding(vertical = 5.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text       = if (key == null) stringResource(R.string.combat_arrow_auto)
+                                         else GameStrings.itemName(context, key),
+                            style      = MaterialTheme.typography.bodyMedium,
+                            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                            color      = if (isSelected) GoldPrimary else MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
+                    if (key != null) {
+                        Text(
+                            text  = "×${inventory[key]}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    if (isSelected) {
+                        Text("✓", style = MaterialTheme.typography.bodyMedium,
+                            color = GoldPrimary, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
+
+        // Magic: spell picker
+        if (combatStyle == "magic") {
+            Spacer(Modifier.height(12.dp))
+            Text(
+                text  = stringResource(R.string.label_spell),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Spacer(Modifier.height(4.dp))
+            if (availableSpells.isEmpty()) {
+                Text(
+                    text  = stringResource(R.string.combat_no_spells),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            } else {
+                var onlyCastable by remember { mutableStateOf(false) }
+                val displaySpells = if (onlyCastable)
+                    availableSpells.filter { spell ->
+                        equippedWeapon?.infiniteRunes == spell.runeType ||
+                        (inventory[spell.runeType] ?: 0) >= spell.runeCost
+                    }
+                else availableSpells
+                Row(modifier = Modifier.padding(bottom = 4.dp)) {
+                    FilterChip(
+                        selected = onlyCastable,
+                        onClick  = { onlyCastable = !onlyCastable },
+                        label    = { Text(stringResource(R.string.combat_only_castable)) },
+                    )
+                }
+                displaySpells.forEach { spell ->
+                    val isSelected = selectedSpell?.name == spell.name
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onSpellSelected(spell) }
+                            .padding(vertical = 5.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                text       = spell.displayName,
+                                style      = MaterialTheme.typography.bodyMedium,
+                                fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                                color      = if (isSelected) GoldPrimary else MaterialTheme.colorScheme.onSurface,
+                            )
+                            Text(
+                                text  = "${spell.runeCost}× ${GameStrings.itemName(context, spell.runeType)}  •  ${stringResource(R.string.combat_max_hit)} ${spell.maxHit}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        if (isSelected) {
+                            Text("✓", style = MaterialTheme.typography.bodyMedium,
+                                color = GoldPrimary, fontWeight = FontWeight.Bold)
+                        }
+                    }
                 }
             }
         }
@@ -1781,7 +1931,7 @@ private fun BossInfoSheet(
             Button(
                 onClick  = onStart,
                 modifier = Modifier.weight(1f),
-                enabled  = canFight && !isStarting,
+                enabled  = canStart,
             ) {
                 if (isStarting) CircularProgressIndicator(
                     modifier    = Modifier.height(20.dp).width(20.dp),

@@ -820,4 +820,6 @@
     <string name="home_xp_boost_active">2× XP Boost active — %1$s remaining</string>
     <string name="inn_buy_qty">Quantity</string>
     <string name="inn_buy_total">Total: %1$s</string>
+    <string name="combat_arrow_auto">Auto (best available)</string>
+    <string name="combat_label_arrow">Arrow</string>
 </resources>

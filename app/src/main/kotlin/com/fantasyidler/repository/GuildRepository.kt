@@ -150,6 +150,30 @@ class GuildRepository @Inject constructor(
         playerRepo.updateFlags(flags)
     }
 
+    /**
+     * Lets the player submit crops from their inventory toward a farming gather daily.
+     * Returns the number of items actually consumed (0 if daily is already complete/claimed or
+     * the player has none of the target item).
+     */
+    suspend fun contributeFarmingDaily(templateId: String, inventory: Map<String, Int>): Int {
+        val flags = playerRepo.getFlags()
+        val pool  = gameData.guildDailyPool.associateBy { it.id }
+        val t     = pool[templateId] ?: return 0
+        if (t.guild != "farming" || t.type != "gather") return 0
+        if (templateId in flags.guildDailyClaimed) return 0
+        val current  = flags.guildDailyProgress[templateId] ?: 0
+        val needed   = (t.amount - current).coerceAtLeast(0)
+        if (needed == 0) return 0
+        val available = inventory[t.target] ?: 0
+        if (available == 0) return 0
+        val toConsume = minOf(needed, available)
+        playerRepo.consumeItems(mapOf(t.target to toConsume))
+        val newProgress = flags.guildDailyProgress.toMutableMap()
+        newProgress[templateId] = current + toConsume
+        playerRepo.updateFlags(flags.copy(guildDailyProgress = newProgress))
+        return toConsume
+    }
+
     /** Called when a mercantile trade route session is collected. */
     suspend fun recordGuildTrade(coinsEarned: Long = 0L) {
         var flags = getRefreshedGuildDailyFlags()

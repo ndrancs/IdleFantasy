@@ -404,6 +404,8 @@
     <string name="combat_your_level">Your combat level</string>
     <string name="combat_no_strength_bonus">None (no strength bonus)</string>
     <string name="combat_best_arrow">Best arrow</string>
+    <string name="combat_arrow_auto">Auto (best available)</string>
+    <string name="combat_label_arrow">Arrow</string>
     <string name="combat_enemies">Enemies</string>
     <string name="combat_no_spells">No spells available at your magic level.</string>
     <string name="combat_only_castable">Only Castable</string>

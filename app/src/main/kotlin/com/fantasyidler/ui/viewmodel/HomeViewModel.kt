@@ -94,6 +94,8 @@ data class HomeUiState(
     val activeBlessingKey: String = "",
     val activeBlessingRemainingMs: Long = 0L,
     val xpBoostRemainingMs: Long = 0L,
+    val recentSessions: List<com.fantasyidler.data.model.RecentSession> = emptyList(),
+    val showRecentActivityLog: Boolean = true,
 )
 
 @HiltViewModel
@@ -180,6 +182,8 @@ class HomeViewModel @Inject constructor(
                 activeBlessingKey          = flags.activeBlessingKey,
                 activeBlessingRemainingMs  = (flags.activeBlessingExpiresAt - System.currentTimeMillis()).coerceAtLeast(0L),
                 xpBoostRemainingMs         = (flags.xpBoostExpiresAt - System.currentTimeMillis()).coerceAtLeast(0L),
+                recentSessions             = flags.recentSessions,
+                showRecentActivityLog      = flags.showRecentActivityLog,
             )
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), HomeUiState())
@@ -453,6 +457,25 @@ class HomeViewModel @Inject constructor(
             }
 
             for (session in sessions) sessionRepo.deleteSession(session.sessionId)
+
+            // ── Recent sessions log ───────────────────────────────────────
+            val newEntries = sessions.map { s ->
+                val activityDisplay = when (s.skillName) {
+                    "boss"       -> gameData.bosses[s.activityKey]?.displayName
+                    "combat"     -> gameData.dungeons[s.activityKey]?.displayName
+                    "expedition" -> gameData.skillingDungeons[s.activityKey]?.displayName
+                    else         -> null
+                } ?: s.activityKey.replace("_", " ").split(" ")
+                    .joinToString(" ") { it.replaceFirstChar { c -> c.titlecase() } }
+                com.fantasyidler.data.model.RecentSession(
+                    skillName = s.skillName,
+                    activityDisplayName = activityDisplay,
+                )
+            }
+            val updatedFlags = playerRepo.getFlags()
+            playerRepo.updateFlags(updatedFlags.copy(
+                recentSessions = (newEntries + updatedFlags.recentSessions).take(10),
+            ))
 
             // ── Build summary ─────────────────────────────────────────────
             val n    = sessions.size

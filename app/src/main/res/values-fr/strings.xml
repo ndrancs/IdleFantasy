@@ -833,4 +833,6 @@
     <string name="profile_view_combat_gear">Voir l\'équipement de combat</string>
     <string name="inn_slot1_header">Long Travailleur</string>
     <string name="inn_slot2_header">Ouvrier Qualifié</string>
+    <string name="combat_arrow_auto">Auto (best available)</string>
+    <string name="combat_label_arrow">Arrow</string>
 </resources>

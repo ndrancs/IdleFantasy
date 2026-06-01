@@ -65,6 +65,7 @@ data class CombatUiState(
     /** The weapon slot the player explicitly chose for the next dungeon; null = use default. */
     val selectedWeaponSlot: String? = null,
     val selectedSpell: SpellData? = null,
+    val selectedArrowKey: String? = null,
     val combatSession: SkillSession? = null,
     val selectedDungeon: DungeonData? = null,
     val selectedBoss: BossData? = null,
@@ -167,6 +168,7 @@ class CombatViewModel @Inject constructor(
                     .filter { (_, qty) -> qty > 0 },
                 dungeonRuns             = flags.dungeonRuns,
                 unlockedDungeons        = flags.unlockedDungeons,
+                selectedArrowKey        = if (extra.selectedArrowKey == null) flags.equippedArrows else extra.selectedArrowKey,
             )
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), CombatUiState())
@@ -218,6 +220,15 @@ class CombatViewModel @Inject constructor(
 
     fun selectSpell(spell: SpellData?) =
         _extra.update { it.copy(selectedSpell = spell) }
+
+    fun selectArrow(key: String?) {
+        _extra.update { it.copy(selectedArrowKey = key) }
+        viewModelScope.launch {
+            val player = playerRepo.getOrCreatePlayer()
+            val flags: PlayerFlags = try { json.decodeFromString(player.flags) } catch (_: Exception) { PlayerFlags() }
+            playerRepo.updateFlags(flags.copy(equippedArrows = key))
+        }
+    }
 
     fun selectPotion(key: String?) =
         _extra.update { it.copy(selectedPotionKey = key) }
@@ -304,8 +315,9 @@ class CombatViewModel @Inject constructor(
                 val totalStrengthBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.strengthBonus ?: 0 } + (weapon?.strengthBonus ?: 0)
                 val totalDefenseBonus  = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.defenseBonus  ?: 0 } + (weapon?.defenseBonus  ?: 0)
 
-                // Ranged: find best arrow in inventory
-                val bestArrow = ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
+                // Ranged: use player's chosen arrow if available, else fall back to best in inventory
+                val preferredArrow = _extra.value.selectedArrowKey?.takeIf { (inventory[it] ?: 0) > 0 }
+                val bestArrow = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
                 val arrowStrengthBonus = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
 
                 // Magic: validate spell selection and level
@@ -459,24 +471,67 @@ class CombatViewModel @Inject constructor(
                     gameData.potionEffects[potionKey] ?: emptyMap()
                 } else emptyMap()
 
+                val combatStyle = when (bossWeapon?.combatStyle) {
+                    "ranged"   -> "ranged"
+                    "magic"    -> "magic"
+                    "strength" -> "strength"
+                    else       -> "melee"
+                }
+                val selectedSpell = _extra.value.selectedSpell
+                if (combatStyle == "magic" && selectedSpell == null) {
+                    _extra.update { it.copy(snackbarMessage = "Select a spell before entering.", startingSession = false) }
+                    return@launch
+                }
+                val magicLevel = levels[Skills.MAGIC] ?: 1
+                if (combatStyle == "magic" && selectedSpell != null && magicLevel < selectedSpell.magicLevelRequired) {
+                    _extra.update { it.copy(snackbarMessage = "Need Magic ${selectedSpell.magicLevelRequired} for ${selectedSpell.displayName}.", startingSession = false) }
+                    return@launch
+                }
+                val preferredArrow = _extra.value.selectedArrowKey?.takeIf { (inventory[it] ?: 0) > 0 }
+                val bestArrow = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
+                val arrowStrengthBonus = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
+                val availableArrows = if (bestArrow != null) mapOf(bestArrow to (inventory[bestArrow] ?: 0)) else emptyMap()
+
                 val flags: PlayerFlags = try { json.decodeFromString(player.flags) } catch (_: Exception) { PlayerFlags() }
-                playerRepo.updateFlags(flags.copy(activeWeaponSlot = activeWeaponSlot))
+                playerRepo.updateFlags(flags.copy(
+                    activeWeaponSlot = activeWeaponSlot,
+                    activeSpell = if (combatStyle == "magic" && selectedSpell != null) selectedSpell.name else flags.activeSpell,
+                ))
                 val equippedFoodKeys  = flags.equippedFood.keys
                 val availableFood     = inventory.filterKeys { it in equippedFoodKeys }
 
                 val bossFrames = simulateBoss(
-                    boss              = boss,
-                    bossKey           = bossKey,
-                    playerAttack      = (levels[Skills.ATTACK]    ?: 1) + (potionBonuses["attack"]   ?: 0),
-                    playerStrength    = (levels[Skills.STRENGTH]  ?: 1) + (potionBonuses["strength"] ?: 0),
-                    playerDefence     = (levels[Skills.DEFENSE]   ?: 1) + totalDefBonus + (potionBonuses["defense"] ?: 0),
-                    playerHp          = levels[Skills.HITPOINTS] ?: 1,
-                    weaponAttackBonus = totalAtkBonus,
-                    weaponStrBonus    = totalStrBonus,
-                    equippedFood      = availableFood,
-                    foodHealValues    = gameData.foodHealValues,
-                    blessingDefBonus  = ChurchRepository.defBonus(flags),
+                    boss               = boss,
+                    bossKey            = bossKey,
+                    playerAttack       = (levels[Skills.ATTACK]    ?: 1) + (potionBonuses["attack"]   ?: 0),
+                    playerStrength     = (levels[Skills.STRENGTH]  ?: 1) + (potionBonuses["strength"] ?: 0),
+                    playerDefence      = (levels[Skills.DEFENSE]   ?: 1) + totalDefBonus + (potionBonuses["defense"] ?: 0),
+                    playerHp           = levels[Skills.HITPOINTS] ?: 1,
+                    weaponAttackBonus  = totalAtkBonus,
+                    weaponStrBonus     = totalStrBonus,
+                    combatStyle        = combatStyle,
+                    playerRanged       = (levels[Skills.RANGED] ?: 1) + (potionBonuses["ranged"] ?: 0),
+                    playerMagic        = magicLevel + (potionBonuses["magic"] ?: 0),
+                    arrowStrengthBonus = arrowStrengthBonus,
+                    spellMaxHit        = selectedSpell?.maxHit ?: 0,
+                    availableArrows    = availableArrows,
+                    equippedFood       = availableFood,
+                    foodHealValues     = gameData.foodHealValues,
+                    blessingDefBonus   = ChurchRepository.defBonus(flags),
                 )
+
+                val totalAttacks = bossFrames.size * CombatSimulator.TICKS_PER_FRAME
+                if (combatStyle == "magic" && selectedSpell != null && totalAttacks > 0) {
+                    val staffCoversRune = bossWeapon?.infiniteRunes == selectedSpell.runeType
+                    if (!staffCoversRune) {
+                        val runesNeeded = totalAttacks * selectedSpell.runeCost
+                        val ok = playerRepo.consumeItems(mapOf(selectedSpell.runeType to runesNeeded))
+                        if (!ok) {
+                            _extra.update { it.copy(snackbarMessage = "Not enough ${selectedSpell.displayName.substringBefore(" ")} runes (need $runesNeeded).", startingSession = false) }
+                            return@launch
+                        }
+                    }
+                }
                 val framesJson = json.encodeToString(
                     json.serializersModule.serializer<List<SessionFrame>>(),
                     bossFrames,
@@ -563,6 +618,13 @@ class CombatViewModel @Inject constructor(
         val coinBlessingBonus = (coinsGained.toDouble() * (blessingCoinMult - 1)).toLong()
         val itemsDisplay = last.items.toMutableMap().also { it.remove("coins") }
         sessionRepo.deleteSession(session.sessionId)
+        val bossRecentFlags = playerRepo.getFlags()
+        playerRepo.updateFlags(bossRecentFlags.copy(
+            recentSessions = (listOf(com.fantasyidler.data.model.RecentSession(
+                skillName = session.skillName,
+                activityDisplayName = boss?.displayName ?: session.activityKey,
+            )) + bossRecentFlags.recentSessions).take(10),
+        ))
         _extra.update {
             it.copy(
                 combatResult = CombatSessionResult(
@@ -648,6 +710,13 @@ class CombatViewModel @Inject constructor(
             .filter { (_, bonus) -> bonus > 0 }
         val coinBlessingBonus = (coinsGained.toDouble() * (blessingCoinMult - 1)).toLong()
         sessionRepo.deleteSession(session.sessionId)
+        val dungeonRecentFlags = playerRepo.getFlags()
+        playerRepo.updateFlags(dungeonRecentFlags.copy(
+            recentSessions = (listOf(com.fantasyidler.data.model.RecentSession(
+                skillName = session.skillName,
+                activityDisplayName = dungeon?.displayName ?: session.activityKey,
+            )) + dungeonRecentFlags.recentSessions).take(10),
+        ))
 
         _extra.update {
             it.copy(
@@ -731,20 +800,32 @@ class CombatViewModel @Inject constructor(
         playerHp: Int,
         weaponAttackBonus: Int,
         weaponStrBonus: Int,
+        combatStyle: String = "melee",
+        playerRanged: Int = 1,
+        playerMagic: Int = 1,
+        arrowStrengthBonus: Int = 0,
+        spellMaxHit: Int = 0,
+        availableArrows: Map<String, Int> = emptyMap(),
         equippedFood: Map<String, Int> = emptyMap(),
         foodHealValues: Map<String, Int> = emptyMap(),
         blessingDefBonus: Int = 0,
     ): List<SessionFrame> = CombatSimulator.simulateBoss(
-        boss              = boss,
-        bossKey           = bossKey,
-        playerAttack      = playerAttack,
-        playerStrength    = playerStrength,
-        playerDefence     = playerDefence,
-        playerHp          = playerHp,
-        weaponAttackBonus = weaponAttackBonus,
-        weaponStrBonus    = weaponStrBonus,
-        equippedFood      = equippedFood,
-        foodHealValues    = foodHealValues,
+        boss               = boss,
+        bossKey            = bossKey,
+        playerAttack       = playerAttack,
+        playerStrength     = playerStrength,
+        playerDefence      = playerDefence,
+        playerHp           = playerHp,
+        weaponAttackBonus  = weaponAttackBonus,
+        weaponStrBonus     = weaponStrBonus,
+        combatStyle        = combatStyle,
+        playerRanged       = playerRanged,
+        playerMagic        = playerMagic,
+        arrowStrengthBonus = arrowStrengthBonus,
+        spellMaxHit        = spellMaxHit,
+        availableArrows    = availableArrows,
+        equippedFood       = equippedFood,
+        foodHealValues     = foodHealValues,
         blessingDefBonus  = blessingDefBonus,
     )
 

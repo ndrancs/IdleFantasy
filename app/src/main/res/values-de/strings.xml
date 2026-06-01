@@ -394,6 +394,8 @@
     <string name="combat_your_level">Dein Kampflevel</string>
     <string name="combat_no_strength_bonus">Keine (kein Stärkebonus)</string>
     <string name="combat_best_arrow">Bester Pfeil</string>
+    <string name="combat_arrow_auto">Auto (bester verfügbar)</string>
+    <string name="combat_label_arrow">Pfeil</string>
     <string name="combat_enemies">Feinde</string>
     <string name="combat_no_spells">Auf deiner Magiestufe sind keine Zauber verfügbar.</string>
     <string name="combat_only_castable">Nur genießbare</string>
