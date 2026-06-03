@@ -67,6 +67,7 @@ data class SkillsUiState(
     val fishingEfficiency: Float = 1.0f,
     val farmingEfficiency: Float = 1.0f,
     val sessionDurationMs: Long = 0L,
+    val skillPrestige: Map<String, Int> = emptyMap(),
 )
 
 sealed class SheetState {
@@ -134,6 +135,7 @@ class SkillsViewModel @Inject constructor(
                 fishingEfficiency     = toolEfficiency(equipped[EquipSlot.FISHING_ROD], EquipSlot.FISHING_ROD, 0),
                 farmingEfficiency     = toolEfficiency(equipped[EquipSlot.HOE],         EquipSlot.HOE,         0),
                 sessionDurationMs     = SkillSimulator.sessionDurationMs(levels[Skills.AGILITY] ?: 1),
+                skillPrestige         = flags.skillPrestige,
             )
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), SkillsUiState())
@@ -672,6 +674,27 @@ class SkillsViewModel @Inject constructor(
     }
 
     fun snackbarConsumed() = _uiState.update { it.copy(snackbarMessage = null) }
+
+    fun prestigeSkill(skillName: String) {
+        viewModelScope.launch {
+            val activeSession = sessionRepo.getActiveSession()
+            val abandonedSession = activeSession?.takeIf { it.skillName == skillName }
+            if (abandonedSession != null) {
+                val frames: List<SessionFrame> = json.decodeFromString(abandonedSession.frames)
+                playerSessionMaterials(abandonedSession.skillName, abandonedSession.activityKey, frames.sumOf { it.kills }, gameData)
+                    ?.let { playerRepo.addItems(it) }
+                sessionRepo.abandonSession(abandonedSession.sessionId)
+            }
+            val evicted = playerRepo.evictQueueForSkill(skillName)
+            for (action in evicted) {
+                if (action.coinRefund > 0) playerRepo.addCoins(action.coinRefund)
+                playerSessionMaterials(action.skillName, action.activityKey, action.qty, gameData)
+                    ?.let { playerRepo.addItems(it) }
+            }
+            playerRepo.prestigeSkill(skillName)
+            if (abandonedSession != null) queuedSessionStarter.startNextQueued()
+        }
+    }
 
     // ------------------------------------------------------------------
     // Helpers

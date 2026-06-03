@@ -97,6 +97,11 @@ class GameDataRepository @Inject constructor(
             }
     }
 
+    /** Combat dungeon keys that are only accessible after completing an expedition (unlocked via skillingDungeons). */
+    val expeditionLockedDungeons: Set<String> by lazy {
+        skillingDungeons.values.mapNotNull { it.unlockDungeon }.toSet()
+    }
+
     // ------------------------------------------------------------------ quests
 
     val quests: Map<String, QuestData> by lazy {
@@ -292,6 +297,8 @@ class GameDataRepository @Inject constructor(
             herbloreRecipes.forEach { (key, r) -> add(key); addAll(r.materials.keys) }
             // Farming: protect seeds so they aren't sold as junk
             addAll(crops.values.map { it.seedName })
+            // Marketplace items not in equipment.json
+            addAll(marketplace.values.flatMap { it.items.keys })
         }
     }
 

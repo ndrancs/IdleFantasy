@@ -503,8 +503,8 @@
     "display_name": "Chicken",
     "hp": 5,
     "combat_stats": {
-      "attack_level": 1,
-      "strength_level": 1,
+      "attack_level": 0,
+      "strength_level": 0,
       "defense_level": 1,
       "attack_bonus": 0,
       "strength_bonus": 0
@@ -531,11 +531,11 @@
     "display_name": "Sheep",
     "hp": 8,
     "combat_stats": {
-      "attack_level": 1,
-      "strength_level": 1,
+      "attack_level": 0,
+      "strength_level": 0,
       "defense_level": 2,
       "attack_bonus": 0,
-      "strength_bonus": 1
+      "strength_bonus": 0
     },
     "defensive_stats": {
       "attack_defense": 2,
@@ -559,11 +559,11 @@
     "display_name": "Cow",
     "hp": 15,
     "combat_stats": {
-      "attack_level": 1,
-      "strength_level": 1,
+      "attack_level": 0,
+      "strength_level": 0,
       "defense_level": 3,
       "attack_bonus": 0,
-      "strength_bonus": 1
+      "strength_bonus": 0
     },
     "defensive_stats": {
       "attack_defense": 4,
