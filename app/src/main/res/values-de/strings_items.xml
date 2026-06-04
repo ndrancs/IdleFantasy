@@ -2,13 +2,13 @@
 <resources>
     <!-- ===== Ores ===== -->
     <string name="item_copper_ore_name">Kupfererz</string>
-    <string name="item_copper_ore_desc">Gewöhnliches Erz. Kombinieren Sie es mit Zinnerz, um Bronzebarren zu schmelzen.</string>
+    <string name="item_copper_ore_desc">Gewöhnliches Erz. Kombiniert es mit Zinnerz, um Bronzebarren zu schmelzen.</string>
     <string name="item_tin_ore_name">Zinnerz</string>
-    <string name="item_tin_ore_desc">Gewöhnliches Erz. Kombinieren Sie es mit Kupfererz, um Bronzebarren zu schmelzen.</string>
+    <string name="item_tin_ore_desc">Gewöhnliches Erz. Kombiniert es mit Kupfererz, um Bronzebarren zu schmelzen.</string>
     <string name="item_iron_ore_name">Eisenerz</string>
-    <string name="item_iron_ore_desc">VVielseitiges Erz, das zur Herstellung von Eisen- und Stahlstangen verwendet wird.</string>
+    <string name="item_iron_ore_desc">Vielseitiges Erz, das zur Herstellung von Eisen- und Stahlstangen verwendet wird.</string>
     <string name="item_coal_name">Kohle</string>
-    <string name="item_coal_desc">Wird als Brennstoffkomponente beim Schmelzen von Stahl und Stangen höherer Güteklassen verwendet.</string>
+    <string name="item_coal_desc">Wird als Brennstoff beim Schmelzen von Stahl und Barren höherer Güte verwendet.</string>
     <string name="item_silver_ore_name">Silbererz</string>
     <string name="item_silver_ore_desc">Edelmetall, aus dem Silberbarren und Schmuck hergestellt werden.</string>
     <string name="item_gold_ore_name">Golderz</string>
@@ -54,9 +54,9 @@
 
     <!-- ===== Logs ===== -->
     <string name="item_log_name">Holzscheite</string>
-    <string name="item_log_desc">Einfaches Holzscheite von normalen Bäumen. Wird zum Feuermachen und zur Pfeilherstellung verwendet.</string>
+    <string name="item_log_desc">Einfache Holzscheite von gewöhnlichen Bäumen. Wird zum Feuermachen und zur Pfeilherstellung verwendet.</string>
     <string name="item_oak_log_name">Eichenholzscheite</string>
-    <string name="item_oak_log_desc">Holzscheite von Eichen</string>
+    <string name="item_oak_log_desc">Holzscheite aus Eichenholz</string>
     <string name="item_willow_log_name">Weidenholzscheite</string>
     <string name="item_willow_log_desc">Leichte Holzscheite aus Weidenholz.</string>
     <string name="item_maple_log_name">Ahornholzscheite</string>
@@ -64,7 +64,7 @@
     <string name="item_yew_log_name">Eibenholzscheite</string>
     <string name="item_yew_log_desc">Holzscheite aus alten Eiben.</string>
     <string name="item_magic_log_name">Magische Holzscheite</string>
-    <string name="item_magic_log_desc">Mit Magie versetzte Stämme von seltenen magischen Bäumen.</string>
+    <string name="item_magic_log_desc">Mit Magie durchsetztes Holz von seltenen magischen Bäumen.</string>
     <string name="item_redwood_log_name">Rotbuchenholzscheite</string>
     <string name="item_redwood_log_desc">Riesige Holzscheite von den höchsten Rotbuchen.</string>
 
@@ -98,29 +98,29 @@
 
     <!-- ===== Cooked fish ===== -->
     <string name="item_shrimp_name">Garnele</string>
-    <string name="item_shrimp_desc">Gekochte Garnele. Stellt eine kleine Menge an HP wieder her.</string>
+    <string name="item_shrimp_desc">Gekochte Garnele. Stellt eine kleine Menge LP wieder her.</string>
     <string name="item_sardine_name">Sardine</string>
-    <string name="item_sardine_desc">Gekochte Sardine. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_sardine_desc">Gekochte Sardine. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_herring_name">Hering</string>
-    <string name="item_herring_desc">Gekochter Hering. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_herring_desc">Gekochter Hering. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_mackerel_name">Makrele</string>
-    <string name="item_mackerel_desc">Gekochte Makrele. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_mackerel_desc">Gekochte Makrele. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_trout_name">Forelle</string>
-    <string name="item_trout_desc">Gekochte Forelle. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_trout_desc">Gekochte Forelle. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_salmon_name">Lachs</string>
-    <string name="item_salmon_desc">Gekochter Lachs. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_salmon_desc">Gekochter Lachs. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_tuna_name">Thunfisch</string>
-    <string name="item_tuna_desc">Gekochter Thunfisch. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_tuna_desc">Gekochter Thunfisch. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_lobster_name">Hummer</string>
-    <string name="item_lobster_desc">Gekochter Hummer. Stellt eine beträchtliche Menge an HP wieder her.</string>
+    <string name="item_lobster_desc">Gekochter Hummer. Stellt eine beträchtliche Menge LP wieder her.</string>
     <string name="item_swordfish_name">Schwertfisch</string>
-    <string name="item_swordfish_desc">Gekochter Schwertfisch. Stellt eine beträchtliche Menge an HP wieder her.</string>
+    <string name="item_swordfish_desc">Gekochter Schwertfisch. Stellt eine beträchtliche Menge LP wieder her.</string>
     <string name="item_monkfish_name">Anglerfisch</string>
-    <string name="item_monkfish_desc">Gekochter Anglerfisch. Stellt eine beträchtliche Menge an HP wieder her.</string>
+    <string name="item_monkfish_desc">Gekochter Anglerfisch. Stellt eine beträchtliche Menge LP wieder her.</string>
     <string name="item_shark_name">Hai</string>
-    <string name="item_shark_desc">Gekochter Hai. Stellt eine große Menge an HP wieder her.</string>
+    <string name="item_shark_desc">Gekochter Hai. Stellt eine große Menge LP wieder her.</string>
     <string name="item_sea_turtle_name">Meeresschildkröte</string>
-    <string name="item_sea_turtle_desc">Gekochte Meeresschildkröte. Stellt eine sehr große Menge an HP wieder her.</string>
+    <string name="item_sea_turtle_desc">Gekochte Meeresschildkröte. Stellt eine sehr große Menge LP wieder her.</string>
     <string name="item_manta_ray_name">Mantarochen</string>
     <string name="item_manta_ray_desc">Gekochter Mantarochen. Eines der besten Gerichte, die es gibt.</string>
 
@@ -138,13 +138,13 @@
 
     <!-- ===== Cooked meat ===== -->
     <string name="item_cooked_rat_meat_name">Rattenfleisch</string>
-    <string name="item_cooked_rat_meat_desc">Gekochtes Rattenfleisch. Kaum genießbar, stellt aber eine winzige Menge an HP wieder her.</string>
+    <string name="item_cooked_rat_meat_desc">Gekochtes Rattenfleisch. Kaum genießbar, stellt aber eine winzige Menge LP wieder her.</string>
     <string name="item_cooked_chicken_name">Gekochtes Hühnerfleisch</string>
-    <string name="item_cooked_chicken_desc">Gekochtes HHühnerfleisch. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_cooked_chicken_desc">Gekochtes HHühnerfleisch. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_cooked_mutton_name">Gekochtes Lammfleisch</string>
-    <string name="item_cooked_mutton_desc">Gekochtes Lammfleisch. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_cooked_mutton_desc">Gekochtes Lammfleisch. Stellt beim Verzehr einige LP wieder her.</string>
     <string name="item_cooked_beef_name">Gekochtes Rindfleisch</string>
-    <string name="item_cooked_beef_desc">Gekochtes Rindfleisch. Stellt beim Verzehr ein Teil der HP wieder her.</string>
+    <string name="item_cooked_beef_desc">Gekochtes Rindfleisch. Stellt beim Verzehr einige LP wieder her.</string>
 
     <!-- ===== Melee weapons — bronze ===== -->
     <string name="item_bronze_sword_name">Bronzeschwert</string>
@@ -229,26 +229,26 @@
     <string name="item_oak_bow_desc">Ein zuverlässiger Bogen aus Eichenholz.</string>
 
     <!-- ===== Magic weapons ===== -->
-    <string name="item_basic_staff_name">Basic Staff</string>
-    <string name="item_basic_staff_desc">A simple magical staff for apprentice mages.</string>
-    <string name="item_apprentice_staff_name">Apprentice Staff</string>
-    <string name="item_apprentice_staff_desc">An improved staff for developing mages.</string>
-    <string name="item_staff_of_air_name">Staff of Air</string>
-    <string name="item_staff_of_air_desc">An elemental staff imbued with the power of air.</string>
-    <string name="item_staff_of_water_name">Staff of Water</string>
-    <string name="item_staff_of_water_desc">An elemental staff imbued with the power of water.</string>
-    <string name="item_staff_of_earth_name">Staff of Earth</string>
-    <string name="item_staff_of_earth_desc">An elemental staff imbued with the power of earth.</string>
-    <string name="item_staff_of_fire_name">Staff of Fire</string>
-    <string name="item_staff_of_fire_desc">An elemental staff imbued with the power of fire.</string>
-    <string name="item_staff_of_mind_name">Staff of Mind</string>
-    <string name="item_staff_of_mind_desc">A staff imbued with psychic energy.</string>
-    <string name="item_staff_of_chaos_name">Staff of Chaos</string>
-    <string name="item_staff_of_chaos_desc">A chaotic staff pulsing with wild magical energy.</string>
-    <string name="item_staff_of_death_name">Staff of Death</string>
-    <string name="item_staff_of_death_desc">A dark staff wreathed in the power of death.</string>
-    <string name="item_staff_of_blood_name">Staff of Blood</string>
-    <string name="item_staff_of_blood_desc">A powerful staff fuelled by blood magic.</string>
+    <string name="item_basic_staff_name">Einfacher Stab</string>
+    <string name="item_basic_staff_desc">Ein einfacher magischer Stab für angehende Zauberlehrlinge.</string>
+    <string name="item_apprentice_staff_name">Stab des Zauberlehrlings</string>
+    <string name="item_apprentice_staff_desc">Ein verbesserter Stab für erfahrenere Zauberlehrlinge.</string>
+    <string name="item_staff_of_air_name">Stab des Windes</string>
+    <string name="item_staff_of_air_desc">Ein Elementarstab, der mit der Kraft des Windes durchtränkt ist.</string>
+    <string name="item_staff_of_water_name">Stab des Wassers</string>
+    <string name="item_staff_of_water_desc">Ein Elementarstab, der mit der Kraft des Wassers durchtränkt ist.</string>
+    <string name="item_staff_of_earth_name">Stab der Erde</string>
+    <string name="item_staff_of_earth_desc">Ein Elementarstab, der mit der Kraft der Erde durchtränkt ist.</string>
+    <string name="item_staff_of_fire_name">Stab des Feuers</string>
+    <string name="item_staff_of_fire_desc">Ein Elementarstab, der mit der Kraft des Feuers durchtränkt ist.</string>
+    <string name="item_staff_of_mind_name">Stab des Verstandes</string>
+    <string name="item_staff_of_mind_desc">Ein Stab, der mit der Energie der Psyche durchtränkt ist.</string>
+    <string name="item_staff_of_chaos_name">Stab des Chaos</string>
+    <string name="item_staff_of_chaos_desc">Ein chaotischer Stab, der voller wilder magischer Energie pulsiert.</string>
+    <string name="item_staff_of_death_name">Stab des Todes</string>
+    <string name="item_staff_of_death_desc">Ein dunkler Stab, der mit der Macht des Todes umhüllt ist.</string>
+    <string name="item_staff_of_blood_name">Blutstab</string>
+    <string name="item_staff_of_blood_desc">Ein mächtiger Stab, der von Blutmagie gespeist wird.</string>
 
     <!-- ===== Armour — bronze ===== -->
     <string name="item_bronze_helmet_name">Bronzehelm</string>
@@ -278,7 +278,7 @@
     <string name="item_steel_platelegs_name">Stahlhose</string>
     <string name="item_steel_platelegs_desc">Robuster Beinschutz aus Stahl.</string>
     <string name="item_steel_shield_name">Stahlschild</string>
-    <string name="item_steel_shield_desc">Ein robustes Stahlschild.</string>
+    <string name="item_steel_shield_desc">Ein robuster Stahlschild.</string>
 
     <!-- Armour — mithril -->
     <string name="item_mithril_helmet_name">Mithrilhelm</string>
@@ -312,13 +312,13 @@
 
     <!-- ===== Tools — pickaxes ===== -->
     <string name="item_bronze_pickaxe_name">Bronzespitzhacke</string>
-    <string name="item_bronze_pickaxe_desc">Eine einfache Spitzhacke zum Bergbau.</string>
+    <string name="item_bronze_pickaxe_desc">Eine einfache Spitzhacke für den Bergbau.</string>
     <string name="item_iron_pickaxe_name">Eisenspitzhacke</string>
     <string name="item_iron_pickaxe_desc">Eine zuverlässige Spitzhacke für den Bergbau.</string>
     <string name="item_steel_pickaxe_name">Stahlspitzhacke</string>
     <string name="item_steel_pickaxe_desc">Eine robuste Spitzhacke für den Bergbau.</string>
     <string name="item_mithril_pickaxe_name">Mithrilspitzhacke</string>
-    <string name="item_mithril_pickaxe_desc">Eine leichte magische Spitzhacke zum Bergbau.</string>
+    <string name="item_mithril_pickaxe_desc">Eine leichte magische Spitzhacke für den Bergbau.</string>
     <string name="item_adamantite_pickaxe_name">Adamantitspitzhacke</string>
     <string name="item_adamantite_pickaxe_desc">Eine extrem robuste Spitzhacke für den Bergbau.</string>
     <string name="item_runite_pickaxe_name">Runitspitzhacke</string>
@@ -336,7 +336,7 @@
     <string name="item_adamantite_axe_name">Adamantitaxt</string>
     <string name="item_adamantite_axe_desc">Eine extrem robuste Axt zum Holzhacken.</string>
     <string name="item_runite_axe_name">Runiteaxt</string>
-    <string name="item_runite_axe_desc">Die beste Axt, die es für das Holzhacken gibt.</string>
+    <string name="item_runite_axe_desc">Die beste Axt, die es zum Holzhacken gibt.</string>
 
     <!-- Tools — fishing rods -->
     <string name="item_bronze_fishing_rod_name">Angelrute aus Bronze</string>
@@ -368,7 +368,7 @@
 
     <!-- Arrow components -->
     <string name="item_arrow_shaft_name">Pfeilschäfte</string>
-    <string name="item_arrow_shaft_desc">Holzschäfte, die zum Bespannen von Pfeilen verwendet werden.</string>
+    <string name="item_arrow_shaft_desc">Holzschäfte, die zum Befiedern von Pfeilen verwendet werden.</string>
     <string name="item_bronze_arrow_tips_name">Pfeilspitzen aus Bronze</string>
     <string name="item_bronze_arrow_tips_desc">Bronzespitzen zum Bestücken von Bronzepfeilen.</string>
     <string name="item_iron_arrow_tips_name">Eisenpfeilspitzen</string>
@@ -442,23 +442,23 @@
 
     <!-- ===== Miscellaneous drops ===== -->
     <string name="item_ashes_name">Asche</string>
-    <string name="item_ashes_desc">Verbrannte Reste von normalen Holzscheiten. Verteile sie in der Fertigkeit „Gebet“, um Bonus-Gebets-XP zu erhalten.</string>
+    <string name="item_ashes_desc">Verbrannte Reste von normalen Holzscheiten. Verstreut sie in der Fertigkeit Gebete, um Bonus-Gebets-XP zu erhalten.</string>
     <string name="item_oak_ashes_name">Eichenasche</string>
-    <string name="item_oak_ashes_desc">Verbrannte Reste von Eichenstämmen. Streue sie aus, um mehr Gebets-XP zu erhalten als mit gewöhnlicher Asche.</string>
+    <string name="item_oak_ashes_desc">Verbrannte Reste von Eichenstämmen. Verstreut sie, um mehr Gebets-XP zu erhalten als mit gewöhnlicher Asche.</string>
     <string name="item_willow_ashes_name">Weidenasche</string>
-    <string name="item_willow_ashes_desc">Verbrannte Reste von Weidenstämmen. Verteilen, um Gebets-XP zu erhalten.</string>
+    <string name="item_willow_ashes_desc">Verbrannte Reste von Weidenstämmen. Verstreut sie, um Gebets-XP zu erhalten.</string>
     <string name="item_maple_ashes_name">Ahornasche</string>
-    <string name="item_maple_ashes_desc">Verbrannte Reste von Ahornholzstämmen. Verteile sie, um Gebets-XP zu erhalten.</string>
+    <string name="item_maple_ashes_desc">Verbrannte Reste von Ahornholzstämmen. Verstreut sie, um Gebets-XP zu erhalten.</string>
     <string name="item_yew_ashes_name">Eibenasche</string>
-    <string name="item_yew_ashes_desc">Verbrannte Reste von Eibenstämmen. Verteile sie, um wertvolle Gebets-XP zu erhalten.</string>
+    <string name="item_yew_ashes_desc">Verbrannte Reste von Eibenstämmen. Verstreut sie, um reichlich Gebets-XP zu erhalten.</string>
     <string name="item_magic_ashes_name">Magische Asche</string>
-    <string name="item_magic_ashes_desc">Verbrannte Reste von magischen Holzscheiten. Verteile sie, um reichlich Gebets-XP zu erhalten.</string>
+    <string name="item_magic_ashes_desc">Verbrannte Reste von magischen Holzscheiten. Verstreut sie, um reichlich Gebets-XP zu erhalten.</string>
     <string name="item_redwood_ashes_name">Rotbuchenasche</string>
-    <string name="item_redwood_ashes_desc">Verbrannte Reste von Rotbuchenstämmen. Streue sie aus, um die meisten Gebets-XP aller Aschearten zu erhalten.</string>
+    <string name="item_redwood_ashes_desc">Verbrannte Reste von Rotbuchenstämmen. Verstreut sie, um die meisten Gebets-XP aller Asche-Arten zu erhalten.</string>
     <string name="item_bones_name">Knochen</string>
-    <string name="item_bones_desc">Knochen eines kleinen Lebewesens. Vergrabe sie, um Gebets-XP zu erhalten.</string>
+    <string name="item_bones_desc">Knochen eines kleinen Lebewesens. Vergrabt sie, um Gebets-XP zu erhalten.</string>
     <string name="item_big_bones_name">Große Knochen</string>
-    <string name="item_big_bones_desc">Größere Knochen. Verleiht mehr Gebets-XP, wenn sie vergraben werden.</string>
+    <string name="item_big_bones_desc">Größere Knochen. Verleihen mehr Gebets-XP, wenn sie vergraben werden.</string>
     <string name="item_giant_bones_name">Riesige Knochen</string>
     <string name="item_giant_bones_desc">Massive Knochen mächtiger Gegner. Verleiht beträchtliche Gebets-XP.</string>
     <string name="item_dragon_bone_name">Drachenknochen</string>
@@ -466,11 +466,11 @@
     <string name="item_dragon_scale_name">Drachenschuppe</string>
     <string name="item_dragon_scale_desc">Eine harte Schuppe eines grünen Drachen. Selten und wertvoll.</string>
     <string name="item_coins_name">Münzen</string>
-    <string name="item_coins_desc">Die Währung des Königreichs. Im Laden einlösbar.</string>
+    <string name="item_coins_desc">Die Währung des Königreichs. Beim Krämer einlösbar.</string>
     <string name="item_goblin_mail_name">Kobold-Rüstung</string>
     <string name="item_goblin_mail_desc">Von Kobolden fallengelassene, ramponierte Rüstung. Lässt sich gut verkaufen.</string>
-    <string name="item_imp_hide_name">Zwergfell</string>
-    <string name="item_imp_hide_desc">Lederartige Haut eines Zwergs.</string>
+    <string name="item_imp_hide_name">Wichtelhaut</string>
+    <string name="item_imp_hide_desc">Lederartige Haut eines Wichtels.</string>
     <string name="item_spider_silk_name">Spinnenseide</string>
     <string name="item_spider_silk_desc">Feine Seide, gesponnen von Riesenspinnen. Für Handwerker sehr wertvoll.</string>
     <string name="item_spider_fang_name">Spinnenzahn</string>
@@ -480,11 +480,11 @@
     <string name="item_wool_name">Wolle</string>
     <string name="item_wool_desc">Weiche Wolle von einem Schaf.</string>
     <string name="item_feather_name">Feder</string>
-    <string name="item_feather_desc">Eine Feder, die zum Bespannen von Pfeilen verwendet wird.</string>
+    <string name="item_feather_desc">Eine Feder, die zum Befiedern von Pfeilen verwendet wird.</string>
     <string name="item_rotten_flesh_name">Verfaultes Fleisch</string>
     <string name="item_rotten_flesh_desc">Verwesendes Fleisch einer untoten Kreatur. Riecht furchtbar.</string>
     <string name="item_lockpick_name">Dietrich</string>
-    <string name="item_lockpick_desc">Ein von Schurken fallen gelassenes Dietrich.</string>
+    <string name="item_lockpick_desc">Ein von Schurken fallen gelassener Dietrich.</string>
     <string name="item_magic_bean_name">Zauberbohne</string>
     <string name="item_magic_bean_desc">Eine magische Bohne mit geheimnisvollen Eigenschaften.</string>
     <string name="item_hellhound_fang_name">Höllenhund-Reißzahn</string>
@@ -492,25 +492,25 @@
     <string name="item_demon_horn_name">Dämonenhorn</string>
     <string name="item_demon_horn_desc">Ein gezacktes Horn, das einem niederen Dämon entrissen wurde.</string>
     <string name="item_troll_bone_name">Trollknochen</string>
-    <string name="item_troll_bone_desc">Ein riesiger, knorriger Knochen von einem Bergtroll.</string>
+    <string name="item_troll_bone_desc">Ein riesiger, krummer Knochen von einem Bergtroll.</string>
 
     <!-- ===== Runes ===== -->
-    <string name="item_air_rune_name">Luftrune</string>
-    <string name="item_air_rune_desc">Eine Rune, die mit der Kraft der Luft erfüllt ist. Wird in Luftzaubern verwendet.</string>
+    <string name="item_air_rune_name">Windrune</string>
+    <string name="item_air_rune_desc">Eine Rune, die mit der Kraft des Windes erfüllt ist. Wird in Windzaubern verwendet.</string>
     <string name="item_water_rune_name">Wasserrune</string>
     <string name="item_water_rune_desc">Eine Rune, die von der Kraft des Wassers durchdrungen ist.</string>
     <string name="item_earth_rune_name">Erdrune</string>
     <string name="item_earth_rune_desc">Eine Rune, die von der Kraft der Erde durchdrungen ist.</string>
     <string name="item_fire_rune_name">Feuerrune</string>
     <string name="item_fire_rune_desc">Eine Rune, die von der Kraft des Feuers durchdrungen ist.</string>
-    <string name="item_mind_rune_name">Geistes-Rune</string>
+    <string name="item_mind_rune_name">Rune des Verstandes</string>
     <string name="item_mind_rune_desc">Eine Rune, die psychische Energie kanalisiert.</string>
     <string name="item_chaos_rune_name">Chaos-Rune</string>
     <string name="item_chaos_rune_desc">Eine Rune der wilden, chaotischen Magie.</string>
     <string name="item_death_rune_name">Todesrune</string>
     <string name="item_death_rune_desc">Eine Rune, die von der Kraft des Todes durchdrungen ist.</string>
     <string name="item_blood_rune_name">Blutrune</string>
-    <string name="item_blood_rune_desc">Eine seltene Rune, die durch Blutmagie angetrieben wird.</string>
+    <string name="item_blood_rune_desc">Eine seltene Rune, die durch Blutmagie befeuert wird.</string>
 
     <!-- ===== Crops ===== -->
     <string name="crop_potato_name">Kartoffel</string>
@@ -528,7 +528,7 @@
     <string name="crop_spirit_herb_name">Heilkraut</string>
     <string name="crop_celestial_bloom_name">Himmlische Blüte</string>
     <string name="crop_starfruit_name">Sternfrucht</string>
-    <string name="crop_void_lotus_name">Leerer Lotus</string>
+    <string name="crop_void_lotus_name">Lotus der Leere</string>
 
     <!-- ===== Spells ===== -->
     <string name="spell_wind_strike_name">Windstoß</string>
@@ -547,10 +547,10 @@
     <string name="spell_fire_bolt_name">Feuerblitz</string>
     <string name="spell_fire_blast_name">Feuersturm</string>
     <string name="spell_fire_wave_name">Feuerwelle</string>
-    <string name="spell_mind_strike_name">Gedankenschlag</string>
-    <string name="spell_mind_bolt_name">Gedankenblitz</string>
-    <string name="spell_mind_blast_name">Gedankensturm</string>
-    <string name="spell_mind_wave_name">Gedankenwelle</string>
+    <string name="spell_mind_strike_name">Schlag des Verstandes</string>
+    <string name="spell_mind_bolt_name">Blitz des Verstandes</string>
+    <string name="spell_mind_blast_name">Sturm des Verstandes</string>
+    <string name="spell_mind_wave_name">Welle des Verstandes</string>
     <string name="spell_chaos_strike_name">Chaosstoß</string>
     <string name="spell_chaos_bolt_name">Chaosblitz</string>
     <string name="spell_chaos_blast_name">Chaossturm</string>

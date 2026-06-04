@@ -17,34 +17,34 @@
     <string name="enemy_troll_name">Bergtroll</string>
     <string name="enemy_demon_name">Kleiner Dämon</string>
     <string name="enemy_dragon_name">Grüner Drachen</string>
-    <string name="enemy_imp_name">Zwerg</string>
+    <string name="enemy_imp_name">Wichtel</string>
     <string name="enemy_chicken_name">Hühnchen</string>
     <string name="enemy_sheep_name">Schaf</string>
     <string name="enemy_cow_name">Kuh</string>
 
     <!-- ===== Dungeon names and descriptions ===== -->
-    <string name="dungeon_imp_cavern_name">Zwergenhöhle</string>
-    <string name="dungeon_imp_cavern_desc">Eine flache Höhle voller schelmischer Zwerge. Ideal für absolute Anfänger!</string>
+    <string name="dungeon_imp_cavern_name">Wichtelhöhle</string>
+    <string name="dungeon_imp_cavern_desc">Eine flache Höhle voller schelmischer Wichtel. Ideal für absolute Anfänger!</string>
     <string name="dungeon_goblin_cave_name">Koboldhöhle</string>
     <string name="dungeon_goblin_cave_desc">Eine dunkle Höhle, in der es von Kobolden und Riesenratten wimmelt. Ein guter Ort für angehende Abenteurer, um zu trainieren.</string>
     <string name="dungeon_spider_den_name">Spinnenhöhle</string>
-    <string name="dungeon_spider_den_desc">Eine mit Spinnweben gefüllte Höhle, in der es von giftigen Spinnen nur so wimmelt. Nimm unbedingt ein Gegengift mit!</string>
-    <string name="dungeon_bandit_camp_name">Räuberlagerp</string>
-    <string name="dungeon_bandit_camp_desc">Ein Versteck für Räuber und Schurken in der Wildnis. Pass auf deinen Geldbeutel auf!</string>
+    <string name="dungeon_spider_den_desc">Eine mit Spinnweben gefüllte Höhle, in der es von giftigen Spinnen nur so wimmelt. Nehmt unbedingt ein Gegengift mit!</string>
+    <string name="dungeon_bandit_camp_name">Räuberlager</string>
+    <string name="dungeon_bandit_camp_desc">Ein Versteck für Räuber und Schurken in der Wildnis. Passt auf Euren Geldbeutel auf!</string>
     <string name="dungeon_undead_crypt_name">Gruft der Untoten</string>
-    <string name="dungeon_undead_crypt_desc">Eine uralte Begräbnisstätte, in der die Toten keine Ruhe finden. Hüte dich vor der dunklen Magie!</string>
+    <string name="dungeon_undead_crypt_desc">Eine uralte Begräbnisstätte, in der die Toten keine Ruhe finden. Hütet Euch vor der dunklen Magie!</string>
     <string name="dungeon_fortress_ruins_name">Festungsruinen</string>
     <string name="dungeon_fortress_ruins_desc">Die zerfallenden Überreste einer alten Burg, die heute von Rittern und Soldaten bewacht wird.</string>
     <string name="dungeon_orc_stronghold_name">Orkfestung</string>
     <string name="dungeon_orc_stronghold_desc">Eine befestigte Orksiedlung tief in den Bergen. Nur die Mutigsten wagen sich dorthin.</string>
     <string name="dungeon_volcanic_depths_name">Vulkanische Tiefen</string>
-    <string name="dungeon_volcanic_depths_desc">Eine glühend heiße Höhle, bewohnt von Höllenhunden und kleiner Dämonen. Die Hitze ist unerträglich!</string>
-    <string name="dungeon_dragon_lair_name">Drachenhöhle</string>
+    <string name="dungeon_volcanic_depths_desc">Eine glühend heiße Höhle, bewohnt von Höllenhunden und kleinen Dämonen. Die Hitze ist unerträglich!</string>
+    <string name="dungeon_dragon_lair_name">Drachenhort</string>
     <string name="dungeon_dragon_lair_desc">Die legendäre Heimat der grünen Drachen. Nur Meisterkrieger überstehen diese Herausforderung.</string>
     <string name="dungeon_farm_name">Bauernhof</string>
     <string name="dungeon_farm_desc">Ein friedlicher Bauernhof mit Vieh. Ideal für Anfänger, die sich mit Lebensmitteln versorgen möchten!</string>
     <string name="dungeon_infernal_stronghold_name">Höllenfestung</string>
-    <string name="dungeon_infernal_stronghold_desc">Eine Festung aus Feuer und Schwefel, beherrscht von Dämonen und Höllenhunden. Allein die Hitze kann Unvorbereitete töten.</string>
+    <string name="dungeon_infernal_stronghold_desc">Eine Festung aus Feuer und Schwefel, beherrscht von Dämonen und Höllenhunden. Schon die bloße Hitze kann Unvorbereitete töten.</string>
     <string name="dungeon_ancient_temple_name">Antiker Tempel</string>
     <string name="dungeon_ancient_temple_desc">Ein antiker Tempel, der von den mächtigsten Wesen des Reiches bewacht wird. Nur die stärksten Krieger wagen es, ihn zu betreten.</string>
 
@@ -56,21 +56,21 @@
 
     <!-- ===== Pet names and descriptions ===== -->
     <string name="pet_dragon_whelp_name">Drachenjunges</string>
-    <string name="pet_dragon_whelp_desc">Ein junger Drache, der deine Kampferfahrung erhöht.</string>
-    <string name="pet_imp_pet_name">Zwerg</string>
-    <string name="pet_imp_pet_desc">Ein schelmischer Zwerg, der dein Gebetstraining verbessert.</string>
+    <string name="pet_dragon_whelp_desc">Ein junger Drache, der Eure Kampferfahrung erhöht.</string>
+    <string name="pet_imp_pet_name">Wichtel</string>
+    <string name="pet_imp_pet_desc">Ein schelmischer Wichtel, der Euer Gebetstraining verbessert.</string>
     <string name="pet_baby_kraken_name">Baby-Kraken</string>
-    <string name="pet_baby_kraken_desc">Ein winziger Kraken, der deine Koch-Erfahrungspunkte erhöht.</string>
+    <string name="pet_baby_kraken_desc">Ein winziger Kraken, der Eure Koch-Erfahrungspunkte erhöht.</string>
     <string name="pet_rock_golem_name">Steingolem</string>
-    <string name="pet_rock_golem_desc">Eine lebende Felsformation, die deine Bergbau-Erfahrungspunkte erhöht.</string>
+    <string name="pet_rock_golem_desc">Eine lebende Felsformation, die Eure Bergbau-Erfahrungspunkte erhöht.</string>
     <string name="pet_ent_name">Ent</string>
-    <string name="pet_ent_desc">Ein uralter Baumgeist, der deine Holzfäller-Erfahrungspunkte erhöht.</string>
+    <string name="pet_ent_desc">Ein uralter Baumgeist, der Eure Holzfäller-Erfahrungspunkte erhöht.</string>
     <string name="pet_tiny_templar_name">Kleiner Templer</string>
-    <string name="pet_tiny_templar_desc">Ein kleiner Fischbegleiter, der deine Angel-Erfahrungspunkte erhöht.</string>
+    <string name="pet_tiny_templar_desc">Ein kleiner Fischbegleiter, der Eure Angel-Erfahrungspunkte erhöht.</string>
     <string name="pet_tangleroot_name">Wurzelgewirr</string>
-    <string name="pet_tangleroot_desc">Ein magisches Pflanzenwesen, das deine Landwirtschafts-Erfahrungspunkte erhöht.</string>
+    <string name="pet_tangleroot_desc">Ein magisches Pflanzenwesen, das Eure Landwirtschafts-Erfahrungspunkte erhöht.</string>
 
-    <!-- Missing dungeons -->
+    <!-- TODO Missing dungeons -->
     <string name="dungeon_collapsed_mine_name">Eingestürzte Mine</string>
     <string name="dungeon_collapsed_mine_desc">Eine riesige Höhle unter den Kupferminen. Höhlentrolle und Steingolem heimsuchen das Trümmerfeld, und Riesenspinnen spinnen Netze in den eingestürzten Schächten.</string>
     <string name="dungeon_shadow_den_name">Schattenhöhle</string>

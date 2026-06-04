@@ -8,13 +8,13 @@
     <string name="game_max_level">Maximales Level erreicht!</string>
 
     <!-- ===== Session result summaries ===== -->
-    <string name="game_session_results_title">Sitzungsergebnisse</string>
+    <string name="game_session_results_title">Aktivitäts-Ergebnisse</string>
     <!-- Translator note: %1$s = skill display name -->
-    <string name="game_session_summary_header">%1$s Sitzung beendet</string>
+    <string name="game_session_summary_header">%1$s Aktivität beendet</string>
     <!-- Translator note: %1$s = formatted XP amount (e.g. "1,234") -->
     <string name="game_session_xp_total">+%1$s XP verdient</string>
-    <string name="game_session_no_items">Es wurden keine Gegenstände gesammelt</string>
-    <string name="game_session_no_level_ups">In dieser Sitzung gab es keine Levelaufstiege</string>
+    <string name="game_session_no_items">Keine Gegenstände gesammelt</string>
+    <string name="game_session_no_level_ups">Während dieser Aktivität gab es keine Levelaufstiege</string>
     <!-- Translator note: %1$d = number of level ups -->
     <string name="game_session_level_up_count">%1$d Level aufgestiegen!</string>
 
@@ -25,19 +25,19 @@
     <!-- Translator note: %1$s = enemy display name -->
     <string name="game_combat_enemy_defeated">%1$s besiegt!</string>
     <!-- Translator note: %1$d = HP restored -->
-    <string name="game_combat_food_eaten">Gegessen —  %1$d HP wiederhergestellt.</string>
-    <string name="game_combat_player_died">Du wurdest besiegt.</string>
+    <string name="game_combat_food_eaten">Gegessen — %1$d LP wiederhergestellt.</string>
+    <string name="game_combat_player_died">Ihr seid gestorben!</string>
     <string name="game_dungeon_cleared">Dungeon abgeschlossen!</string>
     <!-- Translator note: %1$s = dungeon display name -->
     <string name="game_dungeon_summary">%1$s vollständig.</string>
 
     <!-- ===== Farming messages ===== -->
     <!-- Translator note: %1$s = crop display name -->
-    <string name="game_farming_planted">%1$s gepflanzt.</string>
+    <string name="game_farming_planted">%1$s ausgesät.</string>
     <!-- Translator note: %1$s = crop display name, %2$d = yield quantity -->
     <string name="game_farming_harvested">%2$d %1$s geerntet .</string>
     <string name="game_farming_all_harvested">Alle reifen Pflanzen sind geerntet.</string>
-    <string name="game_farming_patch_cleared">Beet freigegeben.</string>
+    <string name="game_farming_patch_cleared">Acker freigegeben.</string>
     <string name="game_farming_not_ready">Diese Ernte ist noch nicht reif.</string>
     <!-- Translator note: %1$s = crop display name, %2$s = time remaining -->
     <string name="game_farming_ready_in">%1$s ist fertig in %2$s.</string>
@@ -56,7 +56,7 @@
 
     <!-- ===== Prayer / burying ===== -->
     <!-- Translator note: %1$s = bone display name, %2$s = formatted XP gained -->
-    <string name="game_bones_buried">%1$s begraben — +%2$s Gebets-XP.</string>
+    <string name="game_bones_buried">%1$s vergraben — +%2$s Gebets-XP.</string>
 
     <!-- ===== Quest messages ===== -->
     <!-- Translator note: %1$s = quest display name -->
@@ -81,11 +81,11 @@
     <string name="game_arena_coins_won">%1$d Münzen gewonnen.</string>
 
     <!-- ===== Easter egg / dig ===== -->
-    <string name="game_dig_you_dig">Du gräbst in der Erde…</string>
-    <string name="game_dig_nothing">Du findest nichts als Dreck.</string>
+    <string name="game_dig_you_dig">Ihr grabt tiefer in die Erde…</string>
+    <string name="game_dig_nothing">Ihr findet nichts als Dreck.</string>
     <!-- Translator note: %1$s = item display name -->
-    <string name="game_dig_found">Du entdeckst ein %1$s!</string>
+    <string name="game_dig_found">Ihr entdeckt ein %1$s!</string>
     <!-- Translator note: %1$d = current hole depth in metres -->
     <string name="game_dig_depth">Das Loch ist %1$d Meter tief.</string>
-    <string name="game_dig_cooldown">Du hast heute schon gegraben. Komm morgen wieder.</string>
+    <string name="game_dig_cooldown">Ihr habt heute bereits gegraben. Kommt morgen wieder.</string>
 </resources>
