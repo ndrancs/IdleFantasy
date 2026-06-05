@@ -2,7 +2,7 @@
 <resources>
     <!-- ===== Level-up messages ===== -->
     <!-- Translator note: %1$d = new level number, %2$s = skill display name -->
-    <string name="game_level_up">Hai livellato! %1$s è ora a livello %2$d!</string>
+    <string name="game_level_up">Il tuo livello è aumentato! %1$s è ora al livello %2$d!</string>
     <!-- Translator note: %1$s = skill display name, %2$d = new level number -->
     <string name="game_level_up_short">%1$s → %2$d</string>
     <string name="game_max_level">Hai raggiunto il livello massimo!</string>
@@ -14,16 +14,16 @@
     <!-- Translator note: %1$s = formatted XP amount (e.g. "1,234") -->
     <string name="game_session_xp_total">+%1$s XP guadagnati</string>
     <string name="game_session_no_items">Non sono stati raccolti oggetti</string>
-    <string name="game_session_no_level_ups">In questa sessione non hai livellato</string>
+    <string name="game_session_no_level_ups">Il tuo livello non è cambiato</string>
     <!-- Translator note: %1$d = number of level ups -->
     <string name="game_session_level_up_count">%1$d livelli guadagnati!</string>
 
     <!-- ===== Combat messages ===== -->
     <!-- Translator note: %1$s = player or enemy name, %2$d = damage amount -->
-    <string name="game_combat_hit">%1$s colpito con %2$d di danno.</string>
-    <string name="game_combat_miss">%1$s ha mancato!</string>
+    <string name="game_combat_hit">Inflitti %2$d danni a %1$s.</string>
+    <string name="game_combat_miss">%1$s ti ha mancato!</string>
     <!-- Translator note: %1$s = enemy display name -->
-    <string name="game_combat_enemy_defeated">%1$s sconfitto!</string>
+    <string name="game_combat_enemy_defeated">Hai sconfitto %1$s!</string>
     <!-- Translator note: %1$d = HP restored -->
     <string name="game_combat_food_eaten">Hai mangiato — recuperati %1$d HP.</string>
     <string name="game_combat_player_died">È giunta la tua fine.</string>
@@ -36,11 +36,11 @@
     <string name="game_farming_planted">Hai seminato %1$s.</string>
     <!-- Translator note: %1$s = crop display name, %2$d = yield quantity -->
     <string name="game_farming_harvested">Hai raccolto %2$d %1$s.</string>
-    <string name="game_farming_all_harvested">Raccolte tutte le Patch mature.</string>
-    <string name="game_farming_patch_cleared">Patch ripulita.</string>
-    <string name="game_farming_not_ready">Questa Patch non è ancora matura.</string>
+    <string name="game_farming_all_harvested">Raccolte tutte le piante mature.</string>
+    <string name="game_farming_patch_cleared">Appezzamento ripulito.</string>
+    <string name="game_farming_not_ready">Questa coltivazione non ha raggiunto la maturità.</string>
     <!-- Translator note: %1$s = crop display name, %2$s = time remaining -->
-    <string name="game_farming_ready_in">%1$s maturazione in %2$s.</string>
+    <string name="game_farming_ready_in">%1$s maturerà tra %2$s.</string>
 
     <!-- ===== Crafting messages ===== -->
     <!-- Translator note: %1$d = quantity crafted, %2$s = item display name -->
@@ -56,13 +56,13 @@
 
     <!-- ===== Prayer / burying ===== -->
     <!-- Translator note: %1$s = bone display name, %2$s = formatted XP gained -->
-    <string name="game_bones_buried">Sepolto %1$s — +%2$s XP in Preghiera.</string>
+    <string name="game_bones_buried">Hai sepolto %1$s — +%2$s XP in Preghiera.</string>
 
     <!-- ===== Quest messages ===== -->
     <!-- Translator note: %1$s = quest display name -->
-    <string name="game_quest_started">Quest iniziata: %1$s</string>
-    <string name="game_quest_completed">Quest completata: %1$s</string>
-    <string name="game_quest_abandoned">Quest abbandonata.</string>
+    <string name="game_quest_started">Missione iniziata: %1$s</string>
+    <string name="game_quest_completed">Missione completata: %1$s</string>
+    <string name="game_quest_abandoned">Missione abbandonata.</string>
     <!-- Translator note: %1$d = current progress, %2$d = target amount -->
     <string name="game_quest_progress">Progresso: %1$d / %2$d</string>
 
@@ -74,7 +74,7 @@
 
     <!-- ===== Arena messages ===== -->
     <!-- Translator note: %1$s = opponent display name -->
-    <string name="game_arena_challenged">Sfida con %1$s!</string>
+    <string name="game_arena_challenged">%1$s ti ha sfidato!</string>
     <string name="game_arena_victory">Vittoria!</string>
     <string name="game_arena_defeat">Sconfitta.</string>
     <!-- Translator note: %1$d = coins won -->
