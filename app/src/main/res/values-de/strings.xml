@@ -61,7 +61,7 @@
     <string name="label_session_active">Derzeitige Aktivität</string>
     <string name="label_no_active_session">Keine Aktivitäten</string>
     <string name="label_session_complete">Aktivität abgeschlossen!</string>
-    <string name="label_training">Ausbildung</string>
+    <string name="label_training">In Ausbildung</string>
     <string name="label_gathering_skills">Sammeln</string>
     <string name="label_crafting_skills">Herstellung</string>
     <string name="label_choose_activity">Aktivität auswählen</string>
@@ -452,7 +452,7 @@
     <string name="skills_session_duration">Dauer: %1$dm</string>
     <string name="skills_only_craftable">Nur herstellbare</string>
     <string name="skills_filter_all">Alle</string>
-    <string name="skills_add_to_queue">Zur Aktivitäten-Warteschlange hinzufügen</string>
+    <string name="skills_add_to_queue">Aktivität einreihen</string>
     <string name="skills_add_queue_short">Zur Warteschlange hinzufügen</string>
     <string name="skills_level_req_xp">Lv. %1$d  •  %2$s XP/Erz</string>
     <string name="skills_tool_bonus">×%1$s Werkzeugbonus</string>
@@ -632,9 +632,9 @@
     <string name="achievement_total_1000_desc">Erreicht Gesamtlevel 1000</string>
     <string name="achievement_total_1500_name">Champion</string>
     <string name="achievement_total_1500_desc">Erreicht Gesamtlevel 1500</string>
-    <string name="achievement_skill_99_name">Erstes Perfektion</string>
+    <string name="achievement_skill_99_name">Erste Meisterung</string>
     <string name="achievement_skill_99_desc">Erreicht Level 99 in einer beliebigen Fähigkeit</string>
-    <string name="achievement_all_99_name">Completionist</string>
+    <string name="achievement_all_99_name">Perfektionist</string>
     <string name="achievement_all_99_desc">Erreicht Level 99 in allen Fähigkeiten</string>
     <string name="achievement_combat_10_name">Kämpfer</string>
     <string name="achievement_combat_10_desc">Erreicht Kampflevel 10</string>
@@ -644,7 +644,7 @@
     <string name="achievement_combat_50_desc">Erreicht Kampflevel 50</string>
     <string name="achievement_combat_75_name">Elite</string>
     <string name="achievement_combat_75_desc">Erreicht Kampflevel 75</string>
-    <string name="achievement_combat_99_name">HÖchstes Kampflevel</string>
+    <string name="achievement_combat_99_name">Höchstes Kampflevel</string>
     <string name="achievement_combat_99_desc">Erreicht Kampflevel 99</string>
     <string name="achievement_quest_1_name">Missionar</string>
     <string name="achievement_quest_1_desc">Beendet 1 Mission</string>
@@ -815,13 +815,13 @@
     <string name="skill_slayer_desc">Erhaltet in der Stadt Aufgaben vom Slayer Master.</string>
     <string name="slayer_title">Slayer Master</string>
     <string name="slayer_card_desc">Aufgaben und Belohnungen für Slayer</string>
-    <string name="slayer_desc">Beendet Aufgaben, um Slayer XP und Punkte zu verdienen. Kauft euch dafür exklusive Ausrüstung im Slayer-Laden.</string>
+    <string name="slayer_desc">Beendet Aufgaben, um Slayer XP und Punkte zu verdienen. Kauft euch dafür exklusive Ausrüstung im Kontor des Slayers.</string>
     <string name="slayer_level_label">Level %1$d</string>
     <string name="slayer_xp_label">%1$s XP</string>
     <string name="slayer_points">%1$d Pkt.</string>
     <string name="slayer_active_task">Aktive Aufgaben</string>
     <string name="slayer_kills_remaining">%1$d / %2$d Kills</string>
-    <string name="slayer_get_task">Erhaltet eine neue Aufgabe</string>
+    <string name="slayer_get_task">Neue Aufgabe abholen</string>
     <string name="slayer_skip_task">Überspringen (30 Pkt.)</string>
     <string name="slayer_no_task">Keine aktiven Aufgaben. Erhaltet hier neue Aufgaben.</string>
     <string name="slayer_task_stuck">Dieser Gegner kann nur auf einer Entdeckungsreise in einem Dungeon angetroffen werden, den Ihr noch nicht erkundet habt. Würfelt erneut ohne zu zahlen.</string>
@@ -830,7 +830,7 @@
     <string name="slayer_task_complete">Aufgabe abgeschlossen! Besucht den Slayer Master, um eine neue Aufgabe zu erhalten.</string>
     <string name="slayer_xp_per_kill">%1$d XP/Kill</string>
     <string name="slayer_points_on_complete">+%1$d Pkt. bei Abschluss</string>
-    <string name="slayer_shop_title">Slayer-Laden</string>
+    <string name="slayer_shop_title">Kontor des Slayers</string>
     <string name="slayer_shop_cost">%1$d Pkt.</string>
     <string name="slayer_not_enough_points">Nicht genug Slayer Punkte.</string>
     <string name="slayer_already_owned">Bereits im Besitz.</string>
@@ -842,7 +842,7 @@
     <string name="slayer_lamp_large">XP Laterne (Groß)</string>
     <string name="slayer_lamp_small_desc">+10,000 XP für beliebige Fähigkeit</string>
     <string name="slayer_lamp_large_desc">+50,000 XP für beliebige Fähigkeit</string>
-    <string name="slayer_found_in">Gefunden in: %1$s</string>
+    <string name="slayer_found_in">Begegnet Euch in: %1$s</string>
     <string name="slayer_requires">Erfordert: %1$s</string>
 
     <!-- Slayer gear item names/descs -->
