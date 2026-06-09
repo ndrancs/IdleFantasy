@@ -1,0 +1,3 @@
+• Fix: Enhanced potions crafted with ashes now count toward Herblore quests; previously only plain potions were recognised
+• Fix: Enhanced potions crafted with ashes now count toward Herblorists Guild progression and daily quests
+• Fix: Notifications now use the in-app language instead of the system language when a different language is selected in Settings

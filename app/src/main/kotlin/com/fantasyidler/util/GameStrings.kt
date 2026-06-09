@@ -49,6 +49,12 @@ object GameStrings {
     fun bossName(context: Context, key: String): String =
         context.stringByName("boss_${key}_name") ?: key.toTitleCase()
 
+    fun bossDesc(context: Context, key: String): String =
+        context.stringByName("boss_${key}_desc") ?: ""
+
+    fun slotName(context: Context, slot: String): String =
+        context.stringByName("equip_slot_$slot") ?: slot.toTitleCase()
+
     fun questName(context: Context, key: String, fallback: String = key.toTitleCase()): String =
         context.stringByName("quest_${key}_name") ?: fallback
 
@@ -97,6 +103,9 @@ object GameStrings {
     fun agilityCourseDesc(context: Context, key: String): String =
         context.stringByName("agility_${key}_desc") ?: ""
 
+    fun thievingNpcName(context: Context, key: String): String =
+        context.stringByName("thieving_npc_${key}_name") ?: key.toTitleCase()
+
     fun skillEmoji(key: String): String = when (key) {
         "mining"      -> "⛏️"
         "fishing"     -> "🎣"
@@ -118,9 +127,11 @@ object GameStrings {
         "prayer"      -> "🙏"
         "mercantile"  -> "💰"
         "slayer"      -> "💀"
-        "herblore"    -> "🌿"
-        "combat"      -> "⚔️"
-        else          -> "🎮"
+        "herblore"     -> "🌿"
+        "construction" -> "🏗️"
+        "thieving"     -> "🥷"
+        "combat"       -> "⚔️"
+        else           -> "🎮"
     }
 }
 

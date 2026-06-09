@@ -34,6 +34,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Badge
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -102,10 +103,11 @@ fun HomeScreen(
     onNavigateToSettings: () -> Unit = {},
     onNavigateToShop: () -> Unit = {},
     onNavigateToInn: () -> Unit = {},
-    onNavigateToWorkerSkills: () -> Unit = {},
+    onNavigateToWorkerSkills: (Int) -> Unit = {},
     onNavigateToGuildHall: () -> Unit = {},
     onNavigateToChurch: () -> Unit = {},
     onNavigateToSlayer: () -> Unit = {},
+    onNavigateToBuilder: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state            by viewModel.uiState.collectAsState()
@@ -582,11 +584,10 @@ fun HomeScreen(
             }
 
             // ── Town card ───────────────────────────────────────────────
-            var townExpanded by remember { mutableStateOf(false) }
             Surface(
                 shape    = RoundedCornerShape(16.dp),
                 color    = MaterialTheme.colorScheme.surfaceVariant,
-                modifier = Modifier.fillMaxWidth().clickable { townExpanded = !townExpanded },
+                modifier = Modifier.fillMaxWidth().clickable { viewModel.toggleTownExpanded() },
             ) {
                 Row(
                     modifier          = Modifier.padding(16.dp),
@@ -605,19 +606,20 @@ fun HomeScreen(
                         )
                     }
                     Icon(
-                        imageVector        = if (townExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                        imageVector        = if (state.townExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
                         contentDescription = null,
                         tint               = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
-            if (townExpanded) {
+            if (state.townExpanded) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     listOf(
                         Triple(Icons.Filled.ShoppingCart, stringResource(R.string.label_shop), stringResource(R.string.label_shop_desc)) to onNavigateToShop,
                         Triple(Icons.Filled.Person, stringResource(R.string.inn_title), stringResource(R.string.inn_card_desc)) to onNavigateToInn,
                         Triple(Icons.Filled.Group, stringResource(R.string.guild_hall_title), stringResource(R.string.guild_hall_desc)) to onNavigateToGuildHall,
                         Triple(Icons.Filled.Star, stringResource(R.string.church_title), stringResource(R.string.church_desc)) to onNavigateToChurch,
+                        Triple(Icons.Filled.Assignment, stringResource(R.string.builder_title), stringResource(R.string.builder_card_desc)) to onNavigateToBuilder,
                         Triple(Icons.Filled.Shield, stringResource(R.string.slayer_title), stringResource(R.string.slayer_card_desc)) to onNavigateToSlayer,
                     ).forEachIndexed { i, (info, action) ->
                         val (icon, title, desc) = info
@@ -654,6 +656,10 @@ fun HomeScreen(
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                 )
+                                if (i == 2 && state.guildClaimableCount > 0) {
+                                    Spacer(Modifier.width(8.dp))
+                                    Badge { Text("${state.guildClaimableCount}") }
+                                }
                             }
                         }
                     }
@@ -742,7 +748,7 @@ fun HomeScreen(
                     onCollect                = viewModel::collectWorkerSession,
                     onDismiss                = { viewModel.dismissWorker(1) },
                     onDebugFinish            = { viewModel.debugFinishWorkerSession(1) },
-                    onNavigateToWorkerSkills = onNavigateToWorkerSkills,
+                    onNavigateToWorkerSkills = { onNavigateToWorkerSkills(1) },
                 )
             }
             val hiredWorker2   = state.hiredWorker2
@@ -764,7 +770,7 @@ fun HomeScreen(
                     onCollect                = viewModel::collectWorkerSession,
                     onDismiss                = { viewModel.dismissWorker(2) },
                     onDebugFinish            = { viewModel.debugFinishWorkerSession(2) },
-                    onNavigateToWorkerSkills = onNavigateToWorkerSkills,
+                    onNavigateToWorkerSkills = { onNavigateToWorkerSkills(2) },
                 )
             }
         }
@@ -922,7 +928,7 @@ private fun QueueCard(
                     val labelDungeon    = stringResource(R.string.label_dungeon)
                     val labelBoss       = stringResource(R.string.label_boss)
                     val (prefix, suffix) = when (action.skillName) {
-                        "expedition" -> labelExpedition to action.skillDisplayName
+                        "expedition" -> labelExpedition to GameStrings.skillingDungeonName(context, action.activityKey, action.skillDisplayName)
                         "combat"     -> labelDungeon    to GameStrings.dungeonName(context, action.activityKey)
                         "boss"       -> labelBoss       to GameStrings.bossName(context, action.activityKey)
                         "farming"    -> action.skillDisplayName to null
@@ -1008,7 +1014,7 @@ private fun WorkerSessionCard(
     onCollect: () -> Unit,
     onDismiss: () -> Unit,
     onDebugFinish: () -> Unit,
-    onNavigateToWorkerSkills: () -> Unit,
+    onNavigateToWorkerSkills: (Int) -> Unit,
 ) {
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var showDismissConfirm by remember { mutableStateOf(false) }
@@ -1130,7 +1136,7 @@ private fun WorkerSessionCard(
                     }
                 }
                 if (!isDone && session == null) {
-                    Button(onClick = onNavigateToWorkerSkills) {
+                    Button(onClick = { onNavigateToWorkerSkills(slot) }) {
                         Text(stringResource(R.string.worker_add_sessions))
                     }
                 }

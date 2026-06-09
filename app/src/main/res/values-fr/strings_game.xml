@@ -89,4 +89,21 @@
     <!-- Note : %1$d = profondeur du trou en mètres -->
     <string name="game_dig_depth">Le trou fait %1$d mètres de profondeur.</string>
     <string name="game_dig_cooldown">Tu as déjà fouillé aujourd’hui. Reviens demain.</string>
+
+    <!-- ===== Equipment slot names ===== -->
+    <string name="equip_slot_weapon_atk">Arme (Attaque)</string>
+    <string name="equip_slot_weapon_str">Arme (Force)</string>
+    <string name="equip_slot_weapon_ranged">Arme (Distance)</string>
+    <string name="equip_slot_weapon_magic">Arme (Magie)</string>
+    <string name="equip_slot_head">Tête</string>
+    <string name="equip_slot_body">Corps</string>
+    <string name="equip_slot_legs">Jambes</string>
+    <string name="equip_slot_boots">Bottes</string>
+    <string name="equip_slot_cape">Cape</string>
+    <string name="equip_slot_ring">Anneau</string>
+    <string name="equip_slot_necklace">Collier</string>
+    <string name="equip_slot_shield">Bouclier</string>
+    <string name="equip_slot_pickaxe">Pioche</string>
+    <string name="equip_slot_axe">Hache</string>
+    <string name="equip_slot_fishing_rod">Canne à pêche</string>
 </resources>

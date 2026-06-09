@@ -1,3 +1,53 @@
+v1.8.0
+• New skill: Construction (Crafting) — build furniture from planks and nails to train up
+• New skill: Thieving (Gathering) — pickpocket NPCs each session; success rate scales with your level
+• Town building upgrades: spend Construction levels, coins, and materials to upgrade the Inn, Guild Hall, and Church
+• Inn upgrades (3 tiers): workers gain up to +30% XP per session
+• Guild Hall upgrades (3 tiers): guild quest requirements reduced by up to 30%
+• Church upgrades (3 tiers): blessings last up to 48h instead of 24h
+• New Construction and Thieving quests
+• New Town achievements for upgrading buildings
+
+v1.7.20
+• Fix: Queued boss sessions (2nd, 3rd, 4th...) now end immediately when the boss dies instead of staying stuck at 0 HP until the full timer expires
+• Fix: "Add Dungeon to Queue" on the Slayer Master screen now starts the session immediately if no session is currently active
+• New: Mining sheet shows estimated ore yield per session so you can plan ahead for smithing and quests
+• New: Tap an owned pet to give it some well-deserved affection
+
+v1.7.19
+• Fix: Worker firemaking time estimate now shows the correct per-log duration instead of the gathering session duration
+• Fix: Worker prayer assignment now shows the correct projected level based on the player's actual Prayer XP
+• Fix: Queued boss sessions now each run for their full duration; previously they all cascaded to completion in seconds when the boss died early
+• Fix: Bone altar combo bonus no longer shows a double percent sign
+• Fix: Start burying / Add to queue button stays visible when the keyboard is open in the prayer sheet
+v1.7.18
+• Fix: Enhanced potions crafted with ashes now count toward Herblore quests; previously only plain potions were recognised
+• Fix: Enhanced potions crafted with ashes now count toward Herblorists Guild progression and daily quests
+• Fix: Notifications now use the in-app language instead of the system language when a different language is selected in Settings
+v1.7.17
+• Fix: Hiring an Apprentice, Journeyman, or Master worker and tapping "Add Sessions" now correctly opens the skills page for that worker; previously it always opened slot 1 (Long Laborer) and silently discarded the queued session
+• Fix: "First Mastery" achievement now stays earned after prestiging a skill; any skill that has been prestiged must have previously reached level 99
+• Fix: Cancelling the last item in the session queue now correctly refunds coins and materials regardless of session timing
+• Fix: Magic jewelry (sapphire rings, amulets) and ranged equipment now correctly boost hit chance and spell damage in queued and worker combat sessions; previously only melee bonuses were applied regardless of combat style
+
+v1.7.16
+• New: Slayer Master screen now shows an "Add Dungeon to Queue" button on your active task; tap it to instantly queue the correct dungeon using your last-used weapon, spell, arrows, and potion; button is disabled when the queue is already full
+• Fix: Your selected spell is now remembered across app restarts; it is restored automatically when you return to the Combat screen
+• Fix: Your selected potion is now remembered across app restarts; it is restored automatically when you return to the Combat screen
+• Change: The spell picker now defaults to "Only Castable" mode, showing only spells your equipped staff supports or for which you have runes; tap the chip to show all spells
+• New: The Guild Hall button in the Town menu now shows a red badge with the number of claimable quest and daily rewards waiting across all guilds
+• Fix: The Town section on the home screen no longer collapses when the screen updates; it stays expanded until you tap it again
+• Fix: Firemaking (and other chained quests) now accumulate progress even when earlier prerequisite quests have not yet been claimed; claim order is still enforced at reward time
+• Fix: Queued firemaking sessions now correctly start after the previous session ends; logs were being consumed at queue time and then the session silently failed when it tried to consume them again
+• Fix: Scattering ashes at the Bone Altar (or via a prayer session) no longer counts toward "Bury X bones" quests or Prayer Guild progress; ashes still grant Prayer XP and daily prayer credit as intended
+• Fix: Expedition names in the session queue on the home screen now appear in the correct language instead of always showing English
+• Fix: Boss names, enemy names, and spell names in the Combat screen are now shown in the correct language
+• Fix: Equipment slot names (Head, Body, Weapon, etc.) in the gear panel are now shown in the correct language
+• Fix: Seeds in the shop now have fully translated names in all supported languages
+• Fix: The active session banner on the Skills screen now shows the activity name in the correct language instead of the raw English key
+• Fix: The Slayer active task card now shows the enemy name in the correct language
+• Fix: Daily food item names in the Inn are now shown in the correct language
+
 v1.7.15
 • New: Bone Altar — tap to bury bones for instant Prayer XP without starting a timed session; build a tap combo of 10 or more to earn a 50% XP bonus; accessible from the Prayer skill panel
 • Fix: Notifications now only fire at the end of an entire session queue again, not after every individual session

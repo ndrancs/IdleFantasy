@@ -175,6 +175,8 @@ class CombatViewModel @Inject constructor(
                 unlockedDungeons        = flags.unlockedDungeons,
                 selectedArrowKey        = if (extra.selectedArrowKey == null) flags.equippedArrows else extra.selectedArrowKey,
                 skillPrestige           = flags.skillPrestige,
+                selectedSpell           = if (extra.selectedSpell == null) flags.activeSpell?.let { gameData.spells[it] } else extra.selectedSpell,
+                selectedPotionKey       = if (extra.selectedPotionKey == null) flags.activePotionKey?.takeIf { (inventory[it] ?: 0) > 0 } else extra.selectedPotionKey,
             )
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), CombatUiState())
@@ -236,8 +238,14 @@ class CombatViewModel @Inject constructor(
         }
     }
 
-    fun selectPotion(key: String?) =
+    fun selectPotion(key: String?) {
         _extra.update { it.copy(selectedPotionKey = key) }
+        viewModelScope.launch {
+            val player = playerRepo.getOrCreatePlayer()
+            val flags: PlayerFlags = try { json.decodeFromString(player.flags) } catch (_: Exception) { PlayerFlags() }
+            playerRepo.updateFlags(flags.copy(activePotionKey = key))
+        }
+    }
 
     /** Returns spells available at the player's current magic level. */
     fun availableSpells(skillLevels: Map<String, Int>): List<SpellData> {

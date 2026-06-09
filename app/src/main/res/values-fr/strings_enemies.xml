@@ -2,7 +2,7 @@
 <resources>
     <!-- ===== Enemy names ===== -->
     <string name="enemy_giant_rat_name">Rat géant</string>
-    <string name="enemy_goblin_name">Goblin</string>
+    <string name="enemy_goblin_name">Gobelin</string>
     <string name="enemy_skeleton_name">Squelette</string>
     <string name="enemy_zombie_name">Zombie</string>
     <string name="enemy_bandit_name">Bandit</string>
@@ -25,7 +25,7 @@
     <!-- ===== Dungeon names and descriptions ===== -->
     <string name="dungeon_imp_cavern_name">Caverne des diablotins</string>
     <string name="dungeon_imp_cavern_desc">Une grotte peu profonde peuplée de petits diablotins espiègles. Idéal pour les débutants !</string>
-    <string name="dungeon_goblin_cave_name">Cave des goblins</string>
+    <string name="dungeon_goblin_cave_name">Cave des gobelins</string>
     <string name="dungeon_goblin_cave_desc">Une grotte sombre infestée de gobelins et de rats géants. Un endroit idéal pour que les nouveaux aventuriers s’entraînent.</string>
     <string name="dungeon_spider_den_name">Repaire des araignées</string>
     <string name="dungeon_spider_den_desc">Une caverne remplie de toiles d’araignées, grouillant d’araignées venimeuses. N’oubliez pas l’antivenin !</string>

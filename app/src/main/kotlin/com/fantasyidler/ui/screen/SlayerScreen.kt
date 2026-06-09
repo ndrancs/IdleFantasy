@@ -41,11 +41,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.platform.LocalContext
 import com.fantasyidler.R
 import com.fantasyidler.data.json.EquipmentData
 import com.fantasyidler.data.model.Skills
 import com.fantasyidler.data.model.SlayerTask
 import com.fantasyidler.ui.theme.GoldPrimary
+import com.fantasyidler.util.GameStrings
 import com.fantasyidler.ui.viewmodel.PendingLamp
 import com.fantasyidler.ui.viewmodel.SlayerViewModel
 import com.fantasyidler.ui.viewmodel.xpProgressFraction
@@ -134,6 +136,15 @@ fun SlayerScreen(
             val currentTask = state.activeTask
             if (currentTask != null) {
                 TaskCard(task = currentTask, dungeons = state.taskDungeons)
+                if (state.taskDungeons.isNotEmpty() && !state.taskIsStuck) {
+                    OutlinedButton(
+                        onClick  = viewModel::queueTaskDungeon,
+                        enabled  = state.queueSize < 3,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(stringResource(R.string.slayer_add_dungeon_to_queue))
+                    }
+                }
                 if (state.taskIsStuck) {
                     Surface(
                         shape    = RoundedCornerShape(12.dp),
@@ -301,6 +312,7 @@ private fun SlayerSkillHeader(
 
 @Composable
 private fun TaskCard(task: SlayerTask, dungeons: List<String>) {
+    val context = LocalContext.current
     Surface(
         shape    = RoundedCornerShape(12.dp),
         color    = MaterialTheme.colorScheme.primaryContainer,
@@ -308,7 +320,7 @@ private fun TaskCard(task: SlayerTask, dungeons: List<String>) {
     ) {
         Column(Modifier.padding(16.dp)) {
             Text(
-                text       = task.displayName,
+                text       = GameStrings.enemyName(context, task.enemyKey),
                 style      = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 color      = MaterialTheme.colorScheme.onPrimaryContainer,

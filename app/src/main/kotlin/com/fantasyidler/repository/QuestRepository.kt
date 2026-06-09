@@ -55,7 +55,7 @@ class QuestRepository @Inject constructor(
 
             when (quest.type) {
                 "craft" -> {
-                    val count = items[quest.target] ?: continue
+                    val count = (items[quest.target] ?: 0) + (items["enhanced_${quest.target}"] ?: 0)
                     if (count > 0) addProgress(questId, quest.amount, count, quest.requiresPrevious)
                 }
                 "craft_any" -> {
@@ -144,6 +144,43 @@ class QuestRepository @Inject constructor(
     }
 
     /**
+     * Called when a thieving session is collected.
+     *
+     * [npcKey]       = the NPC pickpocketed (e.g. "peasant")
+     * [successCount] = number of frames where success=true
+     * [loot]         = items looted (coins already separated out)
+     */
+    suspend fun recordThieving(npcKey: String, successCount: Int, loot: Map<String, Int>) {
+        if (successCount <= 0 && loot.isEmpty()) return
+
+        for ((questId, quest) in gameData.quests) {
+            when (quest.type) {
+                "pickpocket" -> {
+                    if (quest.target == npcKey && successCount > 0)
+                        addProgress(questId, quest.amount, successCount, quest.requiresPrevious)
+                }
+                "steal" -> {
+                    val count = loot[quest.target] ?: continue
+                    if (count > 0) addProgress(questId, quest.amount, count, quest.requiresPrevious)
+                }
+            }
+        }
+    }
+
+    /**
+     * Called when a town building is successfully upgraded.
+     *
+     * [buildingKey] = e.g. "inn", "guild_hall", "church"
+     */
+    suspend fun recordBuildingUpgraded(buildingKey: String) {
+        for ((questId, quest) in gameData.quests) {
+            if (quest.type == "upgrade_building" && quest.target == buildingKey) {
+                addProgress(questId, quest.amount, 1, quest.requiresPrevious)
+            }
+        }
+    }
+
+    /**
      * Called when bones are buried (prayer XP).
      *
      * [amount] = total bones buried this session
@@ -198,7 +235,6 @@ class QuestRepository @Inject constructor(
     suspend fun resetAllProgress() = questProgressDao.deleteAll()
 
     private suspend fun addProgress(questId: String, requiredAmount: Int, delta: Int, requiresPrevious: String?) {
-        if (!isPrerequisiteDone(requiresPrevious)) return
         val current = questProgressDao.getQuestProgress(questId) ?: QuestProgress(questId)
         if (current.completed) return
         questProgressDao.upsert(current.copy(progress = current.progress + delta))

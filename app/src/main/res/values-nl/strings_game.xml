@@ -88,4 +88,21 @@
     <!-- Translator note: %1$d = current hole depth in metres -->
     <string name="game_dig_depth">Het gat is %1$d meter diep.</string>
     <string name="game_dig_cooldown">Je hebt vandaag al gegraven. Kom morgen terug.</string>
+
+    <!-- ===== Equipment slot names ===== -->
+    <string name="equip_slot_weapon_atk">Wapen (Aanval)</string>
+    <string name="equip_slot_weapon_str">Wapen (Kracht)</string>
+    <string name="equip_slot_weapon_ranged">Wapen (Afstand)</string>
+    <string name="equip_slot_weapon_magic">Wapen (Magie)</string>
+    <string name="equip_slot_head">Hoofd</string>
+    <string name="equip_slot_body">Lichaam</string>
+    <string name="equip_slot_legs">Benen</string>
+    <string name="equip_slot_boots">Laarzen</string>
+    <string name="equip_slot_cape">Mantel</string>
+    <string name="equip_slot_ring">Ring</string>
+    <string name="equip_slot_necklace">Ketting</string>
+    <string name="equip_slot_shield">Schild</string>
+    <string name="equip_slot_pickaxe">Houweel</string>
+    <string name="equip_slot_axe">Bijl</string>
+    <string name="equip_slot_fishing_rod">Hengel</string>
 </resources>

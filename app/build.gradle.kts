@@ -15,8 +15,8 @@ android {
         applicationId = "com.tristinbaker.idlefantasy"
         minSdk = 26
         targetSdk = 35
-        versionCode = 55
-        versionName = "1.7.15"
+        versionCode = 61
+        versionName = "1.8.0"
     }
 
     dependenciesInfo {
@@ -56,6 +56,20 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    lint {
+        // Existing issues are captured in lint-baseline.xml so CI fails only on
+        // NEW problems introduced by future changes, without forcing a cleanup of
+        // the pre-existing backlog. Regenerate by deleting the baseline and
+        // running `./gradlew lintDebug`.
+        baseline = file("lint-baseline.xml")
+        warningsAsErrors = false
+    }
+
+    testOptions {
+        // Let Robolectric (Room migration tests) access Android resources.
+        unitTests.isIncludeAndroidResources = true
     }
 }
 
@@ -102,4 +116,13 @@ dependencies {
 
     // kotlinx.serialization
     implementation(libs.kotlinx.serialization.json)
+
+    // Unit testing (JVM, no device required)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test.junit)
+
+    // Room migration testing under Robolectric (runs on the JVM, no emulator)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.ext.junit)
 }

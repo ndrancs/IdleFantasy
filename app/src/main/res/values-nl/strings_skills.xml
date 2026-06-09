@@ -86,4 +86,8 @@
     <string name="agility_divine_course_desc">Een goddelijke baan gezegend door de goden van behendigheid.</string>
     <string name="agility_transcendent_course_name">Transcendent Parcours</string>
     <string name="agility_transcendent_course_desc">De ultieme test van behendigheid, die de grenzen van sterfelijke vermogens overstijgt.</string>
+    <!-- ===== Session skill type labels ===== -->
+    <string name="skill_expedition_name">Expeditie</string>
+    <string name="skill_boss_name">Baas</string>
+    <string name="skill_mercantile_name">Koophandel</string>
 </resources>

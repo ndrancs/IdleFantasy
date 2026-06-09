@@ -74,6 +74,15 @@ if ! command -v fdroid &>/dev/null; then
 fi
 
 # ---------------------------------------------------------------------------
+# Unit tests
+# ---------------------------------------------------------------------------
+
+echo "==> Running unit tests..."
+cd "$REPO_DIR"
+./gradlew testDebugUnitTest
+echo "==> Unit tests passed"
+
+# ---------------------------------------------------------------------------
 # Sync missing English placeholder strings into all language resource files
 # ---------------------------------------------------------------------------
 

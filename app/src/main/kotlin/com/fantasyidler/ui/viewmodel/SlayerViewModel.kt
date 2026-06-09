@@ -4,12 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fantasyidler.R
 import com.fantasyidler.data.json.EquipmentData
+import com.fantasyidler.data.model.EquipSlot
 import com.fantasyidler.data.model.PlayerFlags
+import com.fantasyidler.data.model.QueuedAction
 import com.fantasyidler.data.model.Skills
 import com.fantasyidler.data.model.SlayerTask
+import com.fantasyidler.simulator.SkillSimulator
 import com.fantasyidler.repository.GameDataRepository
 import com.fantasyidler.repository.PlayerRepository
+import com.fantasyidler.repository.QueuedSessionStarter
 import com.fantasyidler.repository.SlayerRepository
+import com.fantasyidler.util.GameStrings
 import android.content.Context
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -33,8 +38,12 @@ data class SlayerUiState(
     val activeTask: SlayerTask? = null,
     /** Dungeon display names that contain the active task's enemy. */
     val taskDungeons: List<String> = emptyList(),
+    /** Dungeon keys that contain the active task's enemy (parallel to taskDungeons). */
+    val taskDungeonKeys: List<String> = emptyList(),
     /** True when the active task's enemy only exists in expedition dungeons the player hasn't unlocked. */
     val taskIsStuck: Boolean = false,
+    /** Current player session queue size (max 3). */
+    val queueSize: Int = 0,
     val unlockedDungeons: Set<String> = emptySet(),
     val inventory: Map<String, Int> = emptyMap(),
     val skillLevels: Map<String, Int> = emptyMap(),
@@ -48,6 +57,7 @@ class SlayerViewModel @Inject constructor(
     private val playerRepo: PlayerRepository,
     private val slayerRepo: SlayerRepository,
     val gameData: GameDataRepository,
+    private val queuedSessionStarter: QueuedSessionStarter,
     @ApplicationContext private val context: Context,
     private val json: Json,
 ) : ViewModel() {
@@ -72,11 +82,12 @@ class SlayerViewModel @Inject constructor(
             val flags:     PlayerFlags       = json.decodeFromString(player.flags)
             val inventory: Map<String, Int>  = json.decodeFromString(player.inventory)
             val unlockedDungeons = flags.unlockedDungeons.toSet()
-            val taskDungeons = flags.activeSlayerTask?.enemyKey?.let { key ->
-                gameData.dungeons.values
-                    .filter { d -> d.enemySpawns.any { it.enemy == key } }
-                    .map { it.displayName }
+            val taskDungeonEntries = flags.activeSlayerTask?.enemyKey?.let { key ->
+                gameData.dungeons.entries
+                    .filter { (_, d) -> d.enemySpawns.any { it.enemy == key } }
             } ?: emptyList()
+            val taskDungeons     = taskDungeonEntries.map { (key, _) -> GameStrings.dungeonName(context, key) }
+            val taskDungeonKeys  = taskDungeonEntries.map { (k, _) -> k }
             val taskIsStuck = flags.activeSlayerTask?.enemyKey?.let { key ->
                 val dungeonKeys = gameData.dungeons.values
                     .filter { d -> d.enemySpawns.any { it.enemy == key } }
@@ -91,7 +102,9 @@ class SlayerViewModel @Inject constructor(
                 slayerPoints     = flags.slayerPoints,
                 activeTask       = flags.activeSlayerTask,
                 taskDungeons     = taskDungeons,
+                taskDungeonKeys  = taskDungeonKeys,
                 taskIsStuck      = taskIsStuck,
+                queueSize        = flags.sessionQueue.size,
                 unlockedDungeons = unlockedDungeons,
                 inventory        = inventory,
                 skillLevels      = levels,
@@ -170,6 +183,43 @@ class SlayerViewModel @Inject constructor(
                 it.copy(
                     snackbarMessage = if (success) context.getString(R.string.slayer_purchased)
                                       else context.getString(R.string.slayer_not_enough_points)
+                )
+            }
+        }
+    }
+
+    fun queueTaskDungeon() {
+        viewModelScope.launch {
+            val state = uiState.value
+            val dungeonKey = state.taskDungeonKeys.firstOrNull { it in state.unlockedDungeons }
+                ?: state.taskDungeonKeys.firstOrNull()
+                ?: return@launch
+            val dungeonName = gameData.dungeons[dungeonKey]?.displayName ?: dungeonKey
+            val player   = playerRepo.getOrCreatePlayer()
+            val agility  = (json.decodeFromString<Map<String, Int>>(player.skillLevels))[Skills.AGILITY] ?: 1
+            val flags: PlayerFlags          = json.decodeFromString(player.flags)
+            val equipped: Map<String, String?> = json.decodeFromString(player.equipped)
+            val weaponSlot = flags.activeWeaponSlot
+                ?: EquipSlot.WEAPON_SLOTS.firstOrNull { equipped[it] != null }
+                ?: EquipSlot.WEAPON_ATK
+            val enqueued = playerRepo.enqueueAction(
+                QueuedAction(
+                    skillName           = "combat",
+                    activityKey         = dungeonKey,
+                    skillDisplayName    = dungeonName,
+                    estimatedDurationMs = SkillSimulator.sessionDurationMs(agility),
+                    equippedSnapshot    = player.equipped,
+                    arrowsKey           = flags.equippedArrows,
+                    spellName           = flags.activeSpell,
+                    potionKey           = flags.activePotionKey,
+                    weaponSlot          = weaponSlot,
+                )
+            )
+            if (enqueued) queuedSessionStarter.startNextQueued()
+            _extra.update {
+                it.copy(
+                    snackbarMessage = if (enqueued) context.getString(R.string.slayer_queue_added, dungeonName)
+                                      else context.getString(R.string.slayer_queue_full)
                 )
             }
         }

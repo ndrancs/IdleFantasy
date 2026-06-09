@@ -10,4 +10,5 @@ data class BoneData(
     val description: String,
     @SerialName("xp_per_bone") val xpPerBone: Double,
     @SerialName("time_per_bone") val timePerBone: Int = 60,
+    @SerialName("is_ash") val isAsh: Boolean = false,
 )

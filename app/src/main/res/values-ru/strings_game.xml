@@ -88,4 +88,21 @@
     <!-- Translator note: %1$d = current hole depth in metres -->
     <string name="game_dig_depth">Яма глубиной %1$d метров.</string>
     <string name="game_dig_cooldown">Вы уже копали сегодня. Приходите завтра.</string>
+
+    <!-- ===== Equipment slot names ===== -->
+    <string name="equip_slot_weapon_atk">Оружие (Атака)</string>
+    <string name="equip_slot_weapon_str">Оружие (Сила)</string>
+    <string name="equip_slot_weapon_ranged">Оружие (Дальний бой)</string>
+    <string name="equip_slot_weapon_magic">Оружие (Магия)</string>
+    <string name="equip_slot_head">Голова</string>
+    <string name="equip_slot_body">Туловище</string>
+    <string name="equip_slot_legs">Ноги</string>
+    <string name="equip_slot_boots">Сапоги</string>
+    <string name="equip_slot_cape">Плащ</string>
+    <string name="equip_slot_ring">Кольцо</string>
+    <string name="equip_slot_necklace">Ожерелье</string>
+    <string name="equip_slot_shield">Щит</string>
+    <string name="equip_slot_pickaxe">Кирка</string>
+    <string name="equip_slot_axe">Топор</string>
+    <string name="equip_slot_fishing_rod">Удочка</string>
 </resources>

@@ -20,11 +20,13 @@ import com.fantasyidler.data.json.SlayerTaskData
 import com.fantasyidler.data.json.SmithingRecipe
 import com.fantasyidler.data.json.TradeRouteData
 import com.fantasyidler.data.json.TreeData
+import android.content.Context
 import com.fantasyidler.data.model.EquipSlot
 import com.fantasyidler.data.model.PlayerFlags
 import com.fantasyidler.data.model.Skills
 import com.fantasyidler.repository.GameDataRepository
 import com.fantasyidler.repository.PlayerRepository
+import com.fantasyidler.util.GameStrings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -270,21 +272,5 @@ enum class InventoryCategory {
 val DISPLAY_SKILL_ORDER = Skills.GATHERING + Skills.CRAFTING_SKILLS + Skills.COMBAT
 
 /** Human-readable label for an equip slot key. */
-fun slotDisplayName(slot: String): String = when (slot) {
-    EquipSlot.WEAPON_ATK    -> "Weapon (Atk)"
-    EquipSlot.WEAPON_STR    -> "Weapon (Str)"
-    EquipSlot.WEAPON_RANGED -> "Weapon (Ranged)"
-    EquipSlot.WEAPON_MAGIC  -> "Weapon (Magic)"
-    EquipSlot.HEAD        -> "Head"
-    EquipSlot.BODY        -> "Body"
-    EquipSlot.LEGS        -> "Legs"
-    EquipSlot.BOOTS       -> "Boots"
-    EquipSlot.CAPE        -> "Cape"
-    EquipSlot.RING        -> "Ring"
-    EquipSlot.NECKLACE    -> "Necklace"
-    EquipSlot.SHIELD      -> "Shield"
-    EquipSlot.PICKAXE     -> "Pickaxe"
-    EquipSlot.AXE         -> "Axe"
-    EquipSlot.FISHING_ROD -> "Fishing Rod"
-    else                  -> slot.replace('_', ' ').replaceFirstChar { it.uppercase() }
-}
+fun slotDisplayName(context: Context, slot: String): String =
+    GameStrings.slotName(context, slot)

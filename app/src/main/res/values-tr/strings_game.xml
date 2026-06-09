@@ -88,4 +88,21 @@
     <!-- Translator note: %1$d = current hole depth in metres -->
     <string name="game_dig_depth">Çukur %1$d metre derinlikte.</string>
     <string name="game_dig_cooldown">Bugün zaten kazdın. Yarın tekrar gel.</string>
+
+    <!-- ===== Equipment slot names ===== -->
+    <string name="equip_slot_weapon_atk">Silah (Saldırı)</string>
+    <string name="equip_slot_weapon_str">Silah (Güç)</string>
+    <string name="equip_slot_weapon_ranged">Silah (Menzilli)</string>
+    <string name="equip_slot_weapon_magic">Silah (Büyü)</string>
+    <string name="equip_slot_head">Kafa</string>
+    <string name="equip_slot_body">Gövde</string>
+    <string name="equip_slot_legs">Bacaklar</string>
+    <string name="equip_slot_boots">Çizmeler</string>
+    <string name="equip_slot_cape">Pelerin</string>
+    <string name="equip_slot_ring">Yüzük</string>
+    <string name="equip_slot_necklace">Kolye</string>
+    <string name="equip_slot_shield">Kalkan</string>
+    <string name="equip_slot_pickaxe">Kazma</string>
+    <string name="equip_slot_axe">Balta</string>
+    <string name="equip_slot_fishing_rod">Olta</string>
 </resources>

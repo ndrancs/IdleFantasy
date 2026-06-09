@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">fish (any type)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Potato Seed</string>
+    <string name="item_onion_seed_name">Onion Seed</string>
+    <string name="item_cabbage_seed_name">Cabbage Seed</string>
+    <string name="item_carrot_seed_name">Carrot Seed</string>
+    <string name="item_tomato_seed_name">Tomato Seed</string>
+    <string name="item_corn_seed_name">Corn Seed</string>
+    <string name="item_pumpkin_seed_name">Pumpkin Seed</string>
+    <string name="item_watermelon_seed_name">Watermelon Seed</string>
+    <string name="item_strawberry_seed_name">Strawberry Seed</string>
+    <string name="item_magic_herb_seed_name">Magic Herb Seed</string>
+    <string name="item_dragon_fruit_seed_name">Dragon Fruit Seed</string>
+    <string name="item_golden_wheat_seed_name">Golden Wheat Seed</string>
+    <string name="item_spirit_seed_name">Spirit Seed</string>
+    <string name="item_celestial_bloom_seed_name">Celestial Bloom Seed</string>
+    <string name="item_starfruit_seed_name">Starfruit Seed</string>
+    <string name="item_void_lotus_seed_name">Void Lotus Seed</string>
 </resources>

@@ -217,9 +217,13 @@ class WorkerQueuedSessionStarter @Inject constructor(
                     "strength" -> "strength"
                     else       -> "melee"
                 }
-                val totalAtkBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.attackBonus  ?: 0 } + (bossWeapon?.attackBonus  ?: 0)
+                val totalAtkBonus = EquipSlot.ARMOR_SLOTS.sumOf { slot ->
+                    val eq = gameData.equipment[equipped[slot]]
+                    when (combatStyle) { "ranged" -> eq?.rangedAttackBonus ?: 0; "magic" -> eq?.magicAttackBonus ?: 0; else -> eq?.attackBonus ?: 0 }
+                } + when (combatStyle) { "ranged" -> bossWeapon?.rangedAttackBonus ?: 0; "magic" -> bossWeapon?.magicAttackBonus ?: 0; else -> bossWeapon?.attackBonus ?: 0 }
                 val totalStrBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.strengthBonus ?: 0 } + (bossWeapon?.strengthBonus ?: 0)
                 val totalDefBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.defenseBonus  ?: 0 } + (bossWeapon?.defenseBonus  ?: 0)
+                val totalMagicDmgBonus = if (combatStyle == "magic") EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.magicDamageBonus ?: 0 } + (bossWeapon?.magicDamageBonus ?: 0) else 0
                 val equippedFoodKeys = flags.equippedFood.keys
                 val availableFood    = inventory.filterKeys { it in equippedFoodKeys }
                 val spell = gameData.spells[flags.activeSpell]
@@ -240,7 +244,7 @@ class WorkerQueuedSessionStarter @Inject constructor(
                     playerRanged       = levels[Skills.RANGED] ?: 1,
                     playerMagic        = levels[Skills.MAGIC]  ?: 1,
                     arrowStrengthBonus = arrowBonus,
-                    spellMaxHit        = spell?.maxHit ?: 0,
+                    spellMaxHit        = (spell?.maxHit ?: 0) + totalMagicDmgBonus,
                     availableArrows    = availableArrows,
                     equippedFood       = availableFood,
                     foodHealValues     = gameData.foodHealValues,
@@ -262,9 +266,13 @@ class WorkerQueuedSessionStarter @Inject constructor(
                     "strength" -> "strength"
                     else       -> "attack"
                 }
-                val totalAtkBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.attackBonus  ?: 0 } + (weapon?.attackBonus  ?: 0)
+                val totalAtkBonus = EquipSlot.ARMOR_SLOTS.sumOf { slot ->
+                    val eq = gameData.equipment[equipped[slot]]
+                    when (combatStyle) { "ranged" -> eq?.rangedAttackBonus ?: 0; "magic" -> eq?.magicAttackBonus ?: 0; else -> eq?.attackBonus ?: 0 }
+                } + when (combatStyle) { "ranged" -> weapon?.rangedAttackBonus ?: 0; "magic" -> weapon?.magicAttackBonus ?: 0; else -> weapon?.attackBonus ?: 0 }
                 val totalStrBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.strengthBonus ?: 0 } + (weapon?.strengthBonus ?: 0)
                 val totalDefBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.defenseBonus  ?: 0 } + (weapon?.defenseBonus  ?: 0)
+                val totalMagicDmgBonus = if (combatStyle == "magic") EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.magicDamageBonus ?: 0 } + (weapon?.magicDamageBonus ?: 0) else 0
                 val equippedFoodKeys = flags.equippedFood.keys
                 val availableFood    = inventory.filterKeys { it in equippedFoodKeys }
                 val spell = gameData.spells[flags.activeSpell]
@@ -286,7 +294,7 @@ class WorkerQueuedSessionStarter @Inject constructor(
                     playerRanged        = levels[Skills.RANGED]    ?: 1,
                     playerMagic         = levels[Skills.MAGIC]     ?: 1,
                     arrowStrengthBonus  = arrowBonus,
-                    spellMaxHit         = spell?.maxHit             ?: 0,
+                    spellMaxHit         = (spell?.maxHit ?: 0) + totalMagicDmgBonus,
                     agilityLevel        = agilityLevel,
                     petBoostPct         = 0,
                     equippedFood        = availableFood,

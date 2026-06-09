@@ -86,4 +86,8 @@
     <string name="agility_divine_course_desc">Ein göttlicher Parcours, gesegnet von den Göttern der Geschicklichkeit.</string>
     <string name="agility_transcendent_course_name">Überirdischer Kurs</string>
     <string name="agility_transcendent_course_desc">Die ultimative Prüfung der Geschicklichkeit, die die Grenzen des Menschenmöglichen überschreitet.</string>
+    <!-- ===== Session skill type labels ===== -->
+    <string name="skill_expedition_name">Expedition</string>
+    <string name="skill_boss_name">Boss</string>
+    <string name="skill_mercantile_name">Handel</string>
 </resources>

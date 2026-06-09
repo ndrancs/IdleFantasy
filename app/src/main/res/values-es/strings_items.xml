@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">pez (cualquier tipo)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Semilla de papa</string>
+    <string name="item_onion_seed_name">Semilla de cebolla</string>
+    <string name="item_cabbage_seed_name">Semilla de repollo</string>
+    <string name="item_carrot_seed_name">Semilla de zanahoria</string>
+    <string name="item_tomato_seed_name">Semilla de tomate</string>
+    <string name="item_corn_seed_name">Semilla de maíz</string>
+    <string name="item_pumpkin_seed_name">Semilla de calabaza</string>
+    <string name="item_watermelon_seed_name">Semilla de sandía</string>
+    <string name="item_strawberry_seed_name">Semilla de fresa</string>
+    <string name="item_magic_herb_seed_name">Semilla de hierba mágica</string>
+    <string name="item_dragon_fruit_seed_name">Semilla de fruta del dragón</string>
+    <string name="item_golden_wheat_seed_name">Semilla de trigo dorado</string>
+    <string name="item_spirit_seed_name">Semilla de hierba espiritual</string>
+    <string name="item_celestial_bloom_seed_name">Semilla de flor celestial</string>
+    <string name="item_starfruit_seed_name">Semilla de carambola</string>
+    <string name="item_void_lotus_seed_name">Semilla de loto del vacío</string>
 </resources>

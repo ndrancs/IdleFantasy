@@ -306,12 +306,14 @@ class PlayerRepository @Inject constructor(
         updateFlags(flags.withWorkerForSlot(slot, null))
     }
 
-    /** Removes the queued item at [index]. No-op if out of range. */
-    suspend fun removeFromQueue(index: Int) {
+    /** Removes and returns the queued item at [index], or null if out of range. */
+    suspend fun removeFromQueue(index: Int): QueuedAction? {
         val flags = getFlags()
         val queue = flags.sessionQueue
-        if (index < 0 || index >= queue.size) return
+        if (index < 0 || index >= queue.size) return null
+        val removed = queue[index]
         updateFlags(flags.copy(sessionQueue = queue.toMutableList().apply { removeAt(index) }))
+        return removed
     }
 
     suspend fun evictQueueForSkill(skillName: String): List<QueuedAction> {

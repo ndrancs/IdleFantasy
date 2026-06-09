@@ -88,4 +88,21 @@
     <!-- Translator note: %1$d = current hole depth in metres -->
     <string name="game_dig_depth">La buca ha una profondità di %1$d metri.</string>
     <string name="game_dig_cooldown">Oggi hai già scavato. Torna domani.</string>
+
+    <!-- ===== Equipment slot names ===== -->
+    <string name="equip_slot_weapon_atk">Arma (Mischia)</string>
+    <string name="equip_slot_weapon_str">Arma (Forza)</string>
+    <string name="equip_slot_weapon_ranged">Arma (Distanza)</string>
+    <string name="equip_slot_weapon_magic">Arma (Magia)</string>
+    <string name="equip_slot_head">Testa</string>
+    <string name="equip_slot_body">Busto</string>
+    <string name="equip_slot_legs">Gambe</string>
+    <string name="equip_slot_boots">Stivali</string>
+    <string name="equip_slot_cape">Mantello</string>
+    <string name="equip_slot_ring">Anello</string>
+    <string name="equip_slot_necklace">Collana</string>
+    <string name="equip_slot_shield">Scudo</string>
+    <string name="equip_slot_pickaxe">Piccone</string>
+    <string name="equip_slot_axe">Ascia</string>
+    <string name="equip_slot_fishing_rod">Canna da pesca</string>
 </resources>

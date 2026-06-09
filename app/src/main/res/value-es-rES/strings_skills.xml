@@ -84,4 +84,7 @@
     <string name="label_hp_max">Max HP: %1$d</string>
     <string name="label_xp_per_bone">%1$s (%2$d XP/bone)</string>
     <string name="label_xp_per_kill">%1$s (%2$d XP/kill)</string>
+    <string name="skill_expedition_name">Expedition</string>
+    <string name="skill_boss_name">Boss</string>
+    <string name="skill_mercantile_name">Mercantile</string>
 </resources>

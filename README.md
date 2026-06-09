@@ -64,7 +64,7 @@ The game is available in English, German, French, Spanish, and Turkish. Translat
 
 Bug reports and pull requests are welcome. Open an issue before starting large changes so the approach can be discussed first.
 
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) for a full list of contributors.
+See the [contributors graph](https://github.com/tristinbaker/IdleFantasy/graphs/contributors) for a full list of contributors.
 
 ---
 

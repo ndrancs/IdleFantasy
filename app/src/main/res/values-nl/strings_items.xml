@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">vis (elk type)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Aardappelzaad</string>
+    <string name="item_onion_seed_name">Uienzaad</string>
+    <string name="item_cabbage_seed_name">Koolzaad</string>
+    <string name="item_carrot_seed_name">Wortelzaad</string>
+    <string name="item_tomato_seed_name">Tomatenzaad</string>
+    <string name="item_corn_seed_name">Maïszaad</string>
+    <string name="item_pumpkin_seed_name">Pompoenenzaad</string>
+    <string name="item_watermelon_seed_name">Watermeloenenzaad</string>
+    <string name="item_strawberry_seed_name">Aardbeizaad</string>
+    <string name="item_magic_herb_seed_name">Magische Kruidenzaad</string>
+    <string name="item_dragon_fruit_seed_name">Drakenfruit-zaad</string>
+    <string name="item_golden_wheat_seed_name">Zonnetarwezaad</string>
+    <string name="item_spirit_seed_name">Zielenkruidzaad</string>
+    <string name="item_celestial_bloom_seed_name">Hemelsbloesemzaad</string>
+    <string name="item_starfruit_seed_name">Stervrucht-zaad</string>
+    <string name="item_void_lotus_seed_name">Schaduwlotuszaad</string>
 </resources>

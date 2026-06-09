@@ -88,4 +88,21 @@
     <!-- Translator note: %1$d = current hole depth in metres -->
     <string name="game_dig_depth">Das Loch ist %1$d Meter tief.</string>
     <string name="game_dig_cooldown">Ihr habt heute bereits gegraben. Kommt morgen wieder.</string>
+
+    <!-- ===== Equipment slot names ===== -->
+    <string name="equip_slot_weapon_atk">Waffe (Angriff)</string>
+    <string name="equip_slot_weapon_str">Waffe (Stärke)</string>
+    <string name="equip_slot_weapon_ranged">Waffe (Fernkampf)</string>
+    <string name="equip_slot_weapon_magic">Waffe (Magie)</string>
+    <string name="equip_slot_head">Kopf</string>
+    <string name="equip_slot_body">Rumpf</string>
+    <string name="equip_slot_legs">Beine</string>
+    <string name="equip_slot_boots">Stiefel</string>
+    <string name="equip_slot_cape">Umhang</string>
+    <string name="equip_slot_ring">Ring</string>
+    <string name="equip_slot_necklace">Halskette</string>
+    <string name="equip_slot_shield">Schild</string>
+    <string name="equip_slot_pickaxe">Spitzhacke</string>
+    <string name="equip_slot_axe">Axt</string>
+    <string name="equip_slot_fishing_rod">Angelrute</string>
 </resources>

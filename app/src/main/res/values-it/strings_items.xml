@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">pesce (qualsiasi tipo)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Seme di patata</string>
+    <string name="item_onion_seed_name">Seme di cipolla</string>
+    <string name="item_cabbage_seed_name">Seme di cavolo</string>
+    <string name="item_carrot_seed_name">Seme di carota</string>
+    <string name="item_tomato_seed_name">Seme di pomodoro</string>
+    <string name="item_corn_seed_name">Seme di granturco</string>
+    <string name="item_pumpkin_seed_name">Seme di zucca</string>
+    <string name="item_watermelon_seed_name">Seme di cocomero</string>
+    <string name="item_strawberry_seed_name">Seme di fragola</string>
+    <string name="item_magic_herb_seed_name">Seme di erba magica</string>
+    <string name="item_dragon_fruit_seed_name">Seme di frutto draconico</string>
+    <string name="item_golden_wheat_seed_name">Seme di grano dorato</string>
+    <string name="item_spirit_seed_name">Seme di erba dello spirito</string>
+    <string name="item_celestial_bloom_seed_name">Seme di fioritura celestiale</string>
+    <string name="item_starfruit_seed_name">Seme di frutto delle stelle</string>
+    <string name="item_void_lotus_seed_name">Seme di loto del vuoto</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -75,6 +76,7 @@ import com.fantasyidler.data.json.BoneData
 import com.fantasyidler.data.json.FishData
 import com.fantasyidler.data.json.LogData
 import com.fantasyidler.data.json.OreData
+import com.fantasyidler.data.json.ThievingNpcData
 import com.fantasyidler.data.json.TreeData
 import com.fantasyidler.data.model.Skills
 import com.fantasyidler.ui.theme.GoldPrimary
@@ -98,6 +100,7 @@ import com.fantasyidler.ui.viewmodel.xpToNextLevel
 import com.fantasyidler.simulator.SkillSimulator
 import com.fantasyidler.simulator.XpTable
 import com.fantasyidler.util.GameStrings
+import com.fantasyidler.util.toTitleCase
 import com.fantasyidler.util.formatDurationMs
 import com.fantasyidler.util.formatXp
 import com.fantasyidler.util.toCountdown
@@ -298,6 +301,17 @@ fun SkillsScreen(
                         },
                     )
                 }
+                is SheetState.Thieving -> ThievingSheet(
+                    npcs              = sheet.npcs,
+                    thievingLevel     = state.skillLevels[com.fantasyidler.data.model.Skills.THIEVING] ?: 1,
+                    currentXp         = state.skillXp[com.fantasyidler.data.model.Skills.THIEVING] ?: 0L,
+                    isStarting        = state.startingSession,
+                    hasActiveSession  = state.anySessionActive,
+                    isQueueFull       = state.queueSize >= 3,
+                    sessionDurationMs = state.sessionDurationMs,
+                    context           = context,
+                    onSelect          = { npcKey -> viewModel.startThievingSession(npcKey) },
+                )
                 SheetState.Mercantile -> MercantileSheetContent(onDismiss = viewModel::dismissSheet)
                 SheetState.Farming   -> FarmingSheetContent(onDismiss = viewModel::dismissSheet)
                 SheetState.ComingSoon -> ComingSoonSheet()
@@ -322,13 +336,18 @@ private fun SkillsTabContent(
         state.activeSession?.let { session ->
             item {
                 ActiveSessionBanner(
-                    skillName      = GameStrings.skillName(context, session.skillName),
-                    activityKey    = session.activityKey,
-                    endsAt         = session.endsAt,
-                    completed      = session.completed,
-                    onCollect      = viewModel::collectSession,
-                    onAbandon      = viewModel::abandonSession,
-                    onDebugFinish  = viewModel::debugFinishSession,
+                    skillName     = GameStrings.skillName(context, session.skillName),
+                    activityLabel = when (session.skillName) {
+                        "combat"     -> GameStrings.dungeonName(context, session.activityKey)
+                        "boss"       -> GameStrings.bossName(context, session.activityKey)
+                        "expedition" -> GameStrings.skillingDungeonName(context, session.activityKey, session.activityKey.toTitleCase())
+                        else         -> GameStrings.itemName(context, session.activityKey)
+                    }.takeIf { session.activityKey.isNotEmpty() },
+                    endsAt        = session.endsAt,
+                    completed     = session.completed,
+                    onCollect     = viewModel::collectSession,
+                    onAbandon     = viewModel::abandonSession,
+                    onDebugFinish = viewModel::debugFinishSession,
                 )
             }
         }
@@ -402,7 +421,7 @@ private fun SkillsTabContent(
 @Composable
 private fun ActiveSessionBanner(
     skillName: String,
-    activityKey: String,
+    activityLabel: String?,
     endsAt: Long,
     completed: Boolean,
     onCollect: () -> Unit,
@@ -437,9 +456,9 @@ private fun ActiveSessionBanner(
             Text(
                 text = buildString {
                     append(skillName)
-                    if (activityKey.isNotEmpty()) {
+                    if (activityLabel != null) {
                         append(" — ")
-                        append(activityKey.replace('_', ' ').replaceFirstChar { it.uppercase() })
+                        append(activityLabel)
                     }
                 },
                 style      = MaterialTheme.typography.titleMedium,
@@ -709,6 +728,12 @@ internal fun MiningSheet(
         if (sessionDurationMs > 0) {
             Text(
                 text     = stringResource(R.string.skills_session_duration, sessionDurationMs / 60_000),
+                style    = MaterialTheme.typography.bodySmall,
+                color    = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 2.dp),
+            )
+            Text(
+                text     = stringResource(R.string.skill_mining_qty_estimate, SkillSimulator.estimateGatheringQty(efficiency)),
                 style    = MaterialTheme.typography.bodySmall,
                 color    = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
@@ -1224,6 +1249,7 @@ internal fun PrayerSheet(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .imePadding()
             .padding(bottom = 32.dp),
     ) {
         Text(
@@ -1737,11 +1763,12 @@ private fun CraftSkillSheet(
     onDismiss: () -> Unit,
 ) {
     val allRecipes: List<CraftableRecipe> = when (skillName) {
-        Skills.SMITHING  -> craftingViewModel.smithingRecipes
-        Skills.COOKING   -> craftingViewModel.cookingRecipes
-        Skills.FLETCHING -> craftingViewModel.fletchingRecipes
-        Skills.HERBLORE  -> craftingViewModel.herbloreRecipes
-        else             -> craftingViewModel.jewelleryRecipes
+        Skills.SMITHING      -> craftingViewModel.smithingRecipes
+        Skills.COOKING       -> craftingViewModel.cookingRecipes
+        Skills.FLETCHING     -> craftingViewModel.fletchingRecipes
+        Skills.HERBLORE      -> craftingViewModel.herbloreRecipes
+        Skills.CONSTRUCTION  -> craftingViewModel.constructionRecipes
+        else                 -> craftingViewModel.jewelleryRecipes
     }
 
     var onlyCraftable    by remember { mutableStateOf(false) }
@@ -2142,5 +2169,92 @@ private fun CraftQuantityContent(
         ) {
             Text(if (hasActiveSession) stringResource(R.string.skills_add_to_queue) else stringResource(R.string.btn_craft))
         }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Thieving sheet
+// ---------------------------------------------------------------------------
+
+@Composable
+internal fun ThievingSheet(
+    npcs: Map<String, ThievingNpcData>,
+    thievingLevel: Int,
+    currentXp: Long,
+    isStarting: Boolean,
+    hasActiveSession: Boolean,
+    isQueueFull: Boolean,
+    sessionDurationMs: Long,
+    context: android.content.Context,
+    onSelect: (String) -> Unit,
+) {
+    var selectedKey by remember { mutableStateOf<String?>(null) }
+    Column(Modifier.padding(bottom = 24.dp)) {
+        Text(
+            text     = stringResource(R.string.label_choose_activity),
+            style    = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+        )
+        Text(
+            text     = stringResource(R.string.skill_thieving_desc),
+            style    = MaterialTheme.typography.bodySmall,
+            color    = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 4.dp),
+        )
+        if (sessionDurationMs > 0) {
+            Text(
+                text     = stringResource(R.string.skills_session_duration, sessionDurationMs / 60_000),
+                style    = MaterialTheme.typography.bodySmall,
+                color    = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+            )
+        }
+        HorizontalDivider()
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            npcs.values
+                .sortedBy { it.levelRequired }
+                .forEach { npc ->
+                    val successChance = ((0.40 + (thievingLevel - npc.levelRequired) * 0.02)
+                        .coerceIn(0.10, 0.95) * 100).toInt()
+                    val xpGain = npc.baseXp.toLong()
+                    ActivityRow(
+                        name             = GameStrings.thievingNpcName(context, npc.key),
+                        detail           = stringResource(
+                            R.string.thieving_npc_detail,
+                            npc.levelRequired,
+                            npc.baseXp,
+                            successChance,
+                        ),
+                        projectedLabel   = projectedXpLabel(currentXp, xpGain),
+                        isStarting       = isStarting,
+                        hasActiveSession = hasActiveSession,
+                        isQueueFull      = isQueueFull,
+                        onClick          = { selectedKey = npc.key },
+                    )
+                }
+        }
+    }
+    selectedKey?.let { key ->
+        val npc = npcs[key] ?: return@let
+        val successChance = ((0.40 + (thievingLevel - npc.levelRequired) * 0.02)
+            .coerceIn(0.10, 0.95) * 100).toInt()
+        ActivityDetailDialog(
+            name             = GameStrings.thievingNpcName(context, npc.key),
+            detail           = stringResource(
+                R.string.thieving_npc_detail,
+                npc.levelRequired,
+                npc.baseXp,
+                successChance,
+            ),
+            description      = stringResource(
+                R.string.thieving_npc_coins,
+                npc.coinsMin,
+                npc.coinsMax,
+            ),
+            hasActiveSession = hasActiveSession,
+            isQueueFull      = isQueueFull,
+            onConfirm        = { onSelect(key) },
+            onDismiss        = { selectedKey = null },
+        )
     }
 }

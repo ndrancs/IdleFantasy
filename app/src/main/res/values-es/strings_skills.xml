@@ -86,4 +86,8 @@
     <string name="agility_divine_course_desc">Un entrenamiento bendecido por los dioses de la agilidad.</string>
     <string name="agility_transcendent_course_name">Curso Transcendente</string>
     <string name="agility_transcendent_course_desc">El desafío definitivo de agilidad que trasciende los límites mortales.</string>
+    <!-- ===== Session skill type labels ===== -->
+    <string name="skill_expedition_name">Expedición</string>
+    <string name="skill_boss_name">Jefe</string>
+    <string name="skill_mercantile_name">Mercantil</string>
 </resources>

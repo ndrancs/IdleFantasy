@@ -20,6 +20,6 @@ class FarmPatchAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val cropKey = intent.getStringExtra(EXTRA_CROP_NAME) ?: return
-        notificationManager.showFarmingReady(GameStrings.cropName(context, cropKey))
+        notificationManager.showFarmingReady(GameStrings.cropName(notificationManager.localizedContext(), cropKey))
     }
 }

@@ -86,4 +86,9 @@
     <string name="agility_divine_course_desc">A divine course blessed by the gods of agility.</string>
     <string name="agility_transcendent_course_name">Transcendent Course</string>
     <string name="agility_transcendent_course_desc">The ultimate test of agility, transcending mortal limits.</string>
+
+    <!-- ===== Session skill type labels ===== -->
+    <string name="skill_expedition_name">Expedition</string>
+    <string name="skill_boss_name">Boss</string>
+    <string name="skill_mercantile_name">Mercantile</string>
 </resources>

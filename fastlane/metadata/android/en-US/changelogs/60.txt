@@ -1,0 +1,4 @@
+• Fix: Queued boss sessions (2nd, 3rd, 4th...) now end immediately when the boss dies instead of staying stuck at 0 HP until the full timer expires
+• Fix: "Add Dungeon to Queue" on the Slayer Master screen now starts the session immediately if no session is currently active
+• New: Mining sheet shows estimated ore yield per session so you can plan ahead for smithing and quests
+• New: Tap an owned pet to give it some well-deserved affection

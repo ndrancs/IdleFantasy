@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">рыба (любого вида)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Семена картофеля</string>
+    <string name="item_onion_seed_name">Семена лука</string>
+    <string name="item_cabbage_seed_name">Семена капусты</string>
+    <string name="item_carrot_seed_name">Семена моркови</string>
+    <string name="item_tomato_seed_name">Семена томата</string>
+    <string name="item_corn_seed_name">Семена кукурузы</string>
+    <string name="item_pumpkin_seed_name">Семена тыквы</string>
+    <string name="item_watermelon_seed_name">Семена арбуза</string>
+    <string name="item_strawberry_seed_name">Семена клубники</string>
+    <string name="item_magic_herb_seed_name">Семена магической травы</string>
+    <string name="item_dragon_fruit_seed_name">Семена драконьего фрукта</string>
+    <string name="item_golden_wheat_seed_name">Семена золотой пшеницы</string>
+    <string name="item_spirit_seed_name">Семена духовной травы</string>
+    <string name="item_celestial_bloom_seed_name">Семена небесного цветка</string>
+    <string name="item_starfruit_seed_name">Семена звёздного плода</string>
+    <string name="item_void_lotus_seed_name">Семена лотоса пустоты</string>
 </resources>

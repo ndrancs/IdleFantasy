@@ -185,7 +185,6 @@ class QueuedSessionStarter @Inject constructor(
                 val logData = gameData.logs[logKey] ?: return
                 val qty     = action.qty.takeIf { it > 0 } ?: return
                 val ashKey  = ashForLog(logKey)
-                if (!playerRepo.consumeItems(mapOf(logKey to qty))) return
                 val frames  = buildCraftFrames(xpMap[Skills.FIREMAKING] ?: 0L, qty, logData.xpPerLog.toDouble(), 1, ashKey)
                 val perLogMs = SkillSimulator.sessionDurationMs(agilityLevel) / 60L
                 sessionRepo.startSession(
@@ -341,9 +340,13 @@ class QueuedSessionStarter @Inject constructor(
                     "strength" -> "strength"
                     else       -> "melee"
                 }
-                val totalAtkBonus    = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[bossEquipped[it]]?.attackBonus  ?: 0 } + (bossWeapon?.attackBonus  ?: 0)
+                val totalAtkBonus    = EquipSlot.ARMOR_SLOTS.sumOf { slot ->
+                    val eq = gameData.equipment[bossEquipped[slot]]
+                    when (combatStyle) { "ranged" -> eq?.rangedAttackBonus ?: 0; "magic" -> eq?.magicAttackBonus ?: 0; else -> eq?.attackBonus ?: 0 }
+                } + when (combatStyle) { "ranged" -> bossWeapon?.rangedAttackBonus ?: 0; "magic" -> bossWeapon?.magicAttackBonus ?: 0; else -> bossWeapon?.attackBonus ?: 0 }
                 val totalStrBonus    = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[bossEquipped[it]]?.strengthBonus ?: 0 } + (bossWeapon?.strengthBonus ?: 0)
                 val totalDefBonus    = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[bossEquipped[it]]?.defenseBonus  ?: 0 } + (bossWeapon?.defenseBonus  ?: 0)
+                val totalMagicDmgBonus = if (combatStyle == "magic") EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[bossEquipped[it]]?.magicDamageBonus ?: 0 } + (bossWeapon?.magicDamageBonus ?: 0) else 0
                 val equippedFoodKeys = flags.equippedFood.keys
                 val availableFood    = inventory.filterKeys { it in equippedFoodKeys }
                 val spell = gameData.spells[bossSpellName]
@@ -365,7 +368,7 @@ class QueuedSessionStarter @Inject constructor(
                     playerRanged       = ((levels[Skills.RANGED] ?: 1) * combatCapeMult).toInt() + (pmBoss[Skills.RANGED] ?: 0) * 5 + (bossPotionBonuses["ranged"] ?: 0),
                     playerMagic        = ((levels[Skills.MAGIC]  ?: 1) * combatCapeMult).toInt() + (pmBoss[Skills.MAGIC]  ?: 0) * 5 + (bossPotionBonuses["magic"]  ?: 0),
                     arrowStrengthBonus = arrowBonus,
-                    spellMaxHit        = spell?.maxHit ?: 0,
+                    spellMaxHit        = (spell?.maxHit ?: 0) + totalMagicDmgBonus,
                     availableArrows    = availableArrows,
                     equippedFood       = availableFood,
                     foodHealValues     = gameData.foodHealValues,
@@ -433,9 +436,13 @@ class QueuedSessionStarter @Inject constructor(
                 val equippedFoodKeys = flags.equippedFood.keys
                 val availableFood    = inventory.filterKeys { it in equippedFoodKeys }
                 val spell = gameData.spells[combatSpellName]
-                val totalAtkBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[combatEquipped[it]]?.attackBonus  ?: 0 } + (weapon?.attackBonus  ?: 0)
+                val totalAtkBonus = EquipSlot.ARMOR_SLOTS.sumOf { slot ->
+                    val eq = gameData.equipment[combatEquipped[slot]]
+                    when (combatStyle) { "ranged" -> eq?.rangedAttackBonus ?: 0; "magic" -> eq?.magicAttackBonus ?: 0; else -> eq?.attackBonus ?: 0 }
+                } + when (combatStyle) { "ranged" -> weapon?.rangedAttackBonus ?: 0; "magic" -> weapon?.magicAttackBonus ?: 0; else -> weapon?.attackBonus ?: 0 }
                 val totalStrBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[combatEquipped[it]]?.strengthBonus ?: 0 } + (weapon?.strengthBonus ?: 0)
                 val totalDefBonus = EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[combatEquipped[it]]?.defenseBonus  ?: 0 } + (weapon?.defenseBonus  ?: 0)
+                val totalMagicDmgBonus = if (combatStyle == "magic") EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[combatEquipped[it]]?.magicDamageBonus ?: 0 } + (weapon?.magicDamageBonus ?: 0) else 0
                 val pm = flags.skillPrestige
                 val result = CombatSimulator.simulateDungeon(
                     dungeon             = dungeon,
@@ -451,7 +458,7 @@ class QueuedSessionStarter @Inject constructor(
                     playerRanged        = ((levels[Skills.RANGED] ?: 1) * combatCapeMult).toInt() + (pm[Skills.RANGED] ?: 0) * 5 + (combatPotBonuses["ranged"] ?: 0),
                     playerMagic         = ((levels[Skills.MAGIC]  ?: 1) * combatCapeMult).toInt() + (pm[Skills.MAGIC]  ?: 0) * 5 + (combatPotBonuses["magic"]  ?: 0),
                     arrowStrengthBonus  = arrowBonus,
-                    spellMaxHit         = spell?.maxHit             ?: 0,
+                    spellMaxHit         = (spell?.maxHit ?: 0) + totalMagicDmgBonus,
                     agilityLevel        = agilityLevel,
                     petBoostPct         = combatPetBoost(player.pets),
                     equippedFood        = availableFood,

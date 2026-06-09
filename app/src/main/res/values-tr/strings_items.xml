@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">balık (herhangi tür)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Patates tohumu</string>
+    <string name="item_onion_seed_name">Soğan tohumu</string>
+    <string name="item_cabbage_seed_name">Lahana tohumu</string>
+    <string name="item_carrot_seed_name">Havuç tohumu</string>
+    <string name="item_tomato_seed_name">Domates tohumu</string>
+    <string name="item_corn_seed_name">Mısır tohumu</string>
+    <string name="item_pumpkin_seed_name">Balkabağı tohumu</string>
+    <string name="item_watermelon_seed_name">Karpuz tohumu</string>
+    <string name="item_strawberry_seed_name">Çilek tohumu</string>
+    <string name="item_magic_herb_seed_name">Sihirli Ot tohumu</string>
+    <string name="item_dragon_fruit_seed_name">Ejder Meyvesi tohumu</string>
+    <string name="item_golden_wheat_seed_name">Altın Buğday tohumu</string>
+    <string name="item_spirit_seed_name">Ruh Otu tohumu</string>
+    <string name="item_celestial_bloom_seed_name">Göksel Çiçek tohumu</string>
+    <string name="item_starfruit_seed_name">Yıldız Meyvesi tohumu</string>
+    <string name="item_void_lotus_seed_name">Hiçlik Lotusu tohumu</string>
 </resources>

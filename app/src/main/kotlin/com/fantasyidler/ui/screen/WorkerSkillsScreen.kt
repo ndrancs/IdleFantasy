@@ -294,7 +294,7 @@ fun WorkerSkillsScreen(
                     isStarting        = false,
                     hasActiveSession  = true,
                     isQueueFull       = isQueueFull,
-                    sessionDurationMs = state.gatheringDurationMs,
+                    sessionDurationMs = state.sessionDurationMs,
                     onStart           = { logKey, qty -> viewModel.startFiremakingSession(logKey, qty) },
                     context           = context,
                 )
@@ -312,6 +312,7 @@ fun WorkerSkillsScreen(
                     availableBones    = sheet.availableBones,
                     inventory         = sheet.inventory,
                     prayerLevel       = state.skillLevels[Skills.PRAYER] ?: 1,
+                    currentXp         = state.skillXp[Skills.PRAYER] ?: 0L,
                     isStarting        = false,
                     hasActiveSession  = true,
                     isQueueFull       = isQueueFull,
@@ -331,6 +332,7 @@ fun WorkerSkillsScreen(
                 }
                 SheetState.Mercantile -> {}
                 SheetState.Farming   -> {}
+                is SheetState.Thieving -> {}
                 SheetState.ComingSoon -> ComingSoonSheet()
             }
         }

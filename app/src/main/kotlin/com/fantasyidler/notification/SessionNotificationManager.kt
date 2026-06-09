@@ -5,6 +5,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -28,6 +30,15 @@ class SessionNotificationManager @Inject constructor(
 
         private const val NOTIF_ID_SESSION_COMPLETE = 1001
         private const val NOTIF_ID_FARMING_READY    = 2001
+    }
+
+    fun localizedContext(): Context {
+        val locales = AppCompatDelegate.getApplicationLocales()
+        if (locales.isEmpty) return context
+        val locale = locales[0] ?: return context
+        val config = Configuration(context.resources.configuration)
+        config.setLocale(locale)
+        return context.createConfigurationContext(config)
     }
 
     /** Call once on app startup to register notification channels (idempotent). */
@@ -72,12 +83,11 @@ class SessionNotificationManager @Inject constructor(
 
     /** Show "Your [skillName] session has finished" notification. */
     fun showSessionComplete(skillDisplayName: String) {
+        val lc = localizedContext()
         val notification = NotificationCompat.Builder(context, CHANNEL_ID_SESSIONS)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(context.getString(R.string.notif_session_complete_title))
-            .setContentText(
-                context.getString(R.string.notif_session_complete_body, skillDisplayName)
-            )
+            .setContentTitle(lc.getString(R.string.notif_session_complete_title))
+            .setContentText(lc.getString(R.string.notif_session_complete_body, skillDisplayName))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(launchIntent())
             .setAutoCancel(true)
@@ -88,12 +98,11 @@ class SessionNotificationManager @Inject constructor(
 
     /** Show "Your [cropName] is ready to harvest" notification. */
     fun showFarmingReady(cropDisplayName: String) {
+        val lc = localizedContext()
         val notification = NotificationCompat.Builder(context, CHANNEL_ID_FARMING)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(context.getString(R.string.notif_farming_ready_title))
-            .setContentText(
-                context.getString(R.string.notif_farming_ready_body, cropDisplayName)
-            )
+            .setContentTitle(lc.getString(R.string.notif_farming_ready_title))
+            .setContentText(lc.getString(R.string.notif_farming_ready_body, cropDisplayName))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(farmingLaunchIntent())
             .setAutoCancel(true)

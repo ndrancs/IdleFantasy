@@ -609,4 +609,22 @@
 
     <string name="item_any_fish_name">poisson (tout type)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Graine de pommes de terre</string>
+    <string name="item_onion_seed_name">Graine d\'oignon</string>
+    <string name="item_cabbage_seed_name">Graine de chou</string>
+    <string name="item_carrot_seed_name">Graine de carotte</string>
+    <string name="item_tomato_seed_name">Graine de tomate</string>
+    <string name="item_corn_seed_name">Graine de maïs</string>
+    <string name="item_pumpkin_seed_name">Graine de citrouille</string>
+    <string name="item_watermelon_seed_name">Graine de pastèque</string>
+    <string name="item_strawberry_seed_name">Graine de fraise</string>
+    <string name="item_magic_herb_seed_name">Graine d\'herbe magique</string>
+    <string name="item_dragon_fruit_seed_name">Graine de fruit du dragon</string>
+    <string name="item_golden_wheat_seed_name">Graine de blé doré</string>
+    <string name="item_spirit_seed_name">Graine de l\'esprit</string>
+    <string name="item_celestial_bloom_seed_name">Graine de fleur céleste</string>
+    <string name="item_starfruit_seed_name">Graine de fruit d\'étoile</string>
+    <string name="item_void_lotus_seed_name">Graine de lotus du vide</string>
 </resources>

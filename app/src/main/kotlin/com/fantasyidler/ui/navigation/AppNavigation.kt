@@ -35,6 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.fantasyidler.notification.SessionNotificationManager
 import com.fantasyidler.ui.screen.BoneAltarScreen
 import com.fantasyidler.ui.screen.ChurchScreen
+import com.fantasyidler.ui.screen.BuilderScreen
 import com.fantasyidler.ui.screen.CombatScreen
 import com.fantasyidler.ui.screen.FarmingScreen
 import com.fantasyidler.ui.screen.GuildDetailScreen
@@ -167,10 +168,11 @@ fun AppNavigation(
                     onNavigateToSettings     = { navController.navigate(Screen.Settings.route) },
                     onNavigateToShop         = { navController.navigate(Screen.Shop.route) },
                     onNavigateToInn          = { navController.navigate(Screen.Inn.route) },
-                    onNavigateToWorkerSkills = { navController.navigate(Screen.WorkerSkills.route) },
+                    onNavigateToWorkerSkills = { slot -> navController.navigate(Screen.WorkerSkills.routeWithSlot(slot)) },
                     onNavigateToGuildHall    = { navController.navigate(Screen.GuildHall.route) },
                     onNavigateToChurch       = { navController.navigate(Screen.Church.route) },
                     onNavigateToSlayer       = { navController.navigate(Screen.Slayer.route) },
+                    onNavigateToBuilder      = { navController.navigate(Screen.Builder.route) },
                 )
             }
             composable(Screen.Quests.route)   { QuestsScreen() }
@@ -227,6 +229,11 @@ fun AppNavigation(
             }
             composable(Screen.BoneAltar.route) { entry ->
                 BoneAltarScreen(
+                    onBack = { if (navController.currentBackStackEntry == entry) navController.popBackStack() },
+                )
+            }
+            composable(Screen.Builder.route) { entry ->
+                BuilderScreen(
                     onBack = { if (navController.currentBackStackEntry == entry) navController.popBackStack() },
                 )
             }

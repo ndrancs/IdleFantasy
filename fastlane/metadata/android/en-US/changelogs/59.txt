@@ -1,0 +1,5 @@
+• Fix: Worker firemaking time estimate now shows the correct per-log duration instead of the gathering session duration
+• Fix: Worker prayer assignment now shows the correct projected level based on the player's actual Prayer XP
+• Fix: Queued boss sessions now each run for their full duration; previously they all cascaded to completion in seconds when the boss died early
+• Fix: Bone altar combo bonus no longer shows a double percent sign
+• Fix: Start burying / Add to queue button stays visible when the keyboard is open in the prayer sheet

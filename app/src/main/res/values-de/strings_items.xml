@@ -610,4 +610,22 @@
 
     <string name="item_any_fish_name">Fisch (beliebig)</string>
 
+
+    <!-- ===== Seed names ===== -->
+    <string name="item_potato_seed_name">Kartoffelsamen</string>
+    <string name="item_onion_seed_name">Zwiebelsamen</string>
+    <string name="item_cabbage_seed_name">Kohlsamen</string>
+    <string name="item_carrot_seed_name">Karottensamen</string>
+    <string name="item_tomato_seed_name">Tomatensamen</string>
+    <string name="item_corn_seed_name">Maissamen</string>
+    <string name="item_pumpkin_seed_name">Kürbissamen</string>
+    <string name="item_watermelon_seed_name">Wassermelonensamen</string>
+    <string name="item_strawberry_seed_name">Erdbeersamen</string>
+    <string name="item_magic_herb_seed_name">Zauberkrautsamen</string>
+    <string name="item_dragon_fruit_seed_name">Drachenfrucht-Samen</string>
+    <string name="item_golden_wheat_seed_name">Goldweizensamen</string>
+    <string name="item_spirit_seed_name">Heilkrautsamen</string>
+    <string name="item_celestial_bloom_seed_name">Himmlische-Blüte-Samen</string>
+    <string name="item_starfruit_seed_name">Sternfruchtsamen</string>
+    <string name="item_void_lotus_seed_name">Leere-Lotus-Samen</string>
 </resources>

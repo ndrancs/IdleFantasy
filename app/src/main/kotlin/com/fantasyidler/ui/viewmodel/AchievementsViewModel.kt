@@ -69,7 +69,7 @@ class AchievementsViewModel @Inject constructor(
             ach("total_750",  R.string.achievement_total_750_name,  R.string.achievement_total_750_desc,  "🥇",  totalLevel >= 750),
             ach("total_1000", R.string.achievement_total_1000_name, R.string.achievement_total_1000_desc, "🌟",  totalLevel >= 1000),
             ach("total_1500", R.string.achievement_total_1500_name, R.string.achievement_total_1500_desc, "👑",  totalLevel >= 1500),
-            ach("skill_99",   R.string.achievement_skill_99_name,   R.string.achievement_skill_99_desc,   "💯",  levels.values.any { it >= 99 }),
+            ach("skill_99",   R.string.achievement_skill_99_name,   R.string.achievement_skill_99_desc,   "💯",  levels.values.any { it >= 99 } || prestigeMap.values.any { it >= 1 }),
             ach("all_99",     R.string.achievement_all_99_name,     R.string.achievement_all_99_desc,     "🏆",  Skills.ALL.all { (levels[it] ?: 1) >= 99 }),
         )
 
@@ -99,6 +99,19 @@ class AchievementsViewModel @Inject constructor(
             ach("prestige_any_3",   R.string.achievement_prestige_any_3_name,   R.string.achievement_prestige_any_3_desc,   "🌟", prestigeMap.values.any { it >= 3 }),
             ach("prestige_all_1",   R.string.achievement_prestige_all_1_name,   R.string.achievement_prestige_all_1_desc,   "⭐⭐", Skills.ALL.all { (prestigeMap[it] ?: 0) >= 1 }),
             ach("prestige_all_3",   R.string.achievement_prestige_all_3_name,   R.string.achievement_prestige_all_3_desc,   "👑", Skills.ALL.all { (prestigeMap[it] ?: 0) >= 3 }),
+        )
+
+        val townTiers = flags.townBuildingTiers
+        val allBuildingKeys = listOf("inn", "guild_hall", "church")
+        groups["Town"] = listOf(
+            ach("town_first_upgrade", R.string.achievement_town_first_upgrade_name, R.string.achievement_town_first_upgrade_desc, "🏗️",
+                allBuildingKeys.any { (townTiers[it] ?: 0) >= 1 }),
+            ach("town_all_tier1", R.string.achievement_town_all_tier1_name, R.string.achievement_town_all_tier1_desc, "🏘️",
+                allBuildingKeys.all { (townTiers[it] ?: 0) >= 1 }),
+            ach("town_one_maxed", R.string.achievement_town_one_maxed_name, R.string.achievement_town_one_maxed_desc, "🏰",
+                allBuildingKeys.any { (townTiers[it] ?: 0) >= 3 }),
+            ach("town_all_maxed", R.string.achievement_town_all_maxed_name, R.string.achievement_town_all_maxed_desc, "👑",
+                allBuildingKeys.all { (townTiers[it] ?: 0) >= 3 }),
         )
 
         val all = groups.values.flatten()

@@ -1,0 +1,16 @@
+• New: Slayer Master screen now shows an "Add Dungeon to Queue" button on your active task; tap it to instantly queue the correct dungeon using your last-used weapon, spell, arrows, and potion; button is disabled when the queue is already full
+• Fix: Your selected spell is now remembered across app restarts; it is restored automatically when you return to the Combat screen
+• Fix: Your selected potion is now remembered across app restarts; it is restored automatically when you return to the Combat screen
+• Change: The spell picker now defaults to "Only Castable" mode, showing only spells your equipped staff supports or for which you have runes; tap the chip to show all spells
+• New: The Guild Hall button in the Town menu now shows a red badge with the number of claimable quest and daily rewards waiting across all guilds
+• Fix: The Town section on the home screen no longer collapses when the screen updates; it stays expanded until you tap it again
+• Fix: Firemaking (and other chained quests) now accumulate progress even when earlier prerequisite quests have not yet been claimed; claim order is still enforced at reward time
+• Fix: Queued firemaking sessions now correctly start after the previous session ends; logs were being consumed at queue time and then the session silently failed when it tried to consume them again
+• Fix: Scattering ashes at the Bone Altar (or via a prayer session) no longer counts toward "Bury X bones" quests or Prayer Guild progress; ashes still grant Prayer XP and daily prayer credit as intended
+• Fix: Expedition names in the session queue on the home screen now appear in the correct language instead of always showing English
+• Fix: Boss names, enemy names, and spell names in the Combat screen are now shown in the correct language
+• Fix: Equipment slot names (Head, Body, Weapon, etc.) in the gear panel are now shown in the correct language
+• Fix: Seeds in the shop now have fully translated names in all supported languages
+• Fix: The active session banner on the Skills screen now shows the activity name in the correct language instead of the raw English key
+• Fix: The Slayer active task card now shows the enemy name in the correct language
+• Fix: Daily food item names in the Inn are now shown in the correct language

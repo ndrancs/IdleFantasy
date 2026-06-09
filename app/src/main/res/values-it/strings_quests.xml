@@ -421,28 +421,28 @@
     <string name="quest_daily_kill_dragon_name">Ammazza Draghi</string>
 
     <!-- Quest objective verb strings for craft skills -->
-    <string name="daily_verb_crafting">Fabbricare</string>
-    <string name="daily_verb_firemaking">Bruciare</string>
-    <string name="daily_verb_fletching">Impennare</string>
-    <string name="daily_verb_herblore">Preparare</string>
-    <string name="daily_verb_runecrafting">Creare</string>
-    <string name="daily_verb_prayer">Seppellire</string>
+    <string name="daily_verb_crafting">Crea</string>
+    <string name="daily_verb_firemaking">Brucia</string>
+    <string name="daily_verb_fletching">Impenna</string>
+    <string name="daily_verb_herblore">Prepara</string>
+    <string name="daily_verb_runecrafting">Incidi</string>
+    <string name="daily_verb_prayer">Seppellisci</string>
 
     <!-- Quest objective format strings -->
     <string name="quest_obj_gather">%1$s %2$d %3$s</string>
     <string name="quest_obj_craft">%1$s %2$d %3$s</string>
-    <string name="quest_obj_prayer">Seppellire %1$d ossa di qualsiasi tipo</string>
+    <string name="quest_obj_prayer">Seppellisci %1$d ossa di qualsiasi tipo</string>
     <string name="quest_obj_kill">Sconfiggi %1$d nemici</string>
     <string name="quest_obj_kill_enemy">Sconfiggi %1$d %2$s</string>
-    <string name="quest_obj_dungeon">Completa %1$s %2$d volte</string>
-    <string name="quest_obj_dungeon_once">Completa %1$s</string>
+    <string name="quest_obj_dungeon">Esplora %1$s %2$d volte</string>
+    <string name="quest_obj_dungeon_once">Esplora %1$s</string>
     <string name="quest_obj_boss">Sconfiggi %1$s %2$d volte</string>
     <string name="quest_obj_boss_once">Sconfiggi %1$s</string>
-    <string name="quest_obj_dungeon_melee_only">Completa %1$s usando solo corpo a corpo</string>
+    <string name="quest_obj_dungeon_melee_only">Esplora %1$s usando solo corpo a corpo</string>
     <string name="quest_obj_dungeon_ranged_only">Completa %1$s usando solo attacchi a distanza</string>
     <string name="quest_obj_dungeon_magic_only">Completa %1$s usando solo la magia</string>
-    <string name="quest_obj_dungeon_no_food">Completa %1$s senza usare cibo</string>
-    <string name="quest_obj_collect">Raccogli %1$d %2$s in combattimento</string>
-    <string name="quest_obj_slayer_task">Completa %1$d missioni del Cacciatore</string>
+    <string name="quest_obj_dungeon_no_food">Completa %1$s senza cibo</string>
+    <string name="quest_obj_collect">Raccogli %1$d %2$s dai combattimenti</string>
+    <string name="quest_obj_slayer_task">Completa %1$d missioni del Sicario</string>
 
 </resources>
