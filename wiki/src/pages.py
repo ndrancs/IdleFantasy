@@ -131,10 +131,23 @@ def add_boss_pages():
         ]]
     ])
 
+
+def add_enemy_pages():
+    enemies = load("enemies.json")
+    assert isinstance(enemies, dict)
+    enemy_pages = {
+        enemy_id: PageInfo(
+            enemies[enemy_id]["display_name"],
+            f"{enemy_id}.md",
+            lambda entry=enemies[enemy_id]: gen_enemy(entry),
+        )
+        for enemy_id in enemies.keys()
+    }
+    PAGE_DIRECTORY.update(enemy_pages)
+
 # ---------------------------------------------------------------------------
 # Main functions
 # ---------------------------------------------------------------------------
-
 
 def get_pages() -> dict[str, str]:
     return {info.url: info.generate() for info in PAGE_DIRECTORY.values()}
@@ -758,7 +771,7 @@ def gen_dungeons() -> str:
         spawns = dungeon.get("enemy_spawns", [])
         total_w = sum(s.get("weight", 1) for s in spawns)
         spawn_rows = [
-            [title(s["enemy"]), s.get("weight", 1), f"{s.get('weight', 1) / total_w * 100:.0f}%"] for s in spawns
+            [link(s["enemy"]), s.get("weight", 1), f"{s.get('weight', 1) / total_w * 100:.0f}%"] for s in spawns
         ]
         sections.append(section_template.format(
             name=dungeon["display_name"],
@@ -768,6 +781,38 @@ def gen_dungeons() -> str:
         ))
 
     return get_template("combat/dungeons").format(dungeon_sections="\n\n".join(sections))
+
+
+def _enemy_dungeons(enemy_id: str) -> list[tuple[dict, dict]]:
+    dungeons = sorted(
+        (load(f, False) for f in (ASSETS / "dungeons").glob("*.json")),
+        key=lambda d: d.get("recommended_level", 0),
+    )
+    results = []
+    for dungeon in dungeons:
+        for spawn in dungeon.get("enemy_spawns", []):
+            if spawn.get("enemy") == enemy_id:
+                results.append((dungeon, spawn))
+                break
+    return results
+
+
+def gen_enemies() -> str:
+    enemies = load("enemies.json")
+    assert isinstance(enemies, dict)
+    rows = [
+        [
+            link(enemy_id),
+            enemy["hp"],
+            enemy.get("xp_drops", {}).get("combat", "—"),
+            ", ".join(dungeon["display_name"] for dungeon, _ in _enemy_dungeons(enemy_id)) or "—",
+        ]
+        for enemy_id, enemy in sorted(enemies.items(), key=lambda x: x[1]["hp"])
+    ]
+    return get_template("combat/enemies").format(
+        boss_link=link("bosses"),
+        enemy_table=table(["Enemy", "HP", "XP on kill", "Found in"], rows),
+    )
 
 
 def _enemy_drop_rows(enemy: dict) -> list[list]:
@@ -783,26 +828,38 @@ def _enemy_drop_rows(enemy: dict) -> list[list]:
     return drop_rows
 
 
-def gen_enemies() -> str:
-    enemies = load("enemies.json")
-    assert isinstance(enemies, dict)
-    section_template = get_template("combat/enemy_section")
-    sections = []
-    for enemy in sorted(enemies.values(), key=lambda x: x["hp"]):
-        combat_stats = enemy.get("combat_stats", {})
-        xp = enemy.get("xp_drops", {})
-        drop_rows = _enemy_drop_rows(enemy)
-        sections.append(section_template.format(
-            name=enemy["display_name"],
-            hp=enemy["hp"],
-            attack=combat_stats.get("attack_level", combat_stats.get("attack", "—")),
-            strength=combat_stats.get("strength_level", combat_stats.get("strength", "—")),
-            defense=combat_stats.get("defense_level", combat_stats.get("defense", "—")),
-            xp_drops=", ".join(f"{title(sk)} {v}" for sk, v in xp.items()) if xp else "—",
-            drop_table=table(["Item", "Chance", "Qty"], drop_rows) if drop_rows else "_No drops._",
-        ))
+def _enemy_dungeon_rows(enemy_id: str) -> list[list]:
+    rows = []
+    for dungeon, spawn in _enemy_dungeons(enemy_id):
+        spawns = dungeon.get("enemy_spawns", [])
+        total_w = sum(s.get("weight", 1) for s in spawns)
+        rows.append([
+            dungeon["display_name"],
+            dungeon.get("recommended_level", "—"),
+            f"{spawn.get('weight', 1) / total_w * 100:.0f}%",
+        ])
+    return rows
 
-    return get_template("combat/enemies").format(boss_link=link("bosses"), enemy_sections="\n\n".join(sections))
+
+def gen_enemy(enemy: dict) -> str:
+    combat_stats = enemy.get("combat_stats", {})
+    defensive_stats = enemy.get("defensive_stats", {})
+    hp = enemy.get("hp", "—")
+    xp = enemy.get("xp_drops", {}).get("combat", "—")
+    drop_rows = _enemy_drop_rows(enemy)
+    dungeon_rows = _enemy_dungeon_rows(enemy["name"])
+
+    return get_template("combat/enemy").format(
+        name=enemy["display_name"],
+        hp=f"{hp:,}" if isinstance(hp, int) else hp,
+        xp=f"{xp:,}" if isinstance(xp, int) else xp,
+        attack=combat_stats.get("attack_level", 0) + combat_stats.get("attack_bonus", 0),
+        melee_defence=defensive_stats.get("attack_defense", "—"),
+        ranged_defence=defensive_stats.get("ranged_defense", "—"),
+        magic_defence=defensive_stats.get("magic_defense", "—"),
+        loot_table=table(["Item", "Chance", "Qty"], drop_rows) if drop_rows else "_No drops._",
+        dungeon_table=table(["Dungeon", "Combat Level", "Spawn Chance"], dungeon_rows) if dungeon_rows else "_Not found in any dungeon._",
+    )
 
 
 def gen_spells() -> str:
@@ -1100,3 +1157,4 @@ def gen_boss(boss: dict) -> str:
 # Add all relevant pages to the hierarchy
 add_static_pages()
 add_boss_pages()
+add_enemy_pages()
