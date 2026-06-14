@@ -724,6 +724,7 @@
     <string name="guild_quest_desc_sessions">Schließt %1$d %2$s-Aktivitäten für die %3$s ab.</string>
     <string name="guild_quest_desc_trade">Schließt %1$d Handelsroute(n) für die %2$s ab.</string>
     <string name="guild_quest_desc_earn_coins">Verdient %1$s Münzen über Handelsrouten für die %2$s.</string>
+    <string name="guild_quest_desc_pickpocket">Bestehlt den %2$s %1$d Mal für die %3$s.</string>
     <string name="guild_combat_melee">Nahkampf</string>
     <string name="guild_combat_ranged">Fernkampf</string>
     <string name="guild_combat_magic">Magie</string>
@@ -1014,7 +1015,9 @@
     <string name="thieving_npc_artisan_name">Handwerker</string>
     <string name="thieving_npc_noble_name">Adeliger</string>
     <string name="thieving_npc_city_guard_name">Stadtgarde</string>
+    <string name="thieving_npc_royal_guard_name">Königswache</string>
     <string name="thieving_npc_knight_name">Ritter</string>
+    <string name="thieving_npc_bishop_name">Bischof</string>
     <string name="thieving_npc_high_priest_name">Hohepriester</string>
     <string name="item_plank_name">Bohle</string>
     <string name="item_oak_plank_name">Eichenbohle</string>

@@ -81,6 +81,20 @@
     ]
   },
   {
+    "key": "royal_guard",
+    "display_name": "Royal Guard",
+    "level_required": 75,
+    "base_xp": 182,
+    "coins_min": 175,
+    "coins_max": 500,
+    "loot_table": [
+      { "item": "blood_rune", "chance": 0.25, "min_qty": 2, "max_qty": 6 },
+      { "item": "diamond", "chance": 0.06 },
+      { "item": "ruby_ring", "chance": 0.08 },
+      { "item": "gold_necklace", "chance": 0.07 }
+    ]
+  },
+  {
     "key": "knight",
     "display_name": "Knight",
     "level_required": 80,
@@ -92,6 +106,20 @@
       { "item": "diamond", "chance": 0.08 },
       { "item": "gold_ring", "chance": 0.06 },
       { "item": "gold_necklace", "chance": 0.06 }
+    ]
+  },
+  {
+    "key": "bishop",
+    "display_name": "Bishop",
+    "level_required": 85,
+    "base_xp": 245,
+    "coins_min": 250,
+    "coins_max": 800,
+    "loot_table": [
+      { "item": "blood_rune", "chance": 0.30, "min_qty": 4, "max_qty": 8 },
+      { "item": "diamond", "chance": 0.08 },
+      { "item": "diamond_ring", "chance": 0.06 },
+      { "item": "tormented_necklace", "chance": 0.005 }
     ]
   },
   {

@@ -1,0 +1,3 @@
+• Fix: Worker efficiency not applying to crafting skills — Journeyman and Master workers now produce more items per session than Apprentice, matching how efficiency already worked for gathering
+• New: Thieves Guild now appears in the Guild Hall
+• New: Added Royal Guard (lv 75) and Bishop (lv 85) as thieving NPCs

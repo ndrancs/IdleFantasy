@@ -3588,9 +3588,9 @@
     "guild_level_required": 6,
     "name": "Armed and Nimble",
     "type": "pickpocket",
-    "target": "city_guard",
+    "target": "royal_guard",
     "amount": 300,
-    "description": "Pickpocket the city guard 300 times for the Thieves Guild.",
+    "description": "Pickpocket the royal guard 300 times for the Thieves Guild.",
     "rewards": {
       "coins": 40000,
       "xp": 90000,
@@ -3628,9 +3628,9 @@
     "guild_level_required": 8,
     "name": "Sacred Pockets",
     "type": "pickpocket",
-    "target": "high_priest",
+    "target": "bishop",
     "amount": 200,
-    "description": "Pickpocket the high priest 200 times for the Thieves Guild.",
+    "description": "Pickpocket the bishop 200 times for the Thieves Guild.",
     "rewards": {
       "coins": 80000,
       "xp": 200000,

@@ -781,6 +781,7 @@
     <string name="guild_quest_desc_sessions">Завершить %1$d сессий %2$s для %3$s.</string>
     <string name="guild_quest_desc_trade">Завершить %1$d торговых маршрутов для %2$s.</string>
     <string name="guild_quest_desc_earn_coins">Заработать %1$s монет через торговые маршруты для %2$s.</string>
+    <string name="guild_quest_desc_pickpocket">Обкрадите %2$s %1$d раз для %3$s.</string>
     <string name="guild_combat_melee">ближний бой</string>
     <string name="guild_combat_ranged">дальний бой</string>
     <string name="guild_combat_magic">магия</string>
@@ -1069,7 +1070,9 @@
     <string name="thieving_npc_artisan_name">Ремесленник</string>
     <string name="thieving_npc_noble_name">Дворянин</string>
     <string name="thieving_npc_city_guard_name">Городской Страж</string>
+    <string name="thieving_npc_royal_guard_name">Королевский Стражник</string>
     <string name="thieving_npc_knight_name">Рыцарь</string>
+    <string name="thieving_npc_bishop_name">Епископ</string>
     <string name="thieving_npc_high_priest_name">Верховный Жрец</string>
     <string name="item_plank_name">Доска</string>
     <string name="item_oak_plank_name">Дубовая Доска</string>

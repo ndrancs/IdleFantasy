@@ -735,6 +735,7 @@
     <string name="guild_quest_desc_sessions">%3$s için %1$d %2$s oturumu tamamlayın.</string>
     <string name="guild_quest_desc_trade">%2$s için %1$d ticaret rotası tamamlayın.</string>
     <string name="guild_quest_desc_earn_coins">%2$s için ticaret rotaları aracılığıyla %1$s altın kazanın.</string>
+    <string name="guild_quest_desc_pickpocket">%3$s için %2$s\'ı %1$d kez yankesicilik yapın.</string>
     <string name="guild_combat_melee">yakın</string>
     <string name="guild_combat_ranged">uzak</string>
     <string name="guild_combat_magic">sihir</string>
@@ -1045,7 +1046,9 @@
     <string name="thieving_npc_artisan_name">Zanaatkar</string>
     <string name="thieving_npc_noble_name">Soylu</string>
     <string name="thieving_npc_city_guard_name">Şehir Muhafızı</string>
+    <string name="thieving_npc_royal_guard_name">Kraliyet Muhafızı</string>
     <string name="thieving_npc_knight_name">Şövalye</string>
+    <string name="thieving_npc_bishop_name">Piskopos</string>
     <string name="thieving_npc_high_priest_name">Başrahip</string>
     <string name="item_plank_name">Tahta</string>
     <string name="item_oak_plank_name">Meşe Tahtası</string>

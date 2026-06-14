@@ -1,3 +1,8 @@
+v1.8.12
+• Fix: Worker efficiency not applying to crafting skills — Journeyman and Master workers now produce more items per session than Apprentice, matching how efficiency already worked for gathering
+• New: Thieves Guild now appears in the Guild Hall
+• New: Added Royal Guard (lv 75) and Bishop (lv 85) as thieving NPCs
+
 v1.8.11
 • New: 6 high-level Slayer tasks added (levels 85-99): Void Stalker, Frost Wyvern, Abyssal Guardian, Shadow Thief, Spectral Knight, Elder Lich; fills the Slayer gap between level 80 and 99
 • New: Thieves Guild added to the Guild Hall (Gathering category): 10 progression quests chaining through all 8 NPC tiers from peasant to high priest, 15 rotating daily requests, and a Thieves Guild Cape capstone reward; Agility Guild moved to the Support Skills category

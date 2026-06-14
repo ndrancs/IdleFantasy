@@ -1120,4 +1120,7 @@
     <string name="item_sovereign_crown_desc">The crown of the Void Sovereign itself, radiating dark majesty. Offers unparalleled protection.</string>
     <string name="item_amulet_of_the_void_name">Amulet of the Void</string>
     <string name="item_amulet_of_the_void_desc">A pendant of pure void essence. Enhances all combat stats of the wearer.</string>
+    <string name="guild_quest_desc_pickpocket">Pickpocket the %2$s %1$d times for the %3$s.</string>
+    <string name="thieving_npc_royal_guard_name">Royal Guard</string>
+    <string name="thieving_npc_bishop_name">Bishop</string>
 </resources>

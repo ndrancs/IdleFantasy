@@ -64,7 +64,7 @@ class WorkerQueuedSessionStarter @Inject constructor(
 
         val isGathering = action.skillName in GATHERING_SKILLS
         val efficiencyMultiplier = if (isGathering) tier.combinedGatheringMultiplier
-                                   else 1.0f
+                                   else tier.efficiencyMultiplier
         val durationMs = if (isGathering) tier.durationMs
                          else action.estimatedDurationMs.takeIf { it > 0 } ?: tier.durationMs
 
@@ -131,7 +131,7 @@ class WorkerQueuedSessionStarter @Inject constructor(
                 val logData = gameData.logs[logKey] ?: return
                 val ashKey  = ashForLog(logKey)
                 val frames  = buildCraftFrames(xpMap[Skills.FIREMAKING] ?: 0L, qty, logData.xpPerLog.toDouble(), 1, ashKey)
-                startSession(slot, action, frames, durationMs, 1.0f)
+                startSession(slot, action, frames, durationMs, efficiencyMultiplier)
             }
             Skills.RUNECRAFTING -> {
                 val runeKey  = action.activityKey

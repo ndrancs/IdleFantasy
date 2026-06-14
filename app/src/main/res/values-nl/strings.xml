@@ -765,6 +765,7 @@
     <string name="guild_quest_desc_sessions">Voltooi %1$d %2$s sessies voor het %3$s.</string>
     <string name="guild_quest_desc_trade">Voltooi %1$d handelsroute(s) voor het %2$s.</string>
     <string name="guild_quest_desc_earn_coins">Verdien %1$s munten via handelsroutes voor het %2$s.</string>
+    <string name="guild_quest_desc_pickpocket">Steek de %2$s %1$d keer zakken voor het %3$s.</string>
     <string name="guild_combat_melee">nabij</string>
     <string name="guild_combat_ranged">afstand</string>
     <string name="guild_combat_magic">magie</string>
@@ -1004,7 +1005,9 @@
     <string name="thieving_npc_artisan_name">Ambachtsman</string>
     <string name="thieving_npc_noble_name">Edelman</string>
     <string name="thieving_npc_city_guard_name">Stadswacht</string>
+    <string name="thieving_npc_royal_guard_name">Koninklijke Wacht</string>
     <string name="thieving_npc_knight_name">Ridder</string>
+    <string name="thieving_npc_bishop_name">Bisschop</string>
     <string name="thieving_npc_high_priest_name">Hogepriester</string>
     <string name="item_plank_name">Plank</string>
     <string name="item_oak_plank_name">Eikenplank</string>

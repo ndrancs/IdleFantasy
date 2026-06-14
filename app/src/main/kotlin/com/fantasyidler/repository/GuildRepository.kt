@@ -60,7 +60,7 @@ class GuildRepository @Inject constructor(
         )
 
         val ALL_GUILDS = listOf(
-            "mining", "fishing", "woodcutting", "farming", "firemaking", "agility",
+            "mining", "fishing", "woodcutting", "farming", "thieving", "firemaking", "agility",
             "smithing", "cooking", "fletching", "crafting", "runecrafting", "herblore",
             "warriors", "archers", "mages", "prayer", "mercantile",
         )

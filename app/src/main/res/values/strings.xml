@@ -781,6 +781,7 @@
     <string name="guild_quest_desc_sessions">Complete %1$d %2$s sessions for the %3$s.</string>
     <string name="guild_quest_desc_trade">Complete %1$d trade routes for the %2$s.</string>
     <string name="guild_quest_desc_earn_coins">Earn %1$s coins via trade routes for the %2$s.</string>
+    <string name="guild_quest_desc_pickpocket">Pickpocket the %2$s %1$d times for the %3$s.</string>
     <string name="guild_combat_melee">melee</string>
     <string name="guild_combat_ranged">ranged</string>
     <string name="guild_combat_magic">magic</string>
@@ -1076,7 +1077,9 @@
     <string name="thieving_npc_artisan_name">Artisan</string>
     <string name="thieving_npc_noble_name">Noble</string>
     <string name="thieving_npc_city_guard_name">City Guard</string>
+    <string name="thieving_npc_royal_guard_name">Royal Guard</string>
     <string name="thieving_npc_knight_name">Knight</string>
+    <string name="thieving_npc_bishop_name">Bishop</string>
     <string name="thieving_npc_high_priest_name">High Priest</string>
 
     <!-- Construction item names (planks, nails, stone) -->

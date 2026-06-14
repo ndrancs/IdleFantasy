@@ -730,6 +730,7 @@
     <string name="guild_quest_desc_sessions">Completa %1$d sesiones de %2$s para el %3$s.</string>
     <string name="guild_quest_desc_trade">Completa %1$d rutas comerciales para el %2$s.</string>
     <string name="guild_quest_desc_earn_coins">Gana %1$s monedas a través de rutas comerciales para el %2$s.</string>
+    <string name="guild_quest_desc_pickpocket">Roba al %2$s %1$d veces para el %3$s.</string>
     <string name="guild_combat_melee">cuerpo a cuerpo</string>
     <string name="guild_combat_ranged">a distancia</string>
     <string name="guild_combat_magic">mágico</string>
@@ -1040,7 +1041,9 @@
     <string name="thieving_npc_artisan_name">Artesano</string>
     <string name="thieving_npc_noble_name">Noble</string>
     <string name="thieving_npc_city_guard_name">Guardia Urbano</string>
+    <string name="thieving_npc_royal_guard_name">Guardia Real</string>
     <string name="thieving_npc_knight_name">Caballero</string>
+    <string name="thieving_npc_bishop_name">Obispo</string>
     <string name="thieving_npc_high_priest_name">Sumo Sacerdote</string>
     <string name="item_plank_name">Tablón</string>
     <string name="item_oak_plank_name">Tablón de Roble</string>

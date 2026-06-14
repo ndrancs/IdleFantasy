@@ -778,6 +778,7 @@
     <string name="guild_quest_desc_sessions">Completa %1$d sessioni di %2$s per la %3$s.</string>
     <string name="guild_quest_desc_trade">Completa %1$d percorsi commerciali per la %2$s.</string>
     <string name="guild_quest_desc_earn_coins">Guadagna %1$s monete tramite percorsi commerciali per la %2$s.</string>
+    <string name="guild_quest_desc_pickpocket">Borseggia il %2$s %1$d volte per il %3$s.</string>
     <string name="guild_combat_melee">mischia</string>
     <string name="guild_combat_ranged">a distanza</string>
     <string name="guild_combat_magic">magico</string>
@@ -1069,7 +1070,9 @@
     <string name="thieving_npc_artisan_name">Artigiano</string>
     <string name="thieving_npc_noble_name">Nobile</string>
     <string name="thieving_npc_city_guard_name">Guardia Cittadina</string>
+    <string name="thieving_npc_royal_guard_name">Guardia Reale</string>
     <string name="thieving_npc_knight_name">Cavaliere</string>
+    <string name="thieving_npc_bishop_name">Vescovo</string>
     <string name="thieving_npc_high_priest_name">Sommo Sacerdote</string>
     <string name="item_plank_name">Asse</string>
     <string name="item_oak_plank_name">Asse di Quercia</string>
