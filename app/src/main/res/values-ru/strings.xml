@@ -1248,4 +1248,11 @@
     <string name="armory_filter_armor">Броня</string>
     <string name="armory_filter_accessories">Аксессуары</string>
     <string name="armory_filter_tools">Инструменты</string>
+
+    <!-- Boss Descriptions -->
+    <string name="boss_king_black_dragon_desc">Легендарный трехголовый дракон, которого боятся во всем королевстве.</string>
+    <string name="boss_demon_lord_desc">Древний демон из бездны, мастер темной магии.</string>
+    <string name="boss_kraken_desc">Ужас глубоких морей, колоссальный морской монстр.</string>
+    <string name="boss_balrog_desc">Древний демон пламени и тени, пробужденный от сна глубоко под землей.</string>
+    <string name="boss_void_sovereign_desc">Первобытная сущность, скрывающаяся за разломами пустоты. Неизмеримо древняя, она с презрением смотрит на смертных.</string>
 </resources>

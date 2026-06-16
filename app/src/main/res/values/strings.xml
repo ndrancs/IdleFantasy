@@ -1268,4 +1268,11 @@
     <string name="armory_filter_armor">Armor</string>
     <string name="armory_filter_accessories">Accessories</string>
     <string name="armory_filter_tools">Tools</string>
+
+    <!-- Boss Descriptions -->
+    <string name="boss_king_black_dragon_desc">The legendary three-headed dragon, feared across the realm.</string>
+    <string name="boss_demon_lord_desc">An ancient demon from the abyss, master of dark magic.</string>
+    <string name="boss_kraken_desc">The terror of the deep seas, a colossal sea monster.</string>
+    <string name="boss_balrog_desc">An ancient demon of flame and shadow, awakened from its slumber deep beneath the earth.</string>
+    <string name="boss_void_sovereign_desc">The primordial entity behind the void rifts. Ancient beyond reckoning, it regards mortal challengers with contempt.</string>
 </resources>

@@ -628,11 +628,6 @@
     <string name="item_starfruit_seed_name">Graine de fruit d\'étoile</string>
     <string name="item_void_lotus_seed_name">Graine de lotus du vide</string>
     <string name="boss_void_sovereign_name">Le Souverain du Vide</string>
-    <string name="boss_void_sovereign_desc">L\'entité primordiale à l\'origine des failles du vide. Ancienne au-delà de toute mesure, elle considère les challengers mortels avec mépris.</string>
-    <string name="boss_balrog_desc">Un ancien démon de flamme et d\'ombre, éveillé de son sommeil au plus profond de la terre.</string>
-    <string name="boss_demon_lord_desc">Un ancien démon des abysses, maître de la magie noire.</string>
-    <string name="boss_king_black_dragon_desc">Le légendaire dragon à trois têtes, redouté dans tout le royaume.</string>
-    <string name="boss_kraken_desc">La terreur des mers profondes, un monstre marin colossal.</string>
     <string name="item_abyssal_rod_name">Canne abyssale</string>
     <string name="item_adamantite_arrow_tip_name">Pointe de flèche en adamantite</string>
     <string name="item_adamantite_boots_name">Bottes en adamantite</string>

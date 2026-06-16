@@ -1223,4 +1223,11 @@
     <string name="armory_filter_armor">Zırh</string>
     <string name="armory_filter_accessories">Aksesuarlar</string>
     <string name="armory_filter_tools">Aletler</string>
+
+    <!-- Boss Descriptions -->
+    <string name="boss_king_black_dragon_desc">Tüm diyarda korkulan efsanevi üç başlı ejderha.</string>
+    <string name="boss_demon_lord_desc">Karanlık büyünün ustası, uçurumdan gelen kadim bir iblis.</string>
+    <string name="boss_kraken_desc">Derin denizlerin dehşeti, devasa bir deniz canavarı.</string>
+    <string name="boss_balrog_desc">Yerin derinliklerindeki uykusundan uyanan, alev ve gölgeden kadim bir iblis.</string>
+    <string name="boss_void_sovereign_desc">Hiçlik yarıklarının arkasındaki ilkel varlık. Ölçülemeyecek kadar yaşlı, ölümlü meydan okuyanlara küçümsemeyle bakar.</string>
 </resources>

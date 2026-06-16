@@ -1218,4 +1218,11 @@
     <string name="armory_filter_armor">Armadura</string>
     <string name="armory_filter_accessories">Accesorios</string>
     <string name="armory_filter_tools">Herramientas</string>
+
+    <!-- Boss Descriptions -->
+    <string name="boss_king_black_dragon_desc">El legendario dragón de tres cabezas, temido en todo el reino.</string>
+    <string name="boss_demon_lord_desc">Un antiguo demonio del abismo, maestro de la magia oscura.</string>
+    <string name="boss_kraken_desc">El terror de las profundidades marinas, un colosal monstruo marino.</string>
+    <string name="boss_balrog_desc">Un antiguo demonio de llamas y sombras, despertado de su letargo en las profundidades de la tierra.</string>
+    <string name="boss_void_sovereign_desc">La entidad primordial detrás de las grietas del vacío. Antigua más allá de todo cálculo, mira a los retadores mortales con desprecio.</string>
 </resources>

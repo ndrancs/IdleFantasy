@@ -1254,4 +1254,11 @@
     <string name="slayer_lamp_large_desc">+50.000 XP aan elke vaardigheid</string>
     <string name="slayer_lamp_pick_skill">Kies een vaardigheid</string>
     <string name="slayer_lamp_purchased">XP toegevoegd aan %1$s!</string>
+
+    <!-- Boss Descriptions -->
+    <string name="boss_king_black_dragon_desc">De legendarische driekoppige draak, gevreesd in het hele rijk.</string>
+    <string name="boss_demon_lord_desc">Een oeroude demon uit de afgrond, meester van duistere magie.</string>
+    <string name="boss_kraken_desc">De schrik van de diepzee, een kolossaal zeemonster.</string>
+    <string name="boss_balrog_desc">Een oeroude demon van vlam en schaduw, ontwaakt uit zijn sluimer diep onder de aarde.</string>
+    <string name="boss_void_sovereign_desc">De oorspronkelijke entiteit achter de leemtescheuren. Onmetelijk oud, bekijkt sterfelijke uitdagers met minachting.</string>
 </resources>
