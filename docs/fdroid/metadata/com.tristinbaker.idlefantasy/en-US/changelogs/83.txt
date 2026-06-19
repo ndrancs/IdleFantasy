@@ -1,0 +1,6 @@
+• Fix red dot badge on Quests nav button not appearing when a Daily or Weekly Quest becomes ready to claim
+• Fix XP bonus multiplier being incorrectly applied to all combat skills when a prayer cape is equipped - the prayer cape bonus now applies only where it belongs (bone altar prayer sessions)
+• Bonuses tab now shows a Combined XP row (e.g. 2.86×) when both an XP Boost and a Church blessing are active, and separates per-skill XP bonuses from yield bonuses so it is clear what each bonus affects
+• Fix Smithing (and Worker Smithing) filter resetting the ore/tier chip when you then select an equipment type - the tier now stays selected as long as it applies to the new category
+• Restore F-Droid custom repo index files that were accidentally deleted by a contributor PR; Droid-ify and Neo Store users can update again
+• Skill capes no longer have a level requirement to equip - once you earn a cape by reaching level 99, you can equip it at any level (including after prestige)

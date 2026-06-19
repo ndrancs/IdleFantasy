@@ -1297,4 +1297,7 @@
     <string name="armory_source_shop">Shop</string>
     <string name="bonus_combined_xp">Combined XP</string>
     <string name="bonus_yield">yield</string>
+    <string name="combat_last_run">Last: %1$d kills, %2$d food</string>
+    <string name="combat_last_run_died">Last: died (%1$d kills)</string>
+    <string name="pet_found_title">New Pet!</string>
 </resources>

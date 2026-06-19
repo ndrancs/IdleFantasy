@@ -216,7 +216,7 @@ cd "$CLONE_DIR"
 git checkout "$TAG"
 ./gradlew assembleRelease
 
-APK="$CLONE_DIR/app/build/outputs/apk/release/app-release.apk"
+APK=$(find "$CLONE_DIR/app/build/outputs/apk/release/" -name "*.apk" | head -1)
 
 # ---------------------------------------------------------------------------
 # Update custom F-Droid repo (docs/fdroid)
