@@ -608,9 +608,16 @@ Builds:
     gradle:
       - yes
 
+  - versionName: '1.9.11'
+    versionCode: 87
+    commit: e93d5b78f525ec50c9c846f07991e9c20ee8bda7
+    subdir: app
+    gradle:
+      - yes
+
 AllowedAPKSigningKeys: 99a980a934cb0149bfbdd5f4358471ffe69302e0467bae4d8574d4feeda34010
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 1.9.10
-CurrentVersionCode: 86
+CurrentVersion: 1.9.11
+CurrentVersionCode: 87
