@@ -55,16 +55,16 @@ class SlayerRepository @Inject constructor(
             if (dungeonKeys.isEmpty()) return@filter true
             dungeonKeys.any { it !in gameData.expeditionLockedDungeons || it in unlockedDungeons }
         }
-        if (eligible.isEmpty()) return false
+        if (eligible.isEmpty()) return@withLock false
 
         val (enemyKey, cfg) = eligible.entries.random()
         val displayName = gameData.enemies[enemyKey]?.displayName
             ?: enemyKey.split('_').joinToString(" ") { it.replaceFirstChar { c -> c.uppercase() } }
-        val targetKills = Random.nextInt(cfg.minKills, cfg.maxKills + 1)
+        val targetKills = kotlin.random.Random.nextInt(cfg.minKills, cfg.maxKills + 1)
         val taskPoints  = maxOf(3, cfg.slayerLevel / 5)
 
-        playerRepo.updateFlags(
-            playerRepo.getFlags().copy(
+        playerRepo.updateFlagsUnlocked(
+            flags.copy(
                 activeSlayerTask = SlayerTask(
                     enemyKey       = enemyKey,
                     displayName    = displayName,
@@ -75,7 +75,7 @@ class SlayerRepository @Inject constructor(
                 )
             )
         )
-        return true
+        true
     }
 
     /**
@@ -95,12 +95,29 @@ class SlayerRepository @Inject constructor(
 
     private fun getEligibleEnemies() = gameData.slayerTasks
 
-    suspend fun foretellTask(costXp: Int): ForetelResult = playerRepo.withLock {
-        val player = playerRepo.getOrCreatePlayer()
-        val inventory: Map<String, Int> = kotlinx.serialization.json.Json.decodeFromString(player.inventory)
-        val eligible = getEligibleEnemies()
-        if (eligible.isEmpty()) return@withLock ForetelResult.NoEligibleEnemies
+    private fun totalBoneXp(inventory: Map<String, Int>): Int =
+        BONE_XP.entries.sumOf { (key, xp) -> (inventory[key] ?: 0) * xp }
 
+    suspend fun foretelTask(slayerLevel: Int, unlockedDungeons: Set<String> = emptySet()): ForetelResult = playerRepo.withLock {
+        val flags = playerRepo.getFlagsUnlocked()
+        if (flags.foretelledTasks.size >= 3) return@withLock ForetelResult.QueueFull
+
+        val eligible = gameData.slayerTasks.filter { (enemyKey, cfg) ->
+            if (cfg.slayerLevel > slayerLevel) return@filter false
+            val dungeonKeys = gameData.dungeons.values
+                .filter { d -> d.enemySpawns.any { it.enemy == enemyKey } }
+                .map { it.name }
+            if (dungeonKeys.isEmpty()) return@filter true
+            dungeonKeys.any { it !in gameData.expeditionLockedDungeons || it in unlockedDungeons }
+        }
+        if (eligible.isEmpty()) return@withLock ForetelResult.NoEligibleTasks
+
+        val costUnits = foretelCostUnits(flags.foretelledTasks.size)
+        val costXp = costUnits * BASE_BONE_XP
+        val inventory = playerRepo.getInventoryUnlocked()
+        if (totalBoneXp(inventory) < costXp) return@withLock ForetelResult.NotEnoughBones(costUnits)
+
+        // Consume bones greedily cheapest-first
         val toConsume = mutableMapOf<String, Int>()
         var remaining = costXp
         for (boneKey in BONE_TYPES_ORDERED) {
@@ -114,10 +131,6 @@ class SlayerRepository @Inject constructor(
             remaining -= consume * xp
         }
         
-        if (remaining > 0) {
-            return@withLock ForetelResult.NotEnoughBones(remaining)
-        }
-
         playerRepo.consumeItemsUnlocked(toConsume)
 
         val (enemyKey, cfg) = eligible.entries.random()
@@ -134,11 +147,10 @@ class SlayerRepository @Inject constructor(
             taskPoints     = taskPoints,
         )
 
-        val latestFlags = playerRepo.getFlagsUnlocked()
-        if (latestFlags.activeSlayerTask == null) {
-            playerRepo.updateFlagsUnlocked(latestFlags.copy(activeSlayerTask = task))
+        if (flags.activeSlayerTask == null) {
+            playerRepo.updateFlagsUnlocked(flags.copy(activeSlayerTask = task))
         } else {
-            playerRepo.updateFlagsUnlocked(latestFlags.copy(foretelledTasks = latestFlags.foretelledTasks + task))
+            playerRepo.updateFlagsUnlocked(flags.copy(foretelledTasks = flags.foretelledTasks + task))
         }
         ForetelResult.Success(task)
     }
