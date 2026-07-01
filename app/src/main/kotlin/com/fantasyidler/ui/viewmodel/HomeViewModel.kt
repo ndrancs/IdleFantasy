@@ -421,6 +421,11 @@ class HomeViewModel @Inject constructor(
                         if (allArrowsConsumed.isNotEmpty()) playerRepo.consumeItems(allArrowsConsumed)
                         if (bossArrowsRec.isNotEmpty())     playerRepo.addItems(bossArrowsRec)
                         if (bossRunesRec.isNotEmpty())      playerRepo.addItems(bossRunesRec)
+                        for ((f, q) in allFoodConsumed)    combinedFood[f]             = (combinedFood[f] ?: 0) + q
+                        for ((a, q) in allArrowsConsumed)  combinedArrows[a]           = (combinedArrows[a] ?: 0) + q
+                        for ((a, q) in bossArrowsRec)      combinedArrowsReclaimed[a]  = (combinedArrowsReclaimed[a] ?: 0) + q
+                        for ((r, q) in allRunesConsumed)   combinedRunes[r]            = (combinedRunes[r] ?: 0) + q
+                        for ((r, q) in bossRunesRec)       combinedRunesReclaimed[r]   = (combinedRunesReclaimed[r] ?: 0) + q
                         if (won) {
                             for ((id, _) in pets) {
                                 val pd = gameData.pets[id] ?: continue
@@ -846,6 +851,7 @@ class HomeViewModel @Inject constructor(
                 equippedSnapshot    = player?.equipped,
                 spellName           = flags.activeSpell,
                 arrowsKey           = flags.equippedArrows,
+                potionKey           = flags.activePotionKey,
                 coinRefund          = coinCostForRepeat,
             ))
             if (!enqueued) {

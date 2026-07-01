@@ -71,8 +71,12 @@ private fun localizedQuestDesc(type: String, target: String, amount: Int, guild:
         "mages"    -> stringResource(R.string.guild_combat_magic)
         else       -> guild
     }
+    val gatherVerb = run {
+        val id = context.resources.getIdentifier("daily_verb_$guild", "string", context.packageName)
+        if (id != 0) context.getString(id) else context.getString(R.string.daily_verb_mining)
+    }
     return when (type) {
-        "gather"     -> stringResource(R.string.guild_quest_desc_gather, amount, itemName, guildName)
+        "gather"     -> context.getString(R.string.guild_quest_desc_gather, gatherVerb, amount, itemName, guildName)
         "craft"      -> stringResource(R.string.guild_quest_desc_craft, amount, itemName, guildName)
         "kill"       -> stringResource(R.string.guild_quest_desc_kill, amount, combatStyle)
         "prayer"     -> stringResource(R.string.guild_quest_desc_prayer, amount, guildName)

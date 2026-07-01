@@ -1077,10 +1077,10 @@ class SkillsViewModel @Inject constructor(
         } catch (_: Exception) {
             return 0
         }
-        val petId = pets.firstOrNull { pet ->
-            gameData.pets[pet.id]?.boostedSkill == skillKey || gameData.pets[pet.id]?.boostedSkill == "all"
-        } ?: return 0
-        return gameData.pets[petId.id]?.boostPercent ?: 0
+        return pets.sumOf { pet ->
+            val pd = gameData.pets[pet.id]
+            if (pd != null && (pd.boostedSkill == skillKey || pd.boostedSkill == "all")) pd.boostPercent else 0
+        }
     }
 }
 

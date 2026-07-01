@@ -735,7 +735,7 @@
     <string name="guild_locked_hint">Erfordert Gildenlevel %1$d</string>
     <string name="guild_no_dailies">Schließt Gildenmissionen ab, um Euren Ruf zu verbessern und Tagesaufgaben freizuschalten. (Oder Ihr habt eure Tagesaufgaben schon erfüllt.)</string>
     <string name="guild_contribute_inventory">Aus Inventar beisteuern (%1$d verfügbar)</string>
-    <string name="guild_quest_desc_gather">Sammelt %1$d %2$s für die %3$s.</string>
+    <string name="guild_quest_desc_gather">%1$s %2$d %3$s für die %4$s.</string>
     <string name="guild_quest_desc_craft">Stellt %1$d %2$s für die %3$s her.</string>
     <string name="guild_quest_desc_kill">Besiegt %1$d Feinde im %2$s-Kampf.</string>
     <string name="guild_quest_desc_prayer">Vergrabt %1$d Knochen für die %2$s.</string>
@@ -1185,7 +1185,7 @@
     <string name="carnival_queue">Sitzung einreihen</string>
     <string name="carnival_ring_toss">Ringewerfen</string>
     <string name="carnival_active_ring_desc">Zeit deinen Wurf, wenn der Zeiger die goldene Zielzone trifft.</string>
-    <string name="carnival_ring_target_hint">Ziele auf die Mitte (45%%–55%%)</string>
+    <string name="carnival_ring_target_hint">Ziele auf die Mitte (45%–55%)</string>
     <string name="carnival_throw">Werfen!</string>
     <string name="carnival_hammer_strike">Hammerschlag</string>
     <string name="carnival_active_hammer_desc">Schlage zu, wenn der Kraftmesser seinen Höchstwert erreicht.</string>
@@ -1241,7 +1241,7 @@
     <string name="carnival_difficulty_label">Schwierigkeit</string>
     <string name="carnival_difficulty_normal">Üblich</string>
     <string name="carnival_difficulty_hard">Schwierig</string>
-    <string name="carnival_ring_hard_hint">Schwierig: 52%%–57%% Ziel, 7 Lose</string>
+    <string name="carnival_ring_hard_hint">Schwierig: 52%–57% Ziel, 7 Lose</string>
 
     <!-- ===== Magic Bean / Farming ===== -->
     <string name="farming_bean_note_1">Ein kleiner Spross hat sich durch die Erde gedrückt.</string>

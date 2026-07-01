@@ -753,7 +753,7 @@
     <string name="guild_locked_hint">Nécessite le niveau de guilde %1$d</string>
     <string name="guild_no_dailies">Terminez des quêtes de guilde pour gagner de la réputation et débloquer les demandes quotidiennes.</string>
     <string name="guild_contribute_inventory">Contribuer depuis l’inventaire (%1$d disponible)</string>
-    <string name="guild_quest_desc_gather">Collectez %1$d %2$s pour la %3$s.</string>
+    <string name="guild_quest_desc_gather">%1$s %2$d %3$s pour la %4$s.</string>
     <string name="guild_quest_desc_craft">Fabriquez %1$d %2$s pour la %3$s.</string>
     <string name="guild_quest_desc_kill">Éliminez %1$d ennemis en combat %2$s.</string>
     <string name="guild_quest_desc_prayer">Enterrez %1$d os pour la %2$s.</string>
@@ -1209,7 +1209,7 @@
     <string name="carnival_queue">Mettre en file</string>
     <string name="carnival_ring_toss">Lancer d\'anneaux</string>
     <string name="carnival_active_ring_desc">Lancez quand l\'indicateur atteint la zone cible dorée.</string>
-    <string name="carnival_ring_target_hint">Visez le centre (45%%–55%%)</string>
+    <string name="carnival_ring_target_hint">Visez le centre (45%–55%)</string>
     <string name="carnival_throw">Lancer!</string>
     <string name="carnival_hammer_strike">Coup de marteau</string>
     <string name="carnival_active_hammer_desc">Frappez quand le jauge de puissance est à son maximum.</string>
@@ -1265,7 +1265,7 @@
     <string name="carnival_difficulty_label">Difficulty</string>
     <string name="carnival_difficulty_normal">Normal</string>
     <string name="carnival_difficulty_hard">Hard</string>
-    <string name="carnival_ring_hard_hint">Hard: 52%%–57%% target, 7 tickets</string>
+    <string name="carnival_ring_hard_hint">Hard: 52%–57% target, 7 tickets</string>
 
     <!-- ===== Magic Bean / Farming ===== -->
     <string name="farming_bean_note_1">Une minuscule pousse a percé le sol.</string>

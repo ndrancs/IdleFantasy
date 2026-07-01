@@ -252,7 +252,7 @@ class WorkerQueuedSessionStarter @Inject constructor(
                 val preferredArrow = flags.equippedArrows?.takeIf { (inventory[it] ?: 0) > 0 }
                 val bestArrow = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
                 val arrowBonus = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
-                val availableArrows = if (bestArrow != null) mapOf(bestArrow to (inventory[bestArrow] ?: 0)) else emptyMap()
+                val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }.associateWith { inventory[it] ?: 0 }
                 val bossFrames = CombatSimulator.simulateBoss(
                     boss               = boss,
                     bossKey            = bossKey,
@@ -301,7 +301,7 @@ class WorkerQueuedSessionStarter @Inject constructor(
                 val preferredArrow = flags.equippedArrows?.takeIf { (inventory[it] ?: 0) > 0 }
                 val bestArrow = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
                 val arrowBonus = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
-                val availableArrows = if (bestArrow != null) mapOf(bestArrow to (inventory[bestArrow] ?: 0)) else emptyMap()
+                val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }.associateWith { inventory[it] ?: 0 }
                 val result = CombatSimulator.simulateDungeon(
                     dungeon             = dungeon,
                     enemies             = gameData.enemies,
