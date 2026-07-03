@@ -1,3 +1,8 @@
+v1.10.10
+• Fixed Prayer XP from burying bones not including pet bonuses (e.g. Juggling Imp's all-skill boost)
+• Fixed queueing multiple Infinite Tower floors repeating the same floor instead of advancing (each queue tap now uses the last queued floor, not the currently running one)
+• Fixed Agility Prestige not reducing Crafting session duration (Smithing, Cooking, Fletching, Crafting, Herblore, Construction)
+
 v1.10.9
 • Fixed Higher or Lower minigame giving wrong answer on tied numbers (now regenerates until the next number differs)
 • Fixed Ancient Forest Ruins not unlocking after completing the Whispering Grove expedition (race condition in flag update now resolved atomically)

@@ -184,7 +184,11 @@ class TowerViewModel @Inject constructor(
                 val agility = (json.decodeFromString<Map<String, Int>>(player.skillLevels))[Skills.AGILITY] ?: 1
                 val flags: PlayerFlags = try { json.decodeFromString(player.flags) } catch (_: Exception) { PlayerFlags() }
                 val activeSession = sessionRepo.getActiveSession()
-                val runningFloor = activeSession?.activityKey?.removePrefix("tower_floor_")?.toIntOrNull()
+                val lastQueuedFloor = flags.sessionQueue
+                    .lastOrNull { it.skillName == "tower" }
+                    ?.activityKey?.removePrefix("tower_floor_")?.toIntOrNull()
+                val runningFloor = lastQueuedFloor
+                    ?: activeSession?.activityKey?.removePrefix("tower_floor_")?.toIntOrNull()
                     ?: flags.towerCurrentFloor
                 val nextFloor = runningFloor + 1
                 val enqueued = playerRepo.enqueueAction(
