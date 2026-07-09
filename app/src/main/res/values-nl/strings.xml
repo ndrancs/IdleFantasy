@@ -367,6 +367,7 @@
     <string name="settings_lang_italiano">Italiano</string>
     <string name="settings_lang_russian">Русский</string>
     <string name="settings_lang_indonesian">Indonesisch</string>
+    <string name="settings_lang_portugues_brasil">Português (Brasil)</string>
     <string name="settings_lang_system">Systeem</string>
     <string name="settings_save_data">Data opslaan</string>
     <string name="settings_export">Exporteer opslag</string>

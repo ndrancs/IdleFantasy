@@ -1,0 +1,4 @@
+• New: added Brazilian Portuguese as a selectable language
+• Fix: the seasonal bounty to "Fletch arrows to hold back the wisps" didn't say which arrow type it needed, now clarifies it requires Mithril arrows
+• Updated Italian translation for v1.11.1 strings
+• Updated French translation for improved clarity
