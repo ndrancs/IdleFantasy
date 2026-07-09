@@ -1117,7 +1117,7 @@
     <string name="town_church_no_bonus">Améliorez pour prolonger la durée des bénédictions</string>
     <string name="town_building_fairgrounds_name">Foire</string>
     <string name="town_fairgrounds_no_bonus">4 mini-jeux actifs disponibles, délais de récupération de 10 minutes</string>
-    <string name="town_fairgrounds_t1_bonus">Débloque Choisir un Gobelet, temps de recharge réduit à 7,5 minutes, +5 % de chance de ticket inactif/string>
+    <string name="town_fairgrounds_t1_bonus">Débloque Choisir un Gobelet, temps de recharge réduit à 7,5 minutes, +5 % de chance de ticket inactif</string>
     <string name="town_fairgrounds_t2_bonus">Débloque Plus Haut ou Plus Bas, +10% de chance de ticket au repos</string>
     <string name="town_fairgrounds_t3_bonus">Temps de recharge réduits à 5 minutes, +15% de chance de ticket en inactivité</string>
     <string name="town_building_garden_name">Jardin</string>
