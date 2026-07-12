@@ -694,7 +694,8 @@ fun HomeScreen(
                     shape    = RoundedCornerShape(16.dp),
                     color    = MaterialTheme.colorScheme.surfaceVariant,
                     modifier = if (eventComplete) Modifier.fillMaxWidth()
-                               else Modifier.fillMaxWidth().clickable { onNavigateToSeasonalEvent() },
+                               else Modifier.fillMaxWidth(),
+                    onClick = onNavigateToSeasonalEvent,
                 ) {
                     Row(
                         modifier = Modifier.padding(12.dp),
@@ -869,7 +870,10 @@ private fun TownGridCard(
     iconTint: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     badgeCount: Int = 0,
 ) {
-    ElevatedCard(modifier = modifier.clickable { onClick() }) {
+    ElevatedCard(
+        modifier = modifier,
+        onClick = onClick
+    ) {
         Column(
             modifier            = Modifier.fillMaxWidth().padding(vertical = 12.dp, horizontal = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
