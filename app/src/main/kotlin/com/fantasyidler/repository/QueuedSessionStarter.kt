@@ -231,10 +231,11 @@ class QueuedSessionStarter @Inject constructor(
                 val logData = gameData.logs[logKey] ?: return
                 val qty     = action.qty.takeIf { it > 0 } ?: return
                 val ashKey  = ashForLog(logKey)
+                val efficiency = gameData.toolEfficiency(equipped[EquipSlot.TINDERBOX], EquipSlot.TINDERBOX, logData.levelRequired)
                 val frames  = buildCraftFrames(xpMap[Skills.FIREMAKING] ?: 0L, qty, logData.xpPerLog.toDouble(), 1, ashKey,
-                    efficiency = gameData.toolEfficiency(equipped[EquipSlot.TINDERBOX], EquipSlot.TINDERBOX, logData.levelRequired),
+                    efficiency = efficiency,
                     petDropKey = petDropKey(Skills.FIREMAKING), petDropChance = petDropChance(Skills.FIREMAKING))
-                val perLogMs = SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60L
+                val perLogMs = (SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60L / efficiency).toLong()
                 sessionRepo.startSession(
                     skillName         = Skills.FIREMAKING,
                     activityKey       = logKey,
@@ -250,8 +251,9 @@ class QueuedSessionStarter @Inject constructor(
                 val runeData = gameData.runes[runeKey] ?: return
                 val qty      = action.qty.takeIf { it > 0 } ?: return
                 val ashBonus = action.catalystKey?.let { ashRuneBonus(it) } ?: 0
-                val ashCost  = if (ashBonus > 0) (qty + 9) / 10 else 0
-                if (ashCost > 0) playerRepo.consumeItemsUnlocked(mapOf(action.catalystKey!! to ashCost))
+                // Ash is already consumed at enqueue time (SkillsViewModel.startRunecraftingSession);
+                // action.catalystQty carries that amount through for the refund-on-abandon path.
+                val ashCost  = action.catalystQty
                 val currentXp = xpMap[Skills.RUNECRAFTING] ?: 0L
                 val rcPetDropKey = petDropKey(Skills.RUNECRAFTING)
                 val rcPetDropChance = petDropChance(Skills.RUNECRAFTING)
@@ -286,7 +288,8 @@ class QueuedSessionStarter @Inject constructor(
                     }
                 }
                 val perEssenceMs = SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60
-                sessionRepo.startSession(Skills.RUNECRAFTING, runeKey, encodeFrames(frames), qty.toLong() * perEssenceMs, action.skillDisplayName, insertAsCompleted = offline, backdateMs = backdateMs)
+                sessionRepo.startSession(Skills.RUNECRAFTING, runeKey, encodeFrames(frames), qty.toLong() * perEssenceMs, action.skillDisplayName, insertAsCompleted = offline, backdateMs = backdateMs,
+                    catalystKey = action.catalystKey, catalystQty = ashCost)
             }
             Skills.PRAYER -> {
                 val boneKey = action.activityKey
@@ -326,18 +329,20 @@ class QueuedSessionStarter @Inject constructor(
             Skills.SMITHING -> {
                 val r   = gameData.smithingRecipes[action.activityKey] ?: return
                 val qty = action.qty.takeIf { it > 0 } ?: return
+                val efficiency = gameData.toolEfficiency(equipped[EquipSlot.HAMMER], EquipSlot.HAMMER, r.levelRequired)
                 val frames = buildCraftFrames(xpMap[Skills.SMITHING] ?: 0L, qty, r.xpPerItem, r.outputQuantity, action.activityKey,
-                    efficiency = gameData.toolEfficiency(equipped[EquipSlot.HAMMER], EquipSlot.HAMMER, r.levelRequired),
+                    efficiency = efficiency,
                     petDropKey = petDropKey(Skills.SMITHING), petDropChance = petDropChance(Skills.SMITHING))
-                val perItemMs = SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60
+                val perItemMs = (SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60 / efficiency).toLong()
                 sessionRepo.startSession(Skills.SMITHING, action.activityKey, encodeFrames(frames), qty * perItemMs, action.skillDisplayName, insertAsCompleted = offline, backdateMs = backdateMs)
             }
             Skills.COOKING -> {
                 val r: CookingRecipe = gameData.cookingRecipes[action.activityKey] ?: return
                 val qty = action.qty.takeIf { it > 0 } ?: return
+                val efficiency = gameData.toolEfficiency(equipped[EquipSlot.FRYING_PAN], EquipSlot.FRYING_PAN, r.levelRequired)
                 val frames = buildCraftFrames(xpMap[Skills.COOKING] ?: 0L, qty, r.xpPerItem, 1, r.cookedItem,
-                    efficiency = gameData.toolEfficiency(equipped[EquipSlot.FRYING_PAN], EquipSlot.FRYING_PAN, r.levelRequired))
-                val perItemMs = SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60
+                    efficiency = efficiency)
+                val perItemMs = (SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60 / efficiency).toLong()
                 sessionRepo.startSession(Skills.COOKING, action.activityKey, encodeFrames(frames), qty * perItemMs, action.skillDisplayName, insertAsCompleted = offline, backdateMs = backdateMs)
             }
             Skills.FLETCHING -> {
@@ -373,7 +378,8 @@ class QueuedSessionStarter @Inject constructor(
                 val frames    = buildCraftFrames(xpMap[Skills.HERBLORE] ?: 0L, qty, r.xpPerItem, r.outputQuantity, outputKey,
                     petDropKey = petDropKey(Skills.HERBLORE), petDropChance = petDropChance(Skills.HERBLORE))
                 val perItemMs = SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60
-                sessionRepo.startSession(Skills.HERBLORE, action.activityKey, encodeFrames(frames), qty * perItemMs, action.skillDisplayName, insertAsCompleted = offline, backdateMs = backdateMs)
+                sessionRepo.startSession(Skills.HERBLORE, action.activityKey, encodeFrames(frames), qty * perItemMs, action.skillDisplayName, insertAsCompleted = offline, backdateMs = backdateMs,
+                    catalystKey = catalystKey, catalystQty = if (catalystKey != null) qty else 0)
             }
             Skills.MERCANTILE -> {
                 val route = gameData.tradeRoutes.firstOrNull { it.id == action.activityKey } ?: return
@@ -435,7 +441,10 @@ class QueuedSessionStarter @Inject constructor(
                 val preferredArrow = bossArrowKey?.takeIf { (inventory[it] ?: 0) > 0 }
                 val bestArrow = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
                 val arrowBonus = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
-                val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }.associate { it to (inventory[it] ?: 0) }
+                val orderedBossArrowKeys = if (preferredArrow != null)
+                    listOf(preferredArrow) + ARROW_TIERS.reversed().filter { it != preferredArrow && (inventory[it] ?: 0) > 0 }
+                    else ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }
+                val availableArrows = orderedBossArrowKeys.associateWith { inventory[it] ?: 0 }
                 val pmBoss = flags.skillPrestige
                 val bossFrames = CombatSimulator.simulateBoss(
                     boss               = boss,
@@ -455,6 +464,7 @@ class QueuedSessionStarter @Inject constructor(
                     equippedFood       = availableFood,
                     foodHealValues     = gameData.foodHealValues,
                     blessingDefBonus   = (ChurchRepository.defBonus(flags) * prayerCapeMult).toInt(),
+                    attackSpeedSec     = bossWeapon?.attackSpeed ?: CombatSimulator.BASE_ATTACK_SPEED_SEC,
                 )
                 val frameMs        = SkillSimulator.sessionDurationMs(agilityLevel, agilityPrestige) / 60L
                 val bossDurationMs = boss.durationMinutes * frameMs
@@ -468,7 +478,8 @@ class QueuedSessionStarter @Inject constructor(
                     // ends the session at the exact death tick within the final frame.
                     alarmOffsetMs     = if (bossFrames.size < boss.durationMinutes) {
                         val lastTicks   = bossFrames.lastOrNull()?.let { maxOf(it.playerHits.size, it.enemyHits.size) } ?: 0
-                        val lastFrameMs = if (lastTicks > 0) minOf(lastTicks * 2_400L, frameMs) else frameMs
+                        val tickMs      = if (lastTicks > 0) frameMs / lastTicks else 2_400L
+                        val lastFrameMs = if (lastTicks > 0) minOf(lastTicks * tickMs, frameMs) else frameMs
                         (bossFrames.size - 1).coerceAtLeast(0) * frameMs + lastFrameMs + 2_000L
                     } else null,
                     insertAsCompleted = offline,
@@ -519,7 +530,10 @@ class QueuedSessionStarter @Inject constructor(
                 val preferredArrow = combatArrowKey?.takeIf { (inventory[it] ?: 0) > 0 }
                 val bestArrow = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
                 val arrowBonus = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
-                val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }.associate { it to (inventory[it] ?: 0) }
+                val orderedCombatArrowKeys = if (preferredArrow != null)
+                    listOf(preferredArrow) + ARROW_TIERS.reversed().filter { it != preferredArrow && (inventory[it] ?: 0) > 0 }
+                    else ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }
+                val availableArrows = orderedCombatArrowKeys.associateWith { inventory[it] ?: 0 }
                 val equippedFoodKeys  = flags.equippedFood.keys
                 val prevFoodConsumed  = pendingFoodConsumed()
                 val availableFood     = inventory.filterKeys { it in equippedFoodKeys }
@@ -564,10 +578,19 @@ class QueuedSessionStarter @Inject constructor(
                     runeKey             = queueRuneKey,
                     runeCostPerAttack   = queueRuneCost,
                     availableRunes      = if (queueRuneKey != null) inventory[queueRuneKey] ?: 0 else Int.MAX_VALUE,
+                    attackSpeedSec      = weapon?.attackSpeed ?: CombatSimulator.BASE_ATTACK_SPEED_SEC,
                 )
                 startSession(action, result, offline, backdateMs)
             }
             "tower" -> {
+                // towerCurrentFloor only advances on collection, not completion, so starting
+                // another floor while one is still sitting completed-but-uncollected would
+                // recompute the same floor number below and silently re-run it. Bail out and
+                // let the caller (startNextQueued/insertNextQueuedAsOffline) requeue this action
+                // at the front to retry once the pending floor is collected.
+                if (sessionRepo.getAllCompletedSessions().any { it.skillName == "tower" }) {
+                    throw IllegalStateException("Tower floor pending collection")
+                }
                 // Floors must be attempted contiguously — the queued key is never trusted for
                 // the actual floor number, since queue edits (cancel/reorder) could otherwise
                 // let a player skip ahead without completing intermediate floors.
@@ -594,9 +617,13 @@ class QueuedSessionStarter @Inject constructor(
                 val totalRangedStrBonus = if (combatStyle == "ranged") {
                     EquipSlot.ARMOR_SLOTS.sumOf { gameData.equipment[equipped[it]]?.rangedStrengthBonus ?: 0 } + (weapon?.rangedStrengthBonus ?: 0)
                 } else 0
-                val bestArrow       = ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
+                val preferredArrow  = flags.equippedArrows?.takeIf { (inventory[it] ?: 0) > 0 }
+                val bestArrow       = preferredArrow ?: ARROW_TIERS.firstOrNull { (inventory[it] ?: 0) > 0 }
                 val arrowBonus      = bestArrow?.let { ARROW_STRENGTH_BONUS[it] } ?: 0
-                val availableArrows = ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }.associate { it to (inventory[it] ?: 0) }
+                val orderedTowerArrowKeys = if (preferredArrow != null)
+                    listOf(preferredArrow) + ARROW_TIERS.reversed().filter { it != preferredArrow && (inventory[it] ?: 0) > 0 }
+                    else ARROW_TIERS.filter { (inventory[it] ?: 0) > 0 }
+                val availableArrows = orderedTowerArrowKeys.associateWith { inventory[it] ?: 0 }
                 val spell           = gameData.spells[flags.activeSpell]
                 val equippedFoodKeys = flags.equippedFood.keys
                 val prevFoodConsumed = pendingFoodConsumed()
@@ -631,6 +658,7 @@ class QueuedSessionStarter @Inject constructor(
                     runeKey             = towerRuneKey,
                     runeCostPerAttack   = towerRuneCost,
                     availableRunes      = if (towerRuneKey != null) inventory[towerRuneKey] ?: 0 else Int.MAX_VALUE,
+                    attackSpeedSec      = weapon?.attackSpeed ?: CombatSimulator.BASE_ATTACK_SPEED_SEC,
                 )
                 sessionRepo.startSession(
                     skillName         = "tower",

@@ -63,6 +63,8 @@ class SessionRepository @Inject constructor(
         alarmOffsetMs: Long? = null,
         insertAsCompleted: Boolean = false,
         backdateMs: Long = 0L,
+        catalystKey: String? = null,
+        catalystQty: Int = 0,
     ): SkillSession {
         val now = System.currentTimeMillis()
         val startedAt = now - backdateMs
@@ -74,6 +76,8 @@ class SessionRepository @Inject constructor(
             frames      = frames,
             activityKey = activityKey,
             completed   = insertAsCompleted,
+            catalystKey = catalystKey,
+            catalystQty = catalystQty,
         )
         sessionDao.insert(session)
         if (!insertAsCompleted) {
@@ -122,7 +126,8 @@ class SessionRepository @Inject constructor(
         val durMin      = (gameData.bosses[session.activityKey]?.durationMinutes ?: 60).coerceAtLeast(1)
         val perFrameMs  = ((session.endsAt - session.startedAt) / durMin).coerceAtLeast(1L)
         val lastTicks   = frames.lastOrNull()?.let { maxOf(it.playerHits.size, it.enemyHits.size) } ?: 0
-        val lastFrameMs = if (lastTicks > 0) minOf(lastTicks * 2_400L, perFrameMs) else perFrameMs
+        val tickMs      = if (lastTicks > 0) perFrameMs / lastTicks else 2_400L
+        val lastFrameMs = if (lastTicks > 0) minOf(lastTicks * tickMs, perFrameMs) else perFrameMs
         minOf(session.endsAt, session.startedAt + (frames.size - 1).coerceAtLeast(0) * perFrameMs + lastFrameMs + 2_000L)
     } catch (_: Exception) { session.endsAt }
 

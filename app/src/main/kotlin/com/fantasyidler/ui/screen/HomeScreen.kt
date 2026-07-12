@@ -780,6 +780,7 @@ fun HomeScreen(
                     skillXp             = state.skillXp,
                     activeSessionSkill  = state.activeSession?.skillName ?: "",
                     activeSessionXpGain = state.activeSessionXpGain,
+                    towerCurrentFloor   = state.towerCurrentFloor,
                     onRemove            = viewModel::removeFromQueue,
                     onMove              = viewModel::moveQueueItem,
                 )

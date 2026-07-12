@@ -1,3 +1,32 @@
+v1.11.3
+• Fix: starting a Mercantile trade route directly (with no other session already queued) ignored your Agility prestige bonus, giving a 40-minute session instead of the correct 30 minutes at Agility prestige 3; sessions started via the queue were always correct, and now direct starts match
+• Fix: collecting a crafting or gathering session from the Skills screen never counted toward Seasonal Event bounty tasks (e.g. "Brew Strength Potions"), so those bounties looked unfinishable no matter what you crafted; potions brewed with any ash catalyst also now count toward bounties, same as plain potions
+• Fix: when a ranged weapon's preferred arrow type ran out mid-session, combat jumped straight to your best remaining arrow tier instead of the next cheapest one, burning through valuable arrows unnecessarily
+• Fix: prestiging a skill right after a session finished (but before collecting it) let the old, higher-level session pay out its full rewards anyway, instantly re-leveling the freshly reset skill for free; these sessions are now voided and any materials used are refunded instead
+• Fix: Quest, Guild Quest, and Carnival/Slayer XP Lamp rewards were silently multiplied by your active XP boosts when credited, but the confirmation message only showed the flat, pre-bonus amount; it now shows the real total you received
+• Added Rune Essence to the Shop's buy list (it was craftable and sellable, but not purchasable, despite the wiki saying otherwise)
+• Fix: if you didn't collect an Infinite Tower floor before the next one auto-started, the game would silently re-run the same floor instead of progressing, and the queue's floor number previews could drift out of sync with what would actually run; floors now wait for collection before advancing, and the queue preview is now always accurate
+• Fix: kills from Infinite Tower floors never counted toward Slayer tasks, and collecting a Tower floor from the Combat screen specifically also missed weekly/daily quest and Guild progress; all three ways of collecting a Tower floor now credit Slayer, quests, dailies, and Guild progress consistently
+• Fix: the Armory and Equip picker showed every non-combat skill cape's bonus as "XP Bonus" (e.g. the Farming Guild Cape), when most of them actually boost item yield, not XP; the label now matches what the cape actually does
+• Fix: buying then immediately selling Copper Ore, Tin Ore, or Rune Essence at high Mercantile levels could turn a small profit instead of a loss, letting you generate unlimited free coins; selling now always costs at least 1 coin less than buying, at every Mercantile level
+
+v1.11.2
+• New: added Brazilian Portuguese as a selectable language
+• Fix: the seasonal bounty to "Fletch arrows to hold back the wisps" didn't say which arrow type it needed, now clarifies it requires Mithril arrows
+• Updated Italian translation for v1.11.1 strings
+• Updated French translation for improved clarity
+• Fix: the Church blessing confirmation showed a "bones available" number that looked inflated because it was a weighted total (bigger bones count for more) rather than a plain item count; now shows both your raw bone count and what it's worth toward the blessing cost
+• Fix: the Sunspire Solstice seasonal event's bounty tasks, minigame name, and event banner were not translatable into other languages; they're now proper localized strings
+• Fix: collecting several finished sessions at once could show only the expedition's results (and its lore note) in the popup, hiding the other sessions' rewards from the summary — all collected sessions now show together
+• Fix: the Hammer, Tinderbox, and Frying Pan tools were only speeding up XP gain in Smithing, Firemaking, and Cooking, not crafting time, so better tools didn't visibly speed up production; they now reduce crafting time too, matching how Pickaxe/Axe/Fishing Rod/Grappling Hook already work
+• Fix: collecting a session from the Skills screen showed the XP gained without your active XP boost, blessing, or prestige bonus applied, even though you were actually credited the correct (higher) amount; the popup now shows the true total, matching what collecting from the Home screen already showed
+• Fix: sending a hired worker to Runecraft with an ash catalyst equipped produced the same output as having no ash at all; workers now get the same ash bonus you do when crafting runes yourself
+• Fix: cancelling a Runecrafting or Herblore session (or removing one from the queue, or prestiging its skill) never returned the ash catalyst you'd used, even though every other material was refunded; ash is now returned along with everything else
+• Fix: queuing a Runecrafting session with an ash catalyst while another session was already running consumed the ash twice, once when queued and again when it actually started
+• Fix: ranged combat could burn through better arrow types you weren't using before touching your actually-selected arrows, since the fallback order always started from your best tier owned instead of your selection; your selected arrow (or equipped arrow for workers and the Infinite Tower) is now used up first
+• New: added haptic feedback to the Bonfire Rhythm minigame, matching the other Carnival minigames
+• New: added an Easy mode to Bonfire Rhythm with a longer reaction window, trading a longer cooldown between attempts for it
+
 v1.11.1
 • Fix: Infinite Tower could land you on the wrong floor after queuing several floors and letting them finish while the app was closed, since offline catch-up could mis-order which completed floor counted as current and some floors could be skipped entirely; collection now correctly drains every backlogged floor in order
 • Fix: Equip Best Gear could equip a lower-tier gathering/crafting tool (like a bronze hammer) over a higher-tier one you owned (like an iron hammer), since the four newest tool types weren't being scored by their actual efficiency
