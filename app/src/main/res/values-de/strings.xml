@@ -377,7 +377,7 @@
     <string name="settings_lang_français">Français</string>
     <string name="settings_lang_español">Español</string>
     <string name="settings_lang_español_españa">Español (España)</string>
-	<string name="settings_lang_dutch">Nederlands</string>
+    <string name="settings_lang_dutch">Nederlands</string>
     <string name="settings_lang_turkish">Türkçe</string>
     <string name="settings_lang_italiano">Italiano</string>
     <string name="settings_lang_russian">Русский</string>
@@ -427,13 +427,13 @@
     <string name="home_bones_buried">Begrabene Knochen</string>
     <string name="home_whats_new">Was gibt\'s Neues?</string>
     <string name="home_got_it">Verstanden</string>
-	    <!-- Translator note: %1$s = player name or "Adventurer" -->
+        <!-- Translator note: %1$s = player name or "Adventurer" -->
     <string name="home_adventurer">Abenteurer</string>
-	    <!-- Translator note: %1$s = formatted duration string (e.g. "2h 15m") -->
+        <!-- Translator note: %1$s = formatted duration string (e.g. "2h 15m") -->
     <string name="home_up_next">Als Nächstes (%1$d/%2$d)</string>
-	    <!-- Translator note: %1$s = formatted duration string (e.g. "2h 15m") -->
+        <!-- Translator note: %1$s = formatted duration string (e.g. "2h 15m") -->
     <string name="home_queue_ends_in">Alles erledigt in %1$s</string>
-	    <!-- Translator note: %1$d = item quantity (e.g. ×40) -->
+        <!-- Translator note: %1$d = item quantity (e.g. ×40) -->
     <string name="queue_item_qty">×%1$d</string>
     <string name="queue_item_qty_with_output">×%1$d → %2$d Gegenstände</string>
     <plurals name="plural_collect_sessions">
@@ -483,7 +483,7 @@
     <string name="combat_xp_on_victory">EP bei Sieg</string>
     <string name="combat_you_died">Ihr seid gestorben!</string>
     <string name="combat_died_reward" formatted="false">Ihr habt 10% der Belohnung erhalten.</string>
-	    <!-- Translator note: %1$d = gear bonus value -->
+        <!-- Translator note: %1$d = gear bonus value -->
     <string name="combat_gear_bonus">+%1$d Ausrüstung</string>
 
     <!-- ===== translate — ProfileScreen ===== -->
@@ -531,20 +531,20 @@
     <string name="profile_req_lv">Benötigt Level </string>
 
     <!-- ===== translate — SkillsScreen ===== -->
-	<!-- Translator note: %1$d = session duration in minutes -->
+    <!-- Translator note: %1$d = session duration in minutes -->
     <string name="skills_session_duration">Dauer: %1$dm</string>
-	<!-- Translator note: %1$d = estimated number of ores mined in one session -->
+    <!-- Translator note: %1$d = estimated number of ores mined in one session -->
     <string name="skill_mining_qty_estimate">~%1$d Erze/Sitzung</string>
     <string name="skills_only_craftable">Nur herstellbare</string>
     <string name="skills_filter_all">Alle</string>
     <string name="skills_add_to_queue">Aktivität einreihen</string>
     <string name="skills_add_queue_short">Zur Warteschlange hinzufügen</string>
-	<!-- Translator note: %1$d = level required, %2$s = XP per action -->
+    <!-- Translator note: %1$d = level required, %2$s = XP per action -->
     <string name="skills_level_req_xp">Lv. %1$d  •  %2$s EP/Erz</string>
-	<!-- Translator note: %1$s = formatted multiplier (e.g. "1.15") -->
+    <!-- Translator note: %1$s = formatted multiplier (e.g. "1.15") -->
     <string name="skills_tool_bonus">×%1$s Werkzeugbonus</string>
-    <string name="skills_pet_bonus">+%1$d%% EP (Haustier)</string>	
-	<!-- Translator note: %1$d = fishing level -->
+    <string name="skills_pet_bonus">+%1$d%% EP (Haustier)</string>
+    <!-- Translator note: %1$d = fishing level -->
     <string name="skills_fishing_desc">Level %1$d  •  Dem Level entsprechende Beute</string>
     <!-- Translator note: %1$d = level required, %2$s = XP per catch -->
     <string name="skills_fish_desc">Lv. %1$d  •  %2$s EP/Fang</string>
@@ -570,8 +570,8 @@
     <string name="skills_no_logs">Keine Holzscheite im Inventar</string>
     <!-- Translator note: %1$d = level required, %2$s = XP per log -->
     <string name="skills_log_desc">Lv. %1$d  •  %2$s EP/Holz</string>
-	<!-- Translator note: %1$d = required level, %2$s = skill name, %3$d = player level, %4$s = skill name again -->
-	<string name="skills_req_with_have">Benötigt %1$d %2$s (Ihr habt %3$d %4$s)</string>
+    <!-- Translator note: %1$d = required level, %2$s = skill name, %3$d = player level, %4$s = skill name again -->
+    <string name="skills_req_with_have">Benötigt %1$d %2$s (Ihr habt %3$d %4$s)</string>
 
     <!-- ===== ShopScreen ===== -->
     <string name="shop_active">AKTIV</string>
@@ -1456,7 +1456,7 @@
     <string name="seasonal_event_token_progress">%1$d / %2$d Token</string>
     <string name="seasonal_event_complete">Abgeschlossen!</string>
     <string name="seasonal_bounty_board_title">Aufgabenbrett</string>
-    <string name="seasonal_expedition_title">Verlies</string>
+    <string name="seasonal_expedition_title">Expedition</string>
     <string name="seasonal_boss_title">Endgegner</string>
     <string name="seasonal_go_to_combat">Zum Kampf</string>
     <string name="seasonal_minigame_hint">Triff %1$d von %2$d Glutfunken, bevor sie verschwinden!</string>
